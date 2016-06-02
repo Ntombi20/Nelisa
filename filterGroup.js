@@ -45,8 +45,8 @@ var fs = require('fs');
 
         productMap[stock_item]= productMap[stock_item] + Number(number_sold);
 
-
       });
+
       return productMap;
 
 };

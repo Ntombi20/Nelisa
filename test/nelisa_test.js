@@ -128,50 +128,50 @@ describe("Nelisa Narrative", function(){
     it('Should return the most popular product sold for week one', function(){
 
       var mostProduct1 = mostLeastProduct.mostProduct(expectedWeek1);
-        assert.equal(mostProduct1, "milk");
+        assert.equal(mostProduct1, "Coke 500ml");
     });
 
     it('Should return the most popular product sold for week one', function(){
 
       var mostProduct2 = mostLeastProduct.mostProduct(expectedWeek2);
-        assert.equal(mostProduct2, "milk");
+        assert.equal(mostProduct2, "Mixed Sweets 5s");
     });
 
     it('Should return the most popular product sold for week one', function(){
 
       var mostProduct3 = mostLeastProduct.mostProduct(expectedWeek3);
-        assert.equal(mostProduct3, "milk");
+        assert.equal(mostProduct3, "Mixed Sweets 5s");
     });
 
     it('Should return the most popular product sold for week one', function(){
 
       var mostProduct4 = mostLeastProduct.mostProduct(expectedWeek4);
-        assert.equal(mostProduct4, "milk");
+        assert.equal(mostProduct4, "Coke 500ml");
     });
 
     // least popular product for each week
     it('Should return the least popular product sold for week one', function(){
 
       var leastProduct1 = mostLeastProduct.leastProduct(expectedWeek1);
-        assert.equal(leastProduct1, "milk");
+        assert.equal(leastProduct1, "Shampoo 1 litre");
     });
 
     it('Should return the least popular product sold for week two', function(){
 
       var leastProduct1 = mostLeastProduct.leastProduct(expectedWeek1);
-        assert.equal(leastProduct1, "milk");
+        assert.equal(leastProduct1, "Shampoo 1 litre");
     });
 
     it('Should return the least popular product sold for week three', function(){
 
       var leastProduct1 = mostLeastProduct.leastProduct(expectedWeek1);
-        assert.equal(leastProduct1, "milk");
+        assert.equal(leastProduct1, "Shampoo 1 litre");
     });
 
     it('Should return the least popular product sold for week four', function(){
 
       var leastProduct1 = mostLeastProduct.leastProduct(expectedWeek1);
-        assert.equal(leastProduct1, "milk");
+        assert.equal(leastProduct1, "Shampoo 1 litre");
     });
 
 });
