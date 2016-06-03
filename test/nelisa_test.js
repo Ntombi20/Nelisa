@@ -1,7 +1,7 @@
 var assert = require("assert");
 var results = require("../filterGroup");
 var mostLeastProduct = require('../mostLeastProduct');
-
+var category = require('../category');
 
 var expectedWeek1 = { 'Milk 1l': 39,
                       Imasi: 30,
@@ -70,59 +70,58 @@ var expectedWeek4 = { Imasi: 34,
                       'Mixed Sweets 5s': 40,
                       'Milk 1l': 43 }
 
-
+var week1Results = results.readRecords("./files/week1.csv");
+var week2Results = results.readRecords("./files/week2.csv");
+var week4Results = results.readRecords("./files/week4.csv");
+var week3Results = results.readRecords("./files/week3.csv");
 
 describe("Nelisa Narrative", function(){
 
     //filter data
     it('Should read the records for week one and filter the records by Day, Date, Stock item, Number sold, Sales price but return the length of the records', function(){
 
-      var week1Results = results.readRecords("./files/week1.csv");
         assert.equal(105, week1Results);
     });
 
     it('Should read the records for week two and filter the records by Day, Date, Stock item, Number sold, Sales price but return the length of the records', function(){
 
-      var week2Results = results.readRecords("./files/week2.csv");
         assert.equal(117, week2Results);
     });
 
     it('Should read the records for week three and filter the records by Day, Date, Stock item, Number sold, Sales price but return the length of the records', function(){
 
-      var week3Results = results.readRecords("./files/week3.csv");
         assert.equal(104, week3Results);
     });
 
     it('Should read the records for week four and filter the records by Day, Date, Stock item, Number sold, Sales price but return the length of the records', function(){
 
-      var week4Results = results.readRecords("./files/week4.csv");
         assert.equal(119, week4Results);
     });
 
     //group data
     it('Should return stock data group for week one', function(){
 
-      var week1Results = results.groupRecords("./files/week1.csv");
-        assert.deepEqual(expectedWeek1, week1Results);
-    });
+        var week1Results = results.groupRecords("./files/week1.csv");
+          assert.deepEqual(expectedWeek1, week1Results);
+      });
 
-    it('Should return stock data group for week two', function(){
+      it('Should return stock data group for week two', function(){
 
-      var week2Results = results.groupRecords("./files/week2.csv");
-        assert.deepEqual(expectedWeek2, week2Results);
-    });
+        var week2Results = results.groupRecords("./files/week2.csv");
+          assert.deepEqual(expectedWeek2, week2Results);
+      });
 
-    it('Should return stock data group for week three', function(){
+      it('Should return stock data group for week three', function(){
 
-      var week3Results = results.groupRecords("./files/week3.csv");
-        assert.deepEqual(expectedWeek3, week3Results);
-    });
+        var week3Results = results.groupRecords("./files/week3.csv");
+          assert.deepEqual(expectedWeek3, week3Results);
+      });
 
-    it('Should return stock data group for week four', function(){
+      it('Should return stock data group for week four', function(){
 
-      var week4Results = results.groupRecords("./files/week4.csv");
-        assert.deepEqual(expectedWeek4, week4Results);
-    });
+        var week4Results = results.groupRecords("./files/week4.csv");
+          assert.deepEqual(expectedWeek4, week4Results);
+      });
 
     //most popular product for each week
     it('Should return the most popular product sold for week one', function(){
@@ -131,19 +130,19 @@ describe("Nelisa Narrative", function(){
         assert.equal(mostProduct1, "Coke 500ml");
     });
 
-    it('Should return the most popular product sold for week one', function(){
+    it('Should return the most popular product sold for week two', function(){
 
       var mostProduct2 = mostLeastProduct.mostProduct(expectedWeek2);
         assert.equal(mostProduct2, "Mixed Sweets 5s");
     });
 
-    it('Should return the most popular product sold for week one', function(){
+    it('Should return the most popular product sold for week three', function(){
 
       var mostProduct3 = mostLeastProduct.mostProduct(expectedWeek3);
         assert.equal(mostProduct3, "Mixed Sweets 5s");
     });
 
-    it('Should return the most popular product sold for week one', function(){
+    it('Should return the most popular product sold for week four', function(){
 
       var mostProduct4 = mostLeastProduct.mostProduct(expectedWeek4);
         assert.equal(mostProduct4, "Coke 500ml");
@@ -174,4 +173,28 @@ describe("Nelisa Narrative", function(){
         assert.equal(leastProduct1, "Shampoo 1 litre");
     });
 
+    //get all the category using the data
+    it('Should group the data into category for each week', function(){
+
+      var allCategory1 = results.groupCategory("./files/category.csv");
+        assert.deepEqual(allCategory1, 0);
+    });
+
+    // it('Should group the data into category for week two', function(){
+    //
+    //   var allCategory2 = results.groupCategory(week2Results);
+    //     assert.deepEqual(allCategory2, 0);
+    // });
+    //
+    // it('Should group the data into category for week three', function(){
+    //
+    //   var allCategory3 = results.groupCategory(week3Results);
+    //     assert.deepEqual(allCategory3, 0);
+    // });
+    //
+    // it('Should group the data into category for week one', function(){
+    //
+    //   var allCategory4 = results.groupCategory(week4Results);
+    //     assert.deepEqual(allCategory4, 0);
+    // });
 });
