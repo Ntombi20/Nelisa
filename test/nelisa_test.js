@@ -190,21 +190,30 @@ describe("Nelisa Narrative", function(){
         assert.deepEqual(allCategory1, expectedCategory);
     });
 
-    // it('Should group the data into category for week two', function(){
-    //
-    //   var allCategory2 = results.groupCategory(week2Results);
-    //     assert.deepEqual(allCategory2, 0);
-    // });
-    //
-    // it('Should group the data into category for week three', function(){
-    //
-    //   var allCategory3 = results.groupCategory(week3Results);
-    //     assert.deepEqual(allCategory3, 0);
-    // });
-    //
-    // it('Should group the data into category for week one', function(){
-    //
-    //   var allCategory4 = results.groupCategory(week4Results);
-    //     assert.deepEqual(allCategory4, 0);
-    // });
+
+    //Should return the most popular category sold each week.
+    it('Should return the most popular product sold for week one', function(){
+
+      var mostCatgory1 = category.mostCatgory(expectedCategory, expectedWeek1);
+        assert.equal(mostCatgory1, "Canned food");
+    });
+
+    it('Should return the most popular product sold for week two', function(){
+
+      var mostCatgory2 = category.mostCatgory(expectedCategory, expectedWeek2);
+        assert.equal(mostCatgory2, "Canned food");
+    });
+
+    it('Should return the most popular product sold for week three', function(){
+
+      var mostCatgory3 = category.mostCatgory(expectedCategory, expectedWeek3);
+        assert.equal(mostCatgory3, "Canned food");
+    });
+
+    it('Should return the most popular product sold for week four', function(){
+
+      var mostCatgory4 = category.mostCatgory(expectedCategory, expectedWeek4);
+        assert.equal(mostCatgory4, "Canned food");
+    });
+
 });
