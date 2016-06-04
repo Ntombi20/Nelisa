@@ -75,6 +75,16 @@ var week2Results = results.readRecords("./files/week2.csv");
 var week4Results = results.readRecords("./files/week4.csv");
 var week3Results = results.readRecords("./files/week3.csv");
 
+var expectedCategory = { Diary: ', Milk 1l, Imasi',
+                        'Grain product': ', Bread, Iwisa Pap 5kg, Top Class Soy Mince',
+                        'Canned food': ', Chakalaka Can, Gold Dish Vegetable Curry Can',
+                        Bevarage: ', Fanta 500ml, Coka 500ml, Cream Soda 500ml',
+                        Household: ', Shampoo 1 litre, Soap Bar',
+                        Fruits: ', Bananas - loose, Apples - loose',
+                        Snacks: ', Mixed Sweets 5s, Heart chocalate',
+                        Gift: ', Rose (plastic), Valentine card' }
+
+
 describe("Nelisa Narrative", function(){
 
     //filter data
@@ -174,10 +184,10 @@ describe("Nelisa Narrative", function(){
     });
 
     //get all the category using the data
-    it('Should group the data into category for each week', function(){
+    it('Should group the data into category', function(){
 
       var allCategory1 = results.groupCategory("./files/category.csv");
-        assert.deepEqual(allCategory1, 0);
+        assert.deepEqual(allCategory1, expectedCategory);
     });
 
     // it('Should group the data into category for week two', function(){

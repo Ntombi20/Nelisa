@@ -49,7 +49,19 @@ exports.groupRecords = function(data) {
 exports.groupCategory = function(category) {
 
     var fs = require('fs');
+    var categoryMap = {};
     var readFile = fs.readFileSync(category, "utf8");
+    var group = readFile.split('\n').slice(1).filter(Boolean);
 
-    console.log(readFile);
+    group.forEach(function(groupCategory){
+      var item = groupCategory.split(",");
+      var categoryName = item[0];
+      var categoryItem = item[1];
+
+      if (categoryMap[categoryName] === undefined) {
+        categoryMap[categoryName] = "";
+      }
+      categoryMap[categoryName] = categoryMap[categoryName] + ", " + categoryItem;
+    })
+    return categoryMap;
 };
