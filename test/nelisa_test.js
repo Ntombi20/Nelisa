@@ -147,9 +147,8 @@ var expectedCategory4 = {
 }
 
 
-describe("Nelisa Narrative", function() {
-
-    //filter dataconsole.log(school[category]);
+describe("Nelisa Narrative: filtering and grouping data", function() {
+    //filter data
     it('Should read the records for week one and filter the records by Day, Date, Stock item, Number sold, Sales price but return the length of the records', function() {
         var week1Results = results.readRecords("./files/week1.csv");
         assert.equal(105, week1Results);
@@ -190,7 +189,9 @@ describe("Nelisa Narrative", function() {
         var week4Results = results.groupRecords("./files/week4.csv");
         assert.deepEqual(expectedWeek4, week4Results);
     });
+});
 
+describe("Nelisa Narrative: Most and least popular product for each week", function() {
     //most popular product for each week
     it('Should return the most popular product sold for week one', function() {
         var mostProduct1 = mostLeastProduct.mostProduct(expectedWeek1);
@@ -233,7 +234,9 @@ describe("Nelisa Narrative", function() {
         assert.equal(leastProduct1, "Shampoo 1 litre");
     });
 
+});
 
+describe("Nelisa Narrative: grouping category data", function() {
     //get all the category using the data
     it('Should group the data into category', function() {
         var allCategory1 = results.groupCategory("./files/category.csv");
@@ -261,47 +264,49 @@ describe("Nelisa Narrative", function() {
         assert.deepEqual(category, expectedCategory4);
     });
 
+});
 
+describe("Nelisa Narrative: Most and least popular category sold each week", function() {
     //the most popular category sold each week
-    it('Should return the most category product sold for week one', function(){
-      var mostCategory1 = category.mostCategory(expectedCategory1);
-      assert.equal(mostCategory1, "Bevarage");
+    it('Should return the most category product sold for week one', function() {
+        var mostCategory1 = category.mostCategory(expectedCategory1);
+        assert.equal(mostCategory1, "Bevarage");
     });
 
-    it('Should return the most category product sold for week two', function(){
-      var mostCategory2 = category.mostCategory(expectedCategory2);
-      assert.equal(mostCategory2, "Bevarage");
+    it('Should return the most category product sold for week two', function() {
+        var mostCategory2 = category.mostCategory(expectedCategory2);
+        assert.equal(mostCategory2, "Bevarage");
     });
 
-    it('Should return the most category product sold for week three', function(){
-      var mostCategory3 = category.mostCategory(expectedCategory3);
-      assert.equal(mostCategory3, "Diary");
+    it('Should return the most category product sold for week three', function() {
+        var mostCategory3 = category.mostCategory(expectedCategory3);
+        assert.equal(mostCategory3, "Diary");
     });
 
-    it('Should return the most category product sold for week four', function(){
-      var mostCategory4 = category.mostCategory(expectedCategory4);
-      assert.equal(mostCategory4, "Bevarage");
+    it('Should return the most category product sold for week four', function() {
+        var mostCategory4 = category.mostCategory(expectedCategory4);
+        assert.equal(mostCategory4, "Bevarage");
     });
 
     //the least popular category sold each week
-    it('Should return the least category product sold for week one', function(){
-      var mostCategory1 = category.leastCategory(expectedCategory1);
-      assert.equal(mostCategory1, "Household");
+    it('Should return the least category product sold for week one', function() {
+        var mostCategory1 = category.leastCategory(expectedCategory1);
+        assert.equal(mostCategory1, "Household");
     });
 
-    it('Should return the least category product sold for week two', function(){
-      var leastCategory2 = category.leastCategory(expectedCategory2);
-      assert.equal(leastCategory2, "Household");
+    it('Should return the least category product sold for week two', function() {
+        var leastCategory2 = category.leastCategory(expectedCategory2);
+        assert.equal(leastCategory2, "Household");
     });
 
-    it('Should return the least category product sold for week three', function(){
-      var leastCategory3 = category.leastCategory(expectedCategory3);
-      assert.equal(leastCategory3, "Household");
+    it('Should return the least category product sold for week three', function() {
+        var leastCategory3 = category.leastCategory(expectedCategory3);
+        assert.equal(leastCategory3, "Household");
     });
 
-    it('Should return the least category product sold for week four', function(){
-      var leastCategory4 = category.leastCategory(expectedCategory4);
-      assert.equal(leastCategory4, "Bakery");
+    it('Should return the least category product sold for week four', function() {
+        var leastCategory4 = category.leastCategory(expectedCategory4);
+        assert.equal(leastCategory4, "Bakery");
     });
 
 });

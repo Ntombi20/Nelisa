@@ -23,6 +23,5 @@ exports.leastCategory = function(categoryMap) {
             leastCategory = category;
         }
     }
-    console.log(leastCategory);
     return leastCategory;
 };
