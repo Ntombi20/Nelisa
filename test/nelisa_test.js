@@ -265,43 +265,43 @@ describe("Nelisa Narrative", function() {
     //the most popular category sold each week
     it('Should return the most category product sold for week one', function(){
       var mostCategory1 = category.mostCategory(expectedCategory1);
-      assert.equal(mostCategory1, "Canned food");
+      assert.equal(mostCategory1, "Bevarage");
     });
 
     it('Should return the most category product sold for week two', function(){
       var mostCategory2 = category.mostCategory(expectedCategory2);
-      assert.equal(mostCategory2, "Canned food");
+      assert.equal(mostCategory2, "Bevarage");
     });
 
     it('Should return the most category product sold for week three', function(){
       var mostCategory3 = category.mostCategory(expectedCategory3);
-      assert.equal(mostCategory3, "Canned food");
+      assert.equal(mostCategory3, "Diary");
     });
 
     it('Should return the most category product sold for week four', function(){
       var mostCategory4 = category.mostCategory(expectedCategory4);
-      assert.equal(mostCategory4, "Canned food");
+      assert.equal(mostCategory4, "Bevarage");
     });
 
     //the least popular category sold each week
     it('Should return the least category product sold for week one', function(){
       var mostCategory1 = category.leastCategory(expectedCategory1);
-      assert.equal(mostCategory1, "Canned food");
+      assert.equal(mostCategory1, "Household");
     });
 
     it('Should return the least category product sold for week two', function(){
       var leastCategory2 = category.leastCategory(expectedCategory2);
-      assert.equal(leastCategory2, "Canned food");
+      assert.equal(leastCategory2, "Household");
     });
 
     it('Should return the least category product sold for week three', function(){
       var leastCategory3 = category.leastCategory(expectedCategory3);
-      assert.equal(leastCategory3, "Canned food");
+      assert.equal(leastCategory3, "Household");
     });
 
     it('Should return the least category product sold for week four', function(){
       var leastCategory4 = category.leastCategory(expectedCategory4);
-      assert.equal(leastCategory4, "Canned food");
+      assert.equal(leastCategory4, "Bakery");
     });
 
 });
