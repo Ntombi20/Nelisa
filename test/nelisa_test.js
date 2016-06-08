@@ -2,6 +2,7 @@ var assert = require("assert");
 var results = require("../filterGroup");
 var mostLeastProduct = require('../mostLeastProduct');
 var category = require('../category');
+var profit = require('../profit');
 
 var expectedWeek1 = {
     'Milk 1l': 39,
@@ -309,4 +310,16 @@ describe("Nelisa Narrative: Most and least popular category sold each week", fun
         assert.equal(leastCategory4, "Bakery");
     });
 
+});
+
+describe("Nelisa Narrative: grouping purchases data", function() {
+  //filter data
+  it('Should read the records for purchases and filter the records by Shop, Date, Item, Quantity, Cost, Total but return the length of the records', function() {
+      var readPurchases = results.readPurchases("./files/purchases.csv");
+      assert.equal(readPurchases, 153);
+  });
+
+  // it('', function(){
+  //
+  // })
 });

@@ -78,3 +78,26 @@ exports.category = function(categoryMap, productMap) {
     }
     return category;
 };
+
+//Filtering the records by Shop, Date, Item, Quantity, Cost, Total cost but return the length
+exports.readPurchases = function(filePath) {
+
+    var fs = require('fs');
+    var details = [];
+    var readFile = fs.readFileSync(filePath, "utf8");
+    var bulks = readFile.split('\n').slice(1).filter(Boolean);
+
+    bulks.forEach(function(product) {
+        var items = product.split(";");
+        details.push({
+            Shop: items[0],
+            Date: items[1],
+            Item: items[2],
+            Quantity: items[3],
+            Cost: items[4],
+            Total_cost: items[5]
+        })
+    });
+    return details.length;
+
+};
