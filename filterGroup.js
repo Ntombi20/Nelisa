@@ -16,7 +16,7 @@ exports.readRecords = function(filePath) {
             Sales_Price: items[4]
         })
     });
-    return weekDetails.length;
+    return weekDetails;
 
 };
 
@@ -24,15 +24,12 @@ exports.readRecords = function(filePath) {
 //Should group the data
 exports.groupRecords = function(data) {
 
-    var fs = require('fs');
     var productMap = {};
-    var readFile = fs.readFileSync(data, "utf8");
-    var week1 = readFile.split('\n').slice(1).filter(Boolean);
 
-    week1.forEach(function(product) {
-        var items = product.split(",");
-        var stock_item = items[2];
-        var number_sold = items[3];
+    data.forEach(function(product) {
+
+        var stock_item = product.Stock_item;
+        var number_sold = product.Number_sold;
 
         if (productMap[stock_item] === undefined) {
             productMap[stock_item] = 0;
@@ -74,17 +71,17 @@ exports.category = function(categoryMap, productMap) {
         if (category[categoryMap[product]] === undefined) {
             category[categoryMap[product]] = 0;
         }
-            category[categoryMap[product]] = category[categoryMap[product]] + productMap[product];
+        category[categoryMap[product]] = category[categoryMap[product]] + productMap[product];
     }
     return category;
 };
 
-//Filtering the records by Shop, Date, Item, Quantity, Cost, Total cost but return the length
-exports.readPurchases = function(filePath) {
+//Should group the data for purchases
+exports.groupPurchases = function(data) {
 
     var fs = require('fs');
     var details = [];
-    var readFile = fs.readFileSync(filePath, "utf8");
+    var readFile = fs.readFileSync(data, "utf8");
     var bulks = readFile.split('\n').slice(1).filter(Boolean);
 
     bulks.forEach(function(product) {
@@ -98,6 +95,42 @@ exports.readPurchases = function(filePath) {
             Total_cost: items[5]
         })
     });
-    return details.length;
+
+    var purchase = {};
+    details.forEach(function(products) {
+
+        var item = products.Item;
+        var total_cost = products.Total_cost.replace("R", "").replace(",", ".");
+
+        if (purchase[item] === undefined) {
+            purchase[item] = 0;
+        }
+
+        purchase[item] = purchase[item] + Number(total_cost);
+    });
+    return purchase;
+
+};
+
+//Should group the data for products
+exports.groupWeeks = function(products) {
+
+    var stockMap = {};
+
+    products.forEach(function(data){
+
+      var stock_item = data.Stock_item;
+      var number_sold = data.Number_sold;
+      var sales_Price = data.Sales_Price.replace("R", "");
+      var total = sales_Price * number_sold;
+
+      if (stockMap[stock_item] === undefined) {
+          stockMap[stock_item] = 0;
+      }
+
+      stockMap[stock_item] = stockMap[stock_item] + total;
+    });
+    
+    return stockMap;
 
 };

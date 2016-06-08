@@ -147,48 +147,52 @@ var expectedCategory4 = {
     Snacks: 40
 }
 
+var week1Results = results.readRecords("./files/week1.csv");
+var week2Results = results.readRecords("./files/week2.csv");
+var week3Results = results.readRecords("./files/week3.csv");
+var week4Results = results.readRecords("./files/week4.csv");
 
 describe("Nelisa Narrative: filtering and grouping data", function() {
     //filter data
     it('Should read the records for week one and filter the records by Day, Date, Stock item, Number sold, Sales price but return the length of the records', function() {
         var week1Results = results.readRecords("./files/week1.csv");
-        assert.equal(105, week1Results);
+        assert.equal(105, week1Results.length);
     });
 
     it('Should read the records for week two and filter the records by Day, Date, Stock item, Number sold, Sales price but return the length of the records', function() {
         var week2Results = results.readRecords("./files/week2.csv");
-        assert.equal(117, week2Results);
+        assert.equal(117, week2Results.length);
     });
 
     it('Should read the records for week three and filter the records by Day, Date, Stock item, Number sold, Sales price but return the length of the records', function() {
         var week3Results = results.readRecords("./files/week3.csv");
-        assert.equal(104, week3Results);
+        assert.equal(104, week3Results.length);
     });
 
     it('Should read the records for week four and filter the records by Day, Date, Stock item, Number sold, Sales price but return the length of the records', function() {
         var week4Results = results.readRecords("./files/week4.csv");
-        assert.equal(119, week4Results);
+        assert.equal(119, week4Results.length);
     });
 
     //group data
     it('Should return stock data group for week one', function() {
-        var week1Results = results.groupRecords("./files/week1.csv");
-        assert.deepEqual(expectedWeek1, week1Results);
+        var week1 = results.groupRecords(week1Results);
+        assert.deepEqual(expectedWeek1, week1);
     });
 
     it('Should return stock data group for week two', function() {
-        var week2Results = results.groupRecords("./files/week2.csv");
-        assert.deepEqual(expectedWeek2, week2Results);
+        var week2 = results.groupRecords(week2Results);
+        assert.deepEqual(expectedWeek2, week2);
     });
 
     it('Should return stock data group for week three', function() {
-        var week3Results = results.groupRecords("./files/week3.csv");
-        assert.deepEqual(expectedWeek3, week3Results);
+        var week3 = results.groupRecords(week3Results);
+        assert.deepEqual(expectedWeek3, week3);
     });
 
     it('Should return stock data group for week four', function() {
-        var week4Results = results.groupRecords("./files/week4.csv");
-        assert.deepEqual(expectedWeek4, week4Results);
+        var week4 = results.groupRecords(week4Results);
+        assert.deepEqual(expectedWeek4, week4);
     });
 });
 
@@ -312,14 +316,119 @@ describe("Nelisa Narrative: Most and least popular category sold each week", fun
 
 });
 
-describe("Nelisa Narrative: grouping purchases data", function() {
-  //filter data
-  it('Should read the records for purchases and filter the records by Shop, Date, Item, Quantity, Cost, Total but return the length of the records', function() {
-      var readPurchases = results.readPurchases("./files/purchases.csv");
-      assert.equal(readPurchases, 153);
-  });
+var expectedPurchases = { 'Chakalaka Can': 676,
+                          'Coke 500ml': 598.5,
+                          'Cream Soda 500ml': 357,
+                          'Fanta 500ml': 433.5,
+                          'Gold Dish Vegetable Curry Can': 479,
+                          Imasi: 2238,
+                          'Iwisa Pap 5kg': 1020,
+                          'Milk 1l': 1061.5,
+                          'Top Class Soy Mince': 808,
+                          'Bananas - loose': 72,
+                          'Apples - loose': 795,
+                          'Mixed Sweets 5s': 2070,
+                          'Shampoo 1 litre': 520,
+                          'Soap Bar': 156,
+                          Bread: 1270,
+                          'Rose (plastic)': 200,
+                          'Heart Chocolates': 500,
+                          'Valentine Cards': 40 }
 
-  // it('', function(){
-  //
-  // })
+var groupWeek1 = { 'Milk 1l': 390,
+                    Imasi: 750,
+                    Bread: 540,
+                    'Chakalaka Can': 230,
+                    'Gold Dish Vegetable Curry Can': 153,
+                    'Fanta 500ml': 214.5,
+                    'Coke 500ml': 351,
+                    'Cream Soda 500ml': 165,
+                    'Iwisa Pap 5kg': 510,
+                    'Top Class Soy Mince': 264,
+                    'Shampoo 1 litre': 90,
+                    'Soap Bar': 72,
+                    'Bananas - loose': 94,
+                    'Apples - loose': 72,
+                    'Mixed Sweets 5s': 120 }
+
+var groupWeek2 = { Imasi: 900,
+                    Bread: 336,
+                    'Chakalaka Can': 210,
+                    'Gold Dish Vegetable Curry Can': 243,
+                    'Fanta 500ml': 149.5,
+                    'Coke 500ml': 273,
+                    'Cream Soda 500ml': 165,
+                    'Iwisa Pap 5kg': 300,
+                    'Top Class Soy Mince': 252,
+                    'Shampoo 1 litre': 180,
+                    'Soap Bar': 30,
+                    'Bananas - loose': 56,
+                    'Apples - loose': 42,
+                    'Mixed Sweets 5s': 147,
+                    'Milk 1l': 280,
+                    'Heart Chocolates': 700,
+                    'Rose (plastic)': 210,
+                    'Valentine Cards': 56 }
+
+var groupWeek3 = { Imasi: 625,
+                  Bread: 288,
+                  'Chakalaka Can': 170,
+                  'Gold Dish Vegetable Curry Can': 72,
+                  'Fanta 500ml': 91,
+                  'Coke 500ml': 117,
+                  'Cream Soda 500ml': 90,
+                  'Iwisa Pap 5kg': 120,
+                  'Top Class Soy Mince': 144,
+                  'Shampoo 1 litre': 120,
+                  'Soap Bar': 48,
+                  'Bananas - loose': 34,
+                  'Apples - loose': 50,
+                  'Mixed Sweets 5s': 80,
+                  'Milk 1l': 280 }
+
+var groupWeek4 = { Imasi: 850,
+                    Bread: 396,
+                    'Chakalaka Can': 330,
+                    'Gold Dish Vegetable Curry Can': 306,
+                    'Fanta 500ml': 156,
+                    'Coke 500ml': 292.5,
+                    'Cream Soda 500ml': 142.5,
+                    'Iwisa Pap 5kg': 480,
+                    'Top Class Soy Mince': 516,
+                    'Shampoo 1 litre': 390,
+                    'Soap Bar': 150,
+                    'Bananas - loose': 44,
+                    'Apples - loose': 64,
+                    'Mixed Sweets 5s': 108,
+                    'Milk 1l': 430 }
+
+
+
+describe("Nelisa Narrative: grouping purchases data", function() {
+    //group data purchases
+    it('Should return bulks data group for item and total cost', function() {
+        var groupPurchases = results.groupPurchases("./files/purchases.csv");
+        assert.deepEqual(groupPurchases, expectedPurchases);
+    });
+
+    //group data products
+    it('Should return stock data group for week one for item and total cost', function() {
+        var week1 = results.groupWeeks(week1Results);
+        assert.deepEqual(week1, groupWeek1);
+    });
+
+    it('Should return stock data group for week two for item and total cost', function() {
+        var week2 = results.groupWeeks(week2Results);
+        assert.deepEqual(week2, groupWeek2);
+    });
+
+    it('Should return stock data group for week three for item and total cost', function() {
+        var week3 = results.groupWeeks(week3Results);
+        assert.deepEqual(week3, groupWeek3);
+    });
+
+    it('Should return stock data group for week four for item and total cost', function() {
+        var week4 = results.groupWeeks(week4Results);
+        assert.deepEqual(week4, groupWeek4);
+    });
 });
