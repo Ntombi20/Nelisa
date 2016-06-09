@@ -335,7 +335,7 @@ var expectedPurchases = { 'Chakalaka Can': 676,
                           'Heart Chocolates': 500,
                           'Valentine Cards': 40 }
 
-var groupWeek1 = { 'Milk 1l': 390,
+var groupByWeek1 = { 'Milk 1l': 390,
                     Imasi: 750,
                     Bread: 540,
                     'Chakalaka Can': 230,
@@ -351,7 +351,7 @@ var groupWeek1 = { 'Milk 1l': 390,
                     'Apples - loose': 72,
                     'Mixed Sweets 5s': 120 }
 
-var groupWeek2 = { Imasi: 900,
+var groupByWeek2 = { Imasi: 900,
                     Bread: 336,
                     'Chakalaka Can': 210,
                     'Gold Dish Vegetable Curry Can': 243,
@@ -370,7 +370,7 @@ var groupWeek2 = { Imasi: 900,
                     'Rose (plastic)': 210,
                     'Valentine Cards': 56 }
 
-var groupWeek3 = { Imasi: 625,
+var groupByWeek3 = { Imasi: 625,
                   Bread: 288,
                   'Chakalaka Can': 170,
                   'Gold Dish Vegetable Curry Can': 72,
@@ -386,7 +386,7 @@ var groupWeek3 = { Imasi: 625,
                   'Mixed Sweets 5s': 80,
                   'Milk 1l': 280 }
 
-var groupWeek4 = { Imasi: 850,
+var groupByWeek4 = { Imasi: 850,
                     Bread: 396,
                     'Chakalaka Can': 330,
                     'Gold Dish Vegetable Curry Can': 306,
@@ -402,33 +402,145 @@ var groupWeek4 = { Imasi: 850,
                     'Mixed Sweets 5s': 108,
                     'Milk 1l': 430 }
 
+var expectedProfit1 = { 'Milk 1l': 350,
+                        Imasi: 710,
+                        Bread: 500,
+                        'Chakalaka Can': 190,
+                        'Gold Dish Vegetable Curry Can': 113,
+                        'Fanta 500ml': 174.5,
+                        'Coke 500ml': 311,
+                        'Cream Soda 500ml': 125,
+                        'Iwisa Pap 5kg': 470,
+                        'Top Class Soy Mince': 224,
+                        'Shampoo 1 litre': 50,
+                        'Soap Bar': 32,
+                        'Bananas - loose': 54,
+                        'Apples - loose': 32,
+                        'Mixed Sweets 5s': 80 }
+
+
+var expectedProfit2 = { Imasi: 860,
+                        Bread: 296,
+                        'Chakalaka Can': 170,
+                        'Gold Dish Vegetable Curry Can': 203,
+                        'Fanta 500ml': 109.5,
+                        'Coke 500ml': 233,
+                        'Cream Soda 500ml': 125,
+                        'Iwisa Pap 5kg': 260,
+                        'Top Class Soy Mince': 212,
+                        'Shampoo 1 litre': 140,
+                        'Soap Bar': -10,
+                        'Bananas - loose': 16,
+                        'Apples - loose': 2,
+                        'Mixed Sweets 5s': 107,
+                        'Milk 1l': 240,
+                        'Heart Chocolates': 660,
+                        'Rose (plastic)': 170,
+                        'Valentine Cards': 16 }
+
+
+var expectedProfit3 = { Imasi: 585,
+                        Bread: 248,
+                        'Chakalaka Can': 130,
+                        'Gold Dish Vegetable Curry Can': 32,
+                        'Fanta 500ml': 51,
+                        'Coke 500ml': 77,
+                        'Cream Soda 500ml': 50,
+                        'Iwisa Pap 5kg': 80,
+                        'Top Class Soy Mince': 104,
+                        'Shampoo 1 litre': 80,
+                        'Soap Bar': 8,
+                        'Bananas - loose': -6,
+                        'Apples - loose': 10,
+                        'Mixed Sweets 5s': 40,
+                        'Milk 1l': 240 }
+
+
+var expectedProfit4 = { Imasi: 810,
+                        Bread: 356,
+                        'Chakalaka Can': 290,
+                        'Gold Dish Vegetable Curry Can': 266,
+                        'Fanta 500ml': 116,
+                        'Coke 500ml': 252.5,
+                        'Cream Soda 500ml': 102.5,
+                        'Iwisa Pap 5kg': 440,
+                        'Top Class Soy Mince': 476,
+                        'Shampoo 1 litre': 350,
+                        'Soap Bar': 110,
+                        'Bananas - loose': 4,
+                        'Apples - loose': 24,
+                        'Mixed Sweets 5s': 68,
+                        'Milk 1l': 390 }
+
 
 
 describe("Nelisa Narrative: grouping purchases data", function() {
     //group data purchases
     it('Should return bulks data group for item and total cost', function() {
-        var groupPurchases = results.groupPurchases("./files/purchases.csv");
-        assert.deepEqual(groupPurchases, expectedPurchases);
+        var groupByPurchases = results.groupPurchases("./files/purchases.csv");
+        assert.deepEqual(groupByPurchases, expectedPurchases);
     });
 
     //group data products
     it('Should return stock data group for week one for item and total cost', function() {
-        var week1 = results.groupWeeks(week1Results);
-        assert.deepEqual(week1, groupWeek1);
+        var week1 = results.groupByWeeks(week1Results);
+        assert.deepEqual(week1, groupByWeek1);
     });
 
     it('Should return stock data group for week two for item and total cost', function() {
-        var week2 = results.groupWeeks(week2Results);
-        assert.deepEqual(week2, groupWeek2);
+        var week2 = results.groupByWeeks(week2Results);
+        assert.deepEqual(week2, groupByWeek2);
     });
 
     it('Should return stock data group for week three for item and total cost', function() {
-        var week3 = results.groupWeeks(week3Results);
-        assert.deepEqual(week3, groupWeek3);
+        var week3 = results.groupByWeeks(week3Results);
+        assert.deepEqual(week3, groupByWeek3);
     });
 
     it('Should return stock data group for week four for item and total cost', function() {
-        var week4 = results.groupWeeks(week4Results);
-        assert.deepEqual(week4, groupWeek4);
+        var week4 = results.groupByWeeks(week4Results);
+        assert.deepEqual(week4, groupByWeek4);
+    });
+
+    //get profit
+    it('Should return the profit using groupByWeeks and groupByPurchases for week one', function() {
+        var profit = results.getProfit(expectedPurchases, groupByWeek1);
+        assert.deepEqual(profit, expectedProfit1);
+    });
+
+    it('Should return the profit using groupByWeeks and groupByPurchases for week two', function() {
+        var profit = results.getProfit(expectedPurchases, groupByWeek2);
+        assert.deepEqual(profit, expectedProfit2);
+    });
+
+    it('Should return the profit using groupByWeeks and groupByPurchases for week three', function() {
+        var profit = results.getProfit(expectedPurchases, groupByWeek3);
+        assert.deepEqual(profit, expectedProfit3);
+    });
+
+    it('Should return the profit using groupByWeeks and groupByPurchases for week four', function() {
+        var profit = results.getProfit(expectedPurchases, groupByWeek4);
+        assert.deepEqual(profit, expectedProfit4);
+    });
+
+    //the most profitable product for each week;
+    it('Should return the most profitable product for week one', function() {
+        var mostProfitableProduct1 = profit.mostProfitableProduct(expectedProfit1);
+        assert.equal(mostProfitableProduct1, "Imasi");
+    });
+
+    it('Should return the most profitable product for week two', function() {
+        var mostProfitableProduct2 = profit.mostProfitableProduct(expectedProfit2);
+        assert.equal(mostProfitableProduct2, "Imasi");
+    });
+
+    it('Should return the most profitable product for week three', function() {
+        var mostProfitableProduct3 = profit.mostProfitableProduct(expectedProfit3);
+        assert.equal(mostProfitableProduct3, "Imasi");
+    });
+
+    it('Should return the most profitable product for week four', function() {
+        var mostProfitableProduct4 = profit.mostProfitableProduct(expectedProfit4);
+        assert.equal(mostProfitableProduct4, "Imasi");
     });
 });

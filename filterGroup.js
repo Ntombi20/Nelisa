@@ -71,7 +71,7 @@ exports.category = function(categoryMap, productMap) {
         if (category[categoryMap[product]] === undefined) {
             category[categoryMap[product]] = 0;
         }
-        category[categoryMap[product]] = category[categoryMap[product]] + productMap[product];
+      category[categoryMap[product]] = category[categoryMap[product]] + productMap[product];
     }
     return category;
 };
@@ -113,24 +113,38 @@ exports.groupPurchases = function(data) {
 };
 
 //Should group the data for products
-exports.groupWeeks = function(products) {
-
+exports.groupByWeeks = function(products) {
     var stockMap = {};
 
-    products.forEach(function(data){
+    products.forEach(function(data) {
 
-      var stock_item = data.Stock_item;
-      var number_sold = data.Number_sold;
-      var sales_Price = data.Sales_Price.replace("R", "");
-      var total = sales_Price * number_sold;
+        var stock_item = data.Stock_item;
+        var number_sold = data.Number_sold;
+        var sales_Price = data.Sales_Price.replace("R", "");
+        var total = sales_Price * number_sold;
 
-      if (stockMap[stock_item] === undefined) {
-          stockMap[stock_item] = 0;
-      }
+        if (stockMap[stock_item] === undefined) {
+            stockMap[stock_item] = 0;
+        }
 
-      stockMap[stock_item] = stockMap[stock_item] + total;
+        stockMap[stock_item] = stockMap[stock_item] + total;
     });
-    
     return stockMap;
 
+};
+
+//Should use groupByWeeks and groupPurchases to get profit
+exports.getProfit = function(groupByWeeks, groupByPurchases) {
+    var profit = {};
+
+    for (var purchase in groupByPurchases) {
+        for (var soldPurchase in groupByWeeks) {
+            var getTotal = groupByWeeks[soldPurchase] - groupByPurchases[purchase];
+            if (profit[purchase] === undefined) {
+                profit[purchase] = 0;
+            }
+        }
+        profit[purchase] = profit[purchase] - Number(getTotal);
+    }
+    return profit;
 };
