@@ -155,18 +155,18 @@ describe("Nelisa Narrative: Most and least popular product for each week", funct
     });
 
     it('Should return the least popular product sold for week two', function() {
-        var leastProduct1 = mostLeastProduct.leastProduct(expectedWeek1);
-        assert.equal(leastProduct1, "Shampoo 1 litre");
+        var leastProduct1 = mostLeastProduct.leastProduct(expectedWeek2);
+        assert.equal(leastProduct1, "Soap Bar");
     });
 
     it('Should return the least popular product sold for week three', function() {
-        var leastProduct1 = mostLeastProduct.leastProduct(expectedWeek1);
-        assert.equal(leastProduct1, "Shampoo 1 litre");
+        var leastProduct1 = mostLeastProduct.leastProduct(expectedWeek3);
+        assert.equal(leastProduct1, "Iwisa Pap 5kg");
     });
 
     it('Should return the least popular product sold for week four', function() {
-        var leastProduct1 = mostLeastProduct.leastProduct(expectedWeek1);
-        assert.equal(leastProduct1, "Shampoo 1 litre");
+        var leastProduct1 = mostLeastProduct.leastProduct(expectedWeek3);
+        assert.equal(leastProduct1, "Iwisa Pap 5kg");
     });
 
 });

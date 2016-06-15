@@ -1,4 +1,4 @@
-//Should group the data for products
+//Should group weeks data by total cost(sales price * no sold) and stock item
 exports.groupByWeeks = function(filePath) {
 
     var fs = require('fs');
@@ -36,7 +36,7 @@ exports.groupByWeeks = function(filePath) {
 
 };
 
-//Should filter the data for purchases
+//Should filter the data for purchases nd get the length
 exports.filterRecords = function(data) {
 
     var fs = require('fs');
@@ -122,12 +122,11 @@ exports.groupIntoweeks = function(details) {
 
         purchase[item] = purchase[item] + Number(total_cost);
     });
-
     return purchase;
 
 };
 
-//Should use groupByWeeks and groupPurchases to get profit
+// Should use groupByWeeks and groupPurchases to get profit.
 exports.getProfit = function(groupByWeeks, groupByPurchases) {
 
     var profit = {};
@@ -139,5 +138,6 @@ exports.getProfit = function(groupByWeeks, groupByPurchases) {
         }
         profit[purchase] = profit[purchase] + Number(getTotal);
     }
+    
     return profit;
 };

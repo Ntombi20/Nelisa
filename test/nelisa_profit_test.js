@@ -137,7 +137,7 @@ describe("Nelisa Narrative: grouping purchases data", function() {
     });
 
     //filter data purchases
-    it('Should filter the data for purchases', function(){
+    it('Should filter the data for purchases and return the length', function(){
       var filter = results.filterRecords("./files/purchases.csv").length;
       assert.equal(filter, 153);
     });
@@ -148,10 +148,36 @@ describe("Nelisa Narrative: grouping purchases data", function() {
       assert.deepEqual(groupIntoweeks, expectedWeek1);
     });
 
-    //Should use groupByWeeks and groupPurchases to get profit
+    // //Should use groupByWeeks and groupPurchases to get profit
     it('Should use groupIntoweeks and groupByWeek1 to get profit', function(){
       var getProfit = results.getProfit(expectedWeek1, expectedGroup1);
       assert.deepEqual(getProfit, expectedProfit);
     });
 
+});
+
+describe("Nelisa Narrative: profitable product for each week", function(){
+
+    it('Should get the product that makes the most profit for week one', function(){
+      var mostProfitableProduct = profit.mostProfitableProduct(expectedProfit);
+      assert.equal(mostProfitableProduct, "Iwisa Pap 5kg");
+    });
+
+    it('Should get the product that makes the least profit for week one', function(){
+      var leastProfitableProduct = profit.leastProfitableProduct(expectedProfit);
+      assert.equal(leastProfitableProduct, "Mixed Sweets 5s");
+    });
+});
+
+describe("Nelisa Narrative: profitable category for each week", function(){
+
+    it('Should get the category that makes the most profit for week one', function(){
+      var mostProfitableCategory = profit.mostProfitableCategory();
+      assert.equal(mostProfitableCategory, "Iwisa Pap 5kg");
+    });
+
+    it('Should get the category that makes the least profit for week one', function(){
+      var leastProfitableCategory = profit.leastProfitableCategory();
+      assert.equal(leastProfitableCategory, "Mixed Sweets 5s");
+    });
 });
