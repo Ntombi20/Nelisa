@@ -138,6 +138,6 @@ exports.getProfit = function(groupByWeeks, groupByPurchases) {
         }
         profit[purchase] = profit[purchase] + Number(getTotal);
     }
-    
+
     return profit;
 };
