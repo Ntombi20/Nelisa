@@ -13,20 +13,17 @@ exports.mostProfitableProduct = function(data) {
     return mostPProduct;
 };
 
-//the least profitable product for each week
-exports.leastProfitableProduct = function(data) {
-
-    var cost = Infinity;
-    var leastPProduct = "";
-
-    for (var product in data) {
-      if (data[product] < cost) {
-        cost = data[product];
-        leastPProduct = product;
-      }
-    }
-    console.log(leastPProduct);
-    return leastPProduct;
-};
-
 //the most profitable category for each week.
+exports.mostProfitableCategory = function(data) {
+    var product = 0;
+    var profitCategory = "";
+
+    for (var category in data) {
+        if (data[category] > product) {
+            product = data[category];
+            profitCategory = category;
+        }
+    }
+    console.log(profitCategory);
+    return profitCategory;
+};

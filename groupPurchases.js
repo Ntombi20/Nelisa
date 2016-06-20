@@ -1,5 +1,5 @@
 //Should group weeks data by total cost(sales price * no sold) and stock item
-exports.groupByWeeks = function(filePath) {
+exports.salesByWeeks = function(filePath) {
 
     var fs = require('fs');
     var weekDetails = [];
@@ -79,7 +79,8 @@ exports.groupIntoweeks = function(details) {
         if (new Date(data.Date) < week1date && new Date(data.Date) > week0date) {
             week1.push({
                 Item: data.Item,
-                Total_cost: data.Total_cost,
+                Quantity: data.Quantity,
+                Cost: data.Cost,
                 Date: data.Date
             })
         }
@@ -87,7 +88,8 @@ exports.groupIntoweeks = function(details) {
         if (new Date(data.Date) < week2date && new Date(data.Date) > week1date) {
             week2.push({
                 Item: data.Item,
-                Total_cost: data.Total_cost,
+                Quantity: data.Quantity,
+                Cost: data.Cost,
                 Date: data.Date
             })
         }
@@ -95,7 +97,8 @@ exports.groupIntoweeks = function(details) {
         if (new Date(data.Date) < week3date && new Date(data.Date) < week2date) {
             week3.push({
                 Item: data.Item,
-                Total_cost: data.Total_cost,
+                Quantity: data.Quantity,
+                Cost: data.Cost,
                 Date: data.Date
             })
         }
@@ -103,7 +106,8 @@ exports.groupIntoweeks = function(details) {
         if (new Date(data.Date) < week4date && new Date(data.Date) < week3date) {
             week4.push({
                 Item: data.Item,
-                Total_cost: data.Total_cost,
+                Quantity: data.Quantity,
+                Cost: data.Cost,
                 Date: data.Date
             })
         }
@@ -111,20 +115,22 @@ exports.groupIntoweeks = function(details) {
     });
 
     var purchase = {};
-    week1.forEach(function(products) {
 
-        var item = products.Item;
-        var total_cost = products.Total_cost.replace("R", "").replace(",", ".");
 
-        if (purchase[item] === undefined) {
-            purchase[item] = 0;
-        }
+     week1.forEach(function(products) {
 
-        purchase[item] = purchase[item] + Number(total_cost);
-    });
-    return purchase;
+         var item = products.Item;
+         var qty = products.Quantity;
 
-};
+         if (purchase[item] === undefined) {
+             purchase[item] = 0;
+         }
+
+         purchase[item] = purchase[item] + Number(qty);
+     });
+     return purchase;
+
+ };
 
 // Should use groupByWeeks and groupPurchases to get profit.
 exports.getProfit = function(groupByWeeks, groupByPurchases) {
@@ -138,6 +144,6 @@ exports.getProfit = function(groupByWeeks, groupByPurchases) {
         }
         profit[purchase] = profit[purchase] + Number(getTotal);
     }
-
+  
     return profit;
 };
