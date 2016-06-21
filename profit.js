@@ -24,6 +24,5 @@ exports.mostProfitableCategory = function(data) {
             profitCategory = category;
         }
     }
-    console.log(profitCategory);
     return profitCategory;
 };
