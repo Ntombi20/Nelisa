@@ -1,6 +1,5 @@
 //Should group weeks data by total cost(sales price * no sold) and stock item
 exports.salesByWeeks = function(filePath) {
-
     var fs = require('fs');
     var weekDetails = [];
     var readFile = fs.readFileSync(filePath, "utf8");
@@ -32,11 +31,12 @@ exports.salesByWeeks = function(filePath) {
 
         stockMap[stock_item] = stockMap[stock_item] + total;
     });
+
     return stockMap;
 
 };
 
-//Should filter the data for purchases nd get the length
+//Should filter the data for purchases and get the length
 exports.filterRecords = function(data) {
 
     var fs = require('fs');
@@ -62,7 +62,7 @@ exports.filterRecords = function(data) {
 };
 
 //Should group the data for purchases into weeks
-exports.groupIntoweeks = function(details) {
+exports.groupIntoweeks = function(details, date) {
 
     var week1 = [];
     var week2 = [];
@@ -70,48 +70,40 @@ exports.groupIntoweeks = function(details) {
     var week4 = [];
 
     var week0date = new Date("31-Jan");
-    var week1date = new Date("7-Feb");
-    var week2date = new Date("14-Feb");
-    var week3date = new Date("21-Feb");
-    var week4date = new Date("1-Mar");
-
+    console.log(week1);
     details.forEach(function(data) {
-        if (new Date(data.Date) < week1date && new Date(data.Date) > week0date) {
+        if (data.getDate() < date) {
 
             week1.push({
                 Item: data.Item,
-                Quantity: data.Quantity,
-                Cost: data.Cost,
+                Cost: data.Total_cost,
                 Date: data.Date
             })
         }
 
-        if (new Date(data.Date) < week2date && new Date(data.Date) > week1date) {
-            week2.push({
-                Item: data.Item,
-                Quantity: data.Quantity,
-                Cost: data.Cost,
-                Date: data.Date
-            })
-        }
-
-        if (new Date(data.Date) < week3date && new Date(data.Date) < week2date) {
-            week3.push({
-                Item: data.Item,
-                Quantity: data.Quantity,
-                Cost: data.Cost,
-                Date: data.Date
-            })
-        }
-
-        if (new Date(data.Date) < week4date && new Date(data.Date) < week3date) {
-            week4.push({
-                Item: data.Item,
-                Quantity: data.Quantity,
-                Cost: data.Cost,
-                Date: data.Date
-            })
-        }
+        // if (new Date(data.Date) < week2date && new Date(data.Date) > week1date) {
+        //     week2.push({
+        //       Item: data.Item,
+        //       Cost: data.Total_cost,
+        //       Date: data.Date
+        //     })
+        // }
+        //
+        // if (new Date(data.Date) < week3date && new Date(data.Date) < week2date) {
+        //     week3.push({
+        //       Item: data.Item,
+        //       Cost: data.Total_cost,
+        //       Date: data.Date
+        //     })
+        // }
+        //
+        // if (new Date(data.Date) < week4date && new Date(data.Date) < week3date) {
+        //     week4.push({
+        //       Item: data.Item,
+        //       Cost: data.Total_cost,
+        //       Date: data.Date
+        //     })
+        // }
     });
 
     var weeks = {
@@ -120,39 +112,39 @@ exports.groupIntoweeks = function(details) {
         week3: week3,
         week4: week4
     }
-    console.log(week1.length);
+
     return weeks;
 };
 
-exports.getQty = function(week) {
+exports.getPurchaseCost = function(week) {
 
     var purchase = {};
 
     week.forEach(function(products) {
         var item = products.Item;
-        var qty = products.Quantity;
+        var cost = products.Cost.replace("R","").replace(",", ".");
 
         if (purchase[item] === undefined) {
             purchase[item] = 0;
         }
 
-        purchase[item] = purchase[item] + Number(qty);
+        purchase[item] = purchase[item] + Number(cost);
     })
     return purchase;
 };
 
-// Should use groupByWeeks and groupPurchases to get profit.
-exports.getProfit = function(groupByWeeks, groupByPurchases) {
+// Should use salesByWeeks and getPurchaseCost to get profit.
+exports.getProfit = function(getPurchaseCost, salesByWeeks) {
 
     var profit = {};
 
-    for (var purchase in groupByPurchases) {
-        var getTotal = groupByPurchases[purchase] - groupByWeeks[purchase];
+    for (var purchase in salesByWeeks) {
+        var getTotal = salesByWeeks[purchase] - getPurchaseCost[purchase];
+
         if (profit[purchase] === undefined) {
             profit[purchase] = 0;
         }
         profit[purchase] = profit[purchase] + Number(getTotal);
     }
-    console.log(profit);
     return profit;
 };
