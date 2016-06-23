@@ -111,7 +111,6 @@ exports.groupIntoweeks = function(details, date, preDate) {
         week3: week3,
         week4: week4
     }
-
     return weeks;
 };
 
@@ -138,12 +137,15 @@ exports.getProfit = function(getPurchaseCost, salesByWeeks) {
     var profit = {};
 
     for (var purchase in salesByWeeks) {
-        var getTotal = salesByWeeks[purchase] - getPurchaseCost[purchase];
 
+        var salesForProduct = salesByWeeks[purchase] !== undefined ? salesByWeeks[purchase] : 0;
+        var purchaseForProduct = getPurchaseCost[purchase] !== undefined ? getPurchaseCost[purchase] : 0;
+        var salesProfit = salesForProduct - purchaseForProduct;
+        
         if (profit[purchase] === undefined) {
             profit[purchase] = 0;
         }
-        profit[purchase] = profit[purchase] + Number(getTotal);
+        profit[purchase] = profit[purchase] + Number(salesProfit);
     }
     return profit;
 };
