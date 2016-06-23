@@ -42,10 +42,11 @@ exports.filterRecords = function(data) {
     var fs = require('fs');
     var readFile = fs.readFileSync(data, "utf8");
     var bulks = readFile.split('\n').slice(1).filter(Boolean);
+    var removeJan = bulks.slice(24);
 
     var details = [];
 
-    bulks.forEach(function(product) {
+    removeJan.forEach(function(product) {
         var items = product.split(";");
 
         details.push({
@@ -62,18 +63,16 @@ exports.filterRecords = function(data) {
 };
 
 //Should group the data for purchases into weeks
-exports.groupIntoweeks = function(details, date) {
+exports.groupIntoweeks = function(details, date, preDate) {
 
     var week1 = [];
     var week2 = [];
     var week3 = [];
     var week4 = [];
 
-    var week0date = new Date("31-Jan");
-    console.log(week1);
     details.forEach(function(data) {
-        if (data.getDate() < date) {
 
+        if (new Date(data.Date) < date) {
             week1.push({
                 Item: data.Item,
                 Cost: data.Total_cost,
@@ -81,29 +80,29 @@ exports.groupIntoweeks = function(details, date) {
             })
         }
 
-        // if (new Date(data.Date) < week2date && new Date(data.Date) > week1date) {
-        //     week2.push({
-        //       Item: data.Item,
-        //       Cost: data.Total_cost,
-        //       Date: data.Date
-        //     })
-        // }
-        //
-        // if (new Date(data.Date) < week3date && new Date(data.Date) < week2date) {
-        //     week3.push({
-        //       Item: data.Item,
-        //       Cost: data.Total_cost,
-        //       Date: data.Date
-        //     })
-        // }
-        //
-        // if (new Date(data.Date) < week4date && new Date(data.Date) < week3date) {
-        //     week4.push({
-        //       Item: data.Item,
-        //       Cost: data.Total_cost,
-        //       Date: data.Date
-        //     })
-        // }
+        if (new Date(data.Date) < date && new Date(data.Date) > preDate) {
+            week2.push({
+              Item: data.Item,
+              Cost: data.Total_cost,
+              Date: data.Date
+            })
+        }
+
+        if (new Date(data.Date) < date && new Date(data.Date) > preDate) {
+            week3.push({
+              Item: data.Item,
+              Cost: data.Total_cost,
+              Date: data.Date
+            })
+        }
+
+        if (new Date(data.Date) < date && new Date(data.Date) > preDate) {
+            week4.push({
+              Item: data.Item,
+              Cost: data.Total_cost,
+              Date: data.Date
+            })
+        }
     });
 
     var weeks = {
