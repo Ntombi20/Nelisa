@@ -42,11 +42,10 @@ exports.filterRecords = function(data) {
     var fs = require('fs');
     var readFile = fs.readFileSync(data, "utf8");
     var bulks = readFile.split('\n').slice(1).filter(Boolean);
-    var removeJan = bulks.slice(24);
 
     var details = [];
 
-    removeJan.forEach(function(product) {
+    bulks.forEach(function(product) {
         var items = product.split(";");
 
         details.push({
@@ -72,7 +71,7 @@ exports.groupIntoweeks = function(details, date, preDate) {
 
     details.forEach(function(data) {
 
-        if (new Date(data.Date) < date) {
+        if (new Date(data.Date) < date && new Date(data.Date) > preDate) {
             week1.push({
                 Item: data.Item,
                 Cost: data.Total_cost,
@@ -141,7 +140,7 @@ exports.getProfit = function(getPurchaseCost, salesByWeeks) {
         var salesForProduct = salesByWeeks[purchase] !== undefined ? salesByWeeks[purchase] : 0;
         var purchaseForProduct = getPurchaseCost[purchase] !== undefined ? getPurchaseCost[purchase] : 0;
         var salesProfit = salesForProduct - purchaseForProduct;
-        
+
         if (profit[purchase] === undefined) {
             profit[purchase] = 0;
         }

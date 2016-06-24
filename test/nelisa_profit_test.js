@@ -101,13 +101,14 @@ describe("Nelisa Narrative: grouping purchases data for products", function() {
     //filter data purchases
     it('Should filter the data for purchases and return the length', function() {
         var filter = results.filterRecords("./files/purchases.csv").length;
-        assert.equal(filter, 129);
+        assert.equal(filter, 153);
     });
 
     //Should group the data for purchases into weeks for week one
     it('Should group the data for purchases into week one', function() {
+        var week0date = new Date("28-Jan");
         var week1date = new Date("7-Feb");
-        var groupIntoweek1 = results.groupIntoweeks(filter, week1date).week1.length;
+        var groupIntoweek1 = results.groupIntoweeks(filter, week1date, week0date).week1.length;
         assert.equal(groupIntoweek1, 23);
     });
 
@@ -132,33 +133,34 @@ describe("Nelisa Narrative: grouping purchases data for products", function() {
         assert.equal(groupIntoweek4, 34);
     });
 
+    var week0date = new Date("8-Jan");
     var week1date = new Date("7-Feb");
     var week2date = new Date("14-Feb");
     var week3date = new Date("21-Feb");
     var week4date = new Date("28-Feb");
     var filter = results.filterRecords("./files/purchases.csv");
-    var groupIntoweek1 = results.groupIntoweeks(filter, week1date).week1;
+    var groupIntoweek1 = results.groupIntoweeks(filter, week1date, week0date).week1;
     var groupIntoweek2 = results.groupIntoweeks(filter, week2date, week1date).week2;
     var groupIntoweek3 = results.groupIntoweeks(filter, week3date, week2date).week3;
     var groupIntoweek4 = results.groupIntoweeks(filter, week4date, week3date).week4;
 
     //Should get the purchase cost
     var expectedWeek1 = {
-        'Shampoo 1 litre': 60,
-        'Soap Bar': 39,
-        'Bananas - loose': 20,
-        'Apples - loose': 300,
-        'Mixed Sweets 5s': 1170,
-        Bread: 314,
-        Imasi: 521,
-        'Chakalaka Can': 105,
-        'Coke 500ml': 126,
-        'Cream Soda 500ml': 81,
-        'Fanta 500ml': 108,
-        'Gold Dish Vegetable Curry Can': 75,
-        'Iwisa Pap 5kg': 100,
-        'Milk 1l': 70,
-        'Top Class Soy Mince': 80
+        'Chakalaka Can': 231,
+        'Coke 500ml': 262.5,
+        'Cream Soda 500ml': 207,
+        'Fanta 500ml': 225,
+        'Gold Dish Vegetable Curry Can': 160,
+        Imasi: 793,
+        'Iwisa Pap 5kg': 460,
+        'Milk 1l': 273,
+        'Top Class Soy Mince': 200,
+        'Bananas - loose': 24,
+        'Apples - loose': 315,
+        'Mixed Sweets 5s': 1350,
+        'Shampoo 1 litre': 80,
+        'Soap Bar': 48,
+        Bread: 584
     }
     it('Should get the item and totaly cost for week 1', function() {
         var getPurchaseCost = results.getPurchaseCost(groupIntoweek1);
@@ -256,79 +258,85 @@ describe("Nelisa Narrative: grouping purchases data for products", function() {
 });
 
 var expectedProfit1 = {
-    'Milk 1l': 320,
-    Imasi: 229,
-    Bread: 226,
-    'Chakalaka Can': 125,
-    'Gold Dish Vegetable Curry Can': 78,
-    'Fanta 500ml': 106.5,
-    'Coke 500ml': 225,
-    'Cream Soda 500ml': 84,
-    'Iwisa Pap 5kg': 410,
-    'Top Class Soy Mince': 184,
-    'Shampoo 1 litre': 30,
-    'Soap Bar': 33,
-    'Bananas - loose': 74,
-    'Apples - loose': -228,
-    'Mixed Sweets 5s': -1050
+    'Milk 1l': 117,
+    Imasi: -43,
+    Bread: -44,
+    'Chakalaka Can': -1,
+    'Gold Dish Vegetable Curry Can': -7,
+    'Fanta 500ml': -10.5,
+    'Coke 500ml': 88.5,
+    'Cream Soda 500ml': -42,
+    'Iwisa Pap 5kg': 50,
+    'Top Class Soy Mince': 64,
+    'Shampoo 1 litre': 10,
+    'Soap Bar': 24,
+    'Bananas - loose': 70,
+    'Apples - loose': -243,
+    'Mixed Sweets 5s': -1230
 }
 
-var expectedProfit2 = { Imasi: 390,
-  Bread: 201,
-  'Chakalaka Can': 105,
-  'Gold Dish Vegetable Curry Can': 175.5,
-  'Fanta 500ml': 95.5,
-  'Coke 500ml': 168,
-  'Cream Soda 500ml': 165,
-  'Iwisa Pap 5kg': 200,
-  'Top Class Soy Mince': 92,
-  'Shampoo 1 litre': 80,
-  'Soap Bar': 15,
-  'Bananas - loose': 48,
-  'Apples - loose': 12,
-  'Mixed Sweets 5s': -453,
-  'Milk 1l': 48,
-  'Heart Chocolates': 200,
-  'Rose (plastic)': 10,
-  'Valentine Cards': 16 }
+var expectedProfit2 = {
+    Imasi: 390,
+    Bread: 201,
+    'Chakalaka Can': 105,
+    'Gold Dish Vegetable Curry Can': 175.5,
+    'Fanta 500ml': 95.5,
+    'Coke 500ml': 168,
+    'Cream Soda 500ml': 165,
+    'Iwisa Pap 5kg': 200,
+    'Top Class Soy Mince': 92,
+    'Shampoo 1 litre': 80,
+    'Soap Bar': 15,
+    'Bananas - loose': 48,
+    'Apples - loose': 12,
+    'Mixed Sweets 5s': -453,
+    'Milk 1l': 48,
+    'Heart Chocolates': 200,
+    'Rose (plastic)': 10,
+    'Valentine Cards': 16
+}
 
-var expectedProfit3 = { Imasi: 200,
-  Bread: 63,
-  'Chakalaka Can': 83,
-  'Gold Dish Vegetable Curry Can': 5,
-  'Fanta 500ml': 30.5,
-  'Coke 500ml': 33,
-  'Cream Soda 500ml': 21,
-  'Iwisa Pap 5kg': -110,
-  'Top Class Soy Mince': 24,
-  'Shampoo 1 litre': 20,
-  'Soap Bar': 24,
-  'Bananas - loose': 14,
-  'Apples - loose': -175,
-  'Mixed Sweets 5s': -16,
-  'Milk 1l': 3.5 }
+var expectedProfit3 = {
+    Imasi: 200,
+    Bread: 63,
+    'Chakalaka Can': 83,
+    'Gold Dish Vegetable Curry Can': 5,
+    'Fanta 500ml': 30.5,
+    'Coke 500ml': 33,
+    'Cream Soda 500ml': 21,
+    'Iwisa Pap 5kg': -110,
+    'Top Class Soy Mince': 24,
+    'Shampoo 1 litre': 20,
+    'Soap Bar': 24,
+    'Bananas - loose': 14,
+    'Apples - loose': -175,
+    'Mixed Sweets 5s': -16,
+    'Milk 1l': 3.5
+}
 
-var expectedProfit4 = { Imasi: 340,
-  Bread: 70,
-  'Chakalaka Can': 128,
-  'Gold Dish Vegetable Curry Can': 172.5,
-  'Fanta 500ml': 62,
-  'Coke 500ml': 145.5,
-  'Cream Soda 500ml': 61.5,
-  'Iwisa Pap 5kg': 250,
-  'Top Class Soy Mince': 276,
-  'Shampoo 1 litre': 250,
-  'Soap Bar': 105,
-  'Bananas - loose': 24,
-  'Apples - loose': -161,
-  'Mixed Sweets 5s': 84,
-  'Milk 1l': 150 }
+var expectedProfit4 = {
+    Imasi: 340,
+    Bread: 70,
+    'Chakalaka Can': 128,
+    'Gold Dish Vegetable Curry Can': 172.5,
+    'Fanta 500ml': 62,
+    'Coke 500ml': 145.5,
+    'Cream Soda 500ml': 61.5,
+    'Iwisa Pap 5kg': 250,
+    'Top Class Soy Mince': 276,
+    'Shampoo 1 litre': 250,
+    'Soap Bar': 105,
+    'Bananas - loose': 24,
+    'Apples - loose': -161,
+    'Mixed Sweets 5s': 84,
+    'Milk 1l': 150
+}
 
 describe("Nelisa Narrative: profitable product for each week", function() {
 
     it('Should get the product that makes the most profit for week one', function() {
         var mostProfitableProduct = profit.mostProfitableProduct(expectedProfit1);
-        assert.equal(mostProfitableProduct, "Iwisa Pap 5kg");
+        assert.equal(mostProfitableProduct, "Milk 1l");
     });
 
     it('Should get the product that makes the most profit for week two', function() {
@@ -349,43 +357,50 @@ describe("Nelisa Narrative: profitable product for each week", function() {
 });
 
 var bulk1 = {
-    Diary: 549,
-    Bakery: 226,
-    'Canned food': 203,
-    Bevarage: 415.5,
-    'Grain product': 594,
-    Household: 63,
-    Fruits: -154,
-    Snacks: -1050
+    Diary: 74,
+    Bakery: -44,
+    'Canned food': -8,
+    Bevarage: 36,
+    'Grain product': 114,
+    Household: 34,
+    Fruits: -173,
+    Snacks: -1230
 }
 
-var bulk2 = { Diary: 438,
-  Bakery: 201,
-  'Canned food': 280.5,
-  Bevarage: 428.5,
-  'Grain product': 292,
-  Household: 95,
-  Fruits: 60,
-  Snacks: -253,
-  Gift: 26 }
 
-var bulk3 = { Diary: 203.5,
-  Bakery: 63,
-  'Canned food': 88,
-  Bevarage: 84.5,
-  'Grain product': -86,
-  Household: 44,
-  Fruits: -161,
-  Snacks: -16 }
+var bulk2 = {
+    Diary: 438,
+    Bakery: 201,
+    'Canned food': 280.5,
+    Bevarage: 428.5,
+    'Grain product': 292,
+    Household: 95,
+    Fruits: 60,
+    Snacks: -253,
+    Gift: 26
+}
 
-var bulk4 = { Diary: 490,
-  Bakery: 70,
-  'Canned food': 300.5,
-  Bevarage: 269,
-  'Grain product': 526,
-  Household: 355,
-  Fruits: -137,
-  Snacks: 84 }
+var bulk3 = {
+    Diary: 203.5,
+    Bakery: 63,
+    'Canned food': 88,
+    Bevarage: 84.5,
+    'Grain product': -86,
+    Household: 44,
+    Fruits: -161,
+    Snacks: -16
+}
+
+var bulk4 = {
+    Diary: 490,
+    Bakery: 70,
+    'Canned food': 300.5,
+    Bevarage: 269,
+    'Grain product': 526,
+    Household: 355,
+    Fruits: -137,
+    Snacks: 84
+}
 
 
 describe("Nelisa Narrative: grouping purchases data for category", function() {
