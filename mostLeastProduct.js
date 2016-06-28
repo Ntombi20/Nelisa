@@ -2,12 +2,15 @@
 exports.mostProduct = function(records) {
 
   var price = 0;
-  var mostSold = "";
+  var mostSold = {};
 
     for (var products in records) {
       if (records[products] > price) {
         price = records[products];
-        mostSold = products;
+        mostSold = {
+          item: products,
+          price: records[products]
+        };
       }
     }
     return mostSold;
@@ -22,7 +25,10 @@ exports.leastProduct = function(records) {
     for (var products in records) {
       if (records[products] < price) {
         price = records[products];
-        leastSold = products;
+        leastSold = {
+          item: products,
+          price: records[products]
+        };
       }
     }
     return leastSold;
