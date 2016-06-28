@@ -328,22 +328,22 @@ describe("Nelisa Narrative: profitable product for each week", function() {
 
     it('Should get the product that makes the most profit for week one', function() {
         var mostProfitableProduct = profit.mostProfitableProduct(expectedProfit1);
-        assert.equal(mostProfitableProduct, "Iwisa Pap 5kg");
+        assert.deepEqual(mostProfitableProduct, { item: 'Iwisa Pap 5kg', cost: 410 });
     });
 
     it('Should get the product that makes the most profit for week two', function() {
         var mostProfitableProduct = profit.mostProfitableProduct(expectedProfit2);
-        assert.equal(mostProfitableProduct, "Imasi");
+        assert.deepEqual(mostProfitableProduct, { item: 'Imasi', cost: 390 });
     });
 
     it('Should get the product that makes the most profit for week three', function() {
         var mostProfitableProduct = profit.mostProfitableProduct(expectedProfit3);
-        assert.equal(mostProfitableProduct, "Imasi");
+        assert.deepEqual(mostProfitableProduct, { item: 'Imasi', cost: 200 });
     });
 
     it('Should get the product that makes the most profit for week four', function() {
         var mostProfitableProduct = profit.mostProfitableProduct(expectedProfit4);
-        assert.equal(mostProfitableProduct, "Imasi");
+        assert.deepEqual(mostProfitableProduct, { item: 'Imasi', cost: 340 });
     });
 
 });
@@ -443,22 +443,22 @@ describe("Nelisa Narrative: profitable category for each week", function() {
 
     it('Should get the category that makes the most profit for week one', function() {
         var mostProfitableCategory = profit.mostProfitableCategory(bulk1);
-        assert.equal(mostProfitableCategory, "Grain product");
+        assert.deepEqual(mostProfitableCategory, { item: 'Grain product', cost: 594 });
     });
 
     it('Should get the category that makes the most profit for week two', function() {
         var mostProfitableCategory = profit.mostProfitableCategory(bulk2);
-        assert.equal(mostProfitableCategory, "Diary");
+        assert.deepEqual(mostProfitableCategory, { item: 'Diary', cost: 438 });
     });
 
     it('Should get the category that makes the most profit for week three', function() {
         var mostProfitableCategory = profit.mostProfitableCategory(bulk3);
-        assert.equal(mostProfitableCategory, "Diary");
+        assert.deepEqual(mostProfitableCategory, { item: 'Diary', cost: 203.5 });
     });
 
     it('Should get the category that makes the most profit for week four', function() {
-        var mostProfitableCategory = profit.mostProfitableCategory(bulk3);
-        assert.equal(mostProfitableCategory, "Diary");
+        var mostProfitableCategory = profit.mostProfitableCategory(bulk4);
+        assert.deepEqual(mostProfitableCategory, { item: 'Grain product', cost: 526 });
     });
 
 });

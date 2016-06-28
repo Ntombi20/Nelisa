@@ -1,17 +1,17 @@
 //The most popular product sold each week;
 exports.mostProduct = function(records) {
 
-  var price = 0;
-  var mostSold = {};
+    var qty = 0;
+    var mostSold = {};
 
     for (var products in records) {
-      if (records[products] > price) {
-        price = records[products];
-        mostSold = {
-          item: products,
-          price: records[products]
-        };
-      }
+        if (records[products] > qty) {
+            qty = records[products];
+            mostSold = {
+                item: products,
+                qty: records[products]
+            };
+        }
     }
     return mostSold;
 };
@@ -19,17 +19,17 @@ exports.mostProduct = function(records) {
 //The least popular product sold each week;
 exports.leastProduct = function(records) {
 
-  var price = Infinity;
-  var leastSold = "";
+    var qty = Infinity;
+    var leastSold = "";
 
     for (var products in records) {
-      if (records[products] < price) {
-        price = records[products];
-        leastSold = {
-          item: products,
-          price: records[products]
-        };
-      }
+        if (records[products] < qty) {
+            qty = records[products];
+            leastSold = {
+                item: products,
+                qty: records[products]
+            };
+        }
     }
     return leastSold;
 };
