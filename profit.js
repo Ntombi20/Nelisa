@@ -8,7 +8,7 @@ exports.mostProfitableProduct = function(data) {
         if (data[product] > cost) {
             cost = data[product];
             mostPProduct = {
-                item: product,
+                Item: product,
                 cost: data[product]
             };
         }
@@ -25,7 +25,7 @@ exports.mostProfitableCategory = function(data) {
         if (data[category] > cost) {
             cost = data[category];
             profitCategory = {
-                item: category,
+                Item: category,
                 cost: data[category]
             };
         }

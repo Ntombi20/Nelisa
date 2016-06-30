@@ -141,11 +141,6 @@ var expectedWeek4 = {
     'Milk 1l': 43}
 
 describe("Nelisa Narrative: grouping category data", function() {
-    //get all the category using the data
-    it('Should group the data into category', function() {
-        var allCategory1 = results.groupCategory("./files/category.csv");
-        assert.deepEqual(allCategory1, groupCategory);
-    });
 
     //get the category and the total product sold in that category for each week.
     it('Should return the get the category and the total product sold in that category for week one.', function() {
@@ -170,47 +165,47 @@ describe("Nelisa Narrative: grouping category data", function() {
 
 });
 
-describe("Nelisa Narrative: Most and least popular category sold each week", function() {
-    //the most popular category sold each week
-    it('Should return the most category product sold for week one', function() {
-        var mostCategory1 = category.mostCategory(expectedCategory1);
-        assert.deepEqual(mostCategory1, { item: 'Bevarage', qty: 109 });
-    });
-
-    it('Should return the most category product sold for week two', function() {
-        var mostCategory2 = category.mostCategory(expectedCategory2);
-        assert.deepEqual(mostCategory2, { item: 'Bevarage', qty: 87 });
-    });
-
-    it('Should return the most category product sold for week three', function() {
-        var mostCategory3 = category.mostCategory(expectedCategory3);
-        assert.deepEqual(mostCategory3, { item: 'Diary', qty: 53 });
-    });
-
-    it('Should return the most category product sold for week four', function() {
-        var mostCategory4 = category.mostCategory(expectedCategory4);
-        assert.deepEqual(mostCategory4, { item: 'Bevarage', qty: 88 });
-    });
-
-    //the least popular category sold each week
-    it('Should return the least category product sold for week one', function() {
-        var mostCategory1 = category.leastCategory(expectedCategory1);
-        assert.deepEqual(mostCategory1, { item: 'Household', qty: 15 });
-    });
-
-    it('Should return the least category product sold for week two', function() {
-        var leastCategory2 = category.leastCategory(expectedCategory2);
-        assert.deepEqual(leastCategory2, { item: 'Household', qty: 11 });
-    });
-
-    it('Should return the least category product sold for week three', function() {
-        var leastCategory3 = category.leastCategory(expectedCategory3);
-        assert.deepEqual(leastCategory3, { item: 'Household', qty: 12 });
-    });
-
-    it('Should return the least category product sold for week four', function() {
-        var leastCategory4 = category.leastCategory(expectedCategory4);
-        assert.deepEqual(leastCategory4, { item: 'Bakery', qty: 33 });
-    });
-
-});
+// describe("Nelisa Narrative: Most and least popular category sold each week", function() {
+//     //the most popular category sold each week
+//     it('Should return the most category product sold for week one', function() {
+//         var mostCategory1 = category.mostCategory(expectedCategory1);
+//         assert.deepEqual(mostCategory1, { item: 'Bevarage', qty: 109 });
+//     });
+//
+//     it('Should return the most category product sold for week two', function() {
+//         var mostCategory2 = category.mostCategory(expectedCategory2);
+//         assert.deepEqual(mostCategory2, { item: 'Bevarage', qty: 87 });
+//     });
+//
+//     it('Should return the most category product sold for week three', function() {
+//         var mostCategory3 = category.mostCategory(expectedCategory3);
+//         assert.deepEqual(mostCategory3, { item: 'Diary', qty: 53 });
+//     });
+//
+//     it('Should return the most category product sold for week four', function() {
+//         var mostCategory4 = category.mostCategory(expectedCategory4);
+//         assert.deepEqual(mostCategory4, { item: 'Bevarage', qty: 88 });
+//     });
+//
+//     //the least popular category sold each week
+//     it('Should return the least category product sold for week one', function() {
+//         var mostCategory1 = category.leastCategory(expectedCategory1);
+//         assert.deepEqual(mostCategory1, { item: 'Household', qty: 15 });
+//     });
+//
+//     it('Should return the least category product sold for week two', function() {
+//         var leastCategory2 = category.leastCategory(expectedCategory2);
+//         assert.deepEqual(leastCategory2, { item: 'Household', qty: 11 });
+//     });
+//
+//     it('Should return the least category product sold for week three', function() {
+//         var leastCategory3 = category.leastCategory(expectedCategory3);
+//         assert.deepEqual(leastCategory3, { item: 'Household', qty: 12 });
+//     });
+//
+//     it('Should return the least category product sold for week four', function() {
+//         var leastCategory4 = category.leastCategory(expectedCategory4);
+//         assert.deepEqual(leastCategory4, { item: 'Bakery', qty: 33 });
+//     });
+//
+// });

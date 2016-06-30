@@ -1,5 +1,5 @@
 //Should group the data into categorys
-exports.groupCategory = function(category) {
+exports.groupCategory = function(categoryMap, productMap) {
 
     var fs = require('fs');
     var categoryMap = {};
@@ -16,18 +16,14 @@ exports.groupCategory = function(category) {
         }
         categoryMap[categoryItem] = categoryMap[categoryItem] + categoryName;
     })
-    return categoryMap;
-};
 
-//Using groupCategory and groupCategory to the get the category and the total product sold in that category.
-exports.category = function(categoryMap, productMap) {
     var category = {};
 
     for (var product in productMap) {
         if (category[categoryMap[product]] === undefined) {
             category[categoryMap[product]] = 0;
         }
-      category[categoryMap[product]] = category[categoryMap[product]] + productMap[product];
+        category[categoryMap[product]] = category[categoryMap[product]] + productMap[product];
     }
     return category;
 };
