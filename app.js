@@ -64,10 +64,41 @@ var source = fs.readFileSync('./index.handlebars', "utf8");
 
 var template = handlebars.compile(source);
 
-var data1 = {key: [mostProduct1, leastProduct1, popularSalesCategory1, unpopularSalesCategory1, profitableProduct1, profitableCategory1]}
-var data2 = {key: [mostProduct2, leastProduct2, popularSalesCategory2, unpopularSalesCategory2, profitableProduct2, profitableCategory2]}
-var data3 = {key: [mostProduct3, leastProduct3, popularSalesCategory3, unpopularSalesCategory3, profitableProduct3, profitableCategory3]}
-var data4 = {key: [mostProduct4, leastProduct4, popularSalesCategory4, unpopularSalesCategory4, profitableProduct4, profitableCategory4]}
+var data1 = {
+  week: "Week 1",
+  mostProduct: [mostProduct1],
+  leastProduct: [leastProduct1],
+  mostCat: [popularSalesCategory1],
+  leastCat: [unpopularSalesCategory1],
+  profitableProduct: [profitableProduct1],
+  popularCategory: [profitableCategory1]}
+
+var data2 = {
+  week: "Week 2",
+  mostProduct: [mostProduct2],
+  leastProduct: [leastProduct2],
+  mostCat: [popularSalesCategory2],
+  leastCat: [unpopularSalesCategory2],
+  profitableProduct: [profitableProduct2],
+  popularCategory: [profitableCategory2]}
+
+var data3 = {
+  week: "Week 3",
+  mostProduct: [mostProduct3],
+  leastProduct: [leastProduct3],
+  mostCat: [popularSalesCategory3],
+  leastCat: [unpopularSalesCategory3],
+  profitableProduct: [profitableProduct3],
+  popularCategory: [profitableCategory3]}
+
+var data4 = {
+  week: "Week 4",
+  mostProduct: [mostProduct4],
+  leastProduct: [leastProduct4],
+  mostCat: [popularSalesCategory4],
+  leastCat: [unpopularSalesCategory4],
+  profitableProduct: [profitableProduct4],
+  popularCategory: [profitableCategory4]}
 
 fs.writeFileSync('week1.html', template(data1))
 fs.writeFileSync('week2.html', template(data2))
