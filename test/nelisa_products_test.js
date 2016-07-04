@@ -116,6 +116,7 @@ describe("Nelisa Narrative: Most and least popular product for each week", funct
         assert.deepEqual(mostProduct3, { item: 'Mixed Sweets 5s', qty: 29 });
     });
 
+
     it('Should return the most popular product sold for week four', function() {
         var mostProduct4 = mostLeastProduct.mostProduct(expectedWeek4);
         assert.deepEqual(mostProduct4, { item: 'Coke 500ml', qty: 45 });
