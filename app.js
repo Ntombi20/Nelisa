@@ -60,7 +60,7 @@ var profitableProduct4 = profit.mostProfitableProduct(getProfitWeek4);
 var profitCategory4 = category.groupCategory("./files/category.csv", getProfitWeek4);
 var profitableCategory4 = profit.mostProfitableCategory(profitCategory4)
 
-var source = fs.readFileSync('./index.handlebars', "utf8");
+var source = fs.readFileSync('./views/index.handlebars', "utf8");
 
 var template = handlebars.compile(source);
 

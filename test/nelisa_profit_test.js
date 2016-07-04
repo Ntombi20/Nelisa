@@ -331,5 +331,4 @@ describe("Nelisa Narrative: profitable category for each week", function() {
         var mostProfitableCategory = profit.mostProfitableCategory(bulk4);
         assert.deepEqual(mostProfitableCategory, { Item: 'Grain product', cost: 526 });
     });
-
 });
