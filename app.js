@@ -100,7 +100,7 @@ var data4 = {
   profitableProduct: [profitableProduct4],
   popularCategory: [profitableCategory4]}
 
-fs.writeFileSync('week1.html', template(data1))
-fs.writeFileSync('week2.html', template(data2))
-fs.writeFileSync('week3.html', template(data3))
-fs.writeFileSync('week4.html', template(data4))
+fs.writeFileSync('./views/week1.html', template(data1))
+fs.writeFileSync('./views/week2.html', template(data2))
+fs.writeFileSync('./views/week3.html', template(data3))
+fs.writeFileSync('./views/week4.html', template(data4))
