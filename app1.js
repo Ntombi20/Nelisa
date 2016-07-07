@@ -3,13 +3,28 @@ var exphbs  = require('express-handlebars');
 
 var app = express();
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+var hbs = exphbs.create({
+    // Specify helpers which are only registered on this instance.
+    helpers: {
+        foo: function () { return 'FOO!'; },
+        bar: function () { return 'BAR!'; }
+    }
+});
+
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+app.enable('view cache');
 
-app.get('/', function (req, res) {
-    res.render('home');
+app.get('/', function (req, res, next) {
+    //var context = {name: "Ntombi"};
+    res.render('home', {
+        showTitle: true,
+
+        // Override `foo` helper only for this rendering.
+        helpers: {
+            foo: function () { return 'foo.'; }
+        }
+    });
 });
 
-app.listen(3010, function(){
-  console.log("listening on port 3010");
-});
+app.listen(3010);
