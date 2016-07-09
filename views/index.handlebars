@@ -10,10 +10,10 @@
 </head>
 <body>
   <ul>
-    <li><a href="week1.html">Week 1</a></li>
-    <li><a href="week2.html">Week 2</a></li>
-    <li><a href="week3.html">Week 3</a></li>
-    <li><a href="week4.html">Week 4</a></li>
+    <li><a href="/sales/week1">Week 1</a></li>
+    <li><a href="/sales/week2">Week 2</a></li>
+    <li><a href="/sales/week3">Week 3</a></li>
+    <li><a href="/sales/week4">Week 4</a></li>
   </ul>
 
     <h2 style="color: red;">{{week}}</h2>
@@ -28,14 +28,14 @@
       {{/leastProduct}}
     </p>
     <p>
-      {{#mostCat}}
+      {{#popularSalesCategory}}
         The most popular category sold this week is {{item}} and the quantity {{qty}},<br>
-      {{/mostCat}}
+      {{/popularSalesCategory}}
     </p>
     <p>
-      {{#leastCat}}
+      {{#unpopularSalesCategory}}
       The least popular category sold this week is {{item}} and the quantity {{qty}},<br>
-      {{/leastCat}}
+      {{/unpopularSalesCategory}}
     </p>
     <p>
       {{#profitableProduct}}
@@ -43,9 +43,9 @@
       {{/profitableProduct}}
     </p>
     <p>
-      {{#popularCategory}}
+      {{#profitableCategory}}
         The most popular category for this week is {{Item}} and the cost is {{cost}},<br>
-      {{/popularCategory}}
+      {{/profitableCategory}}
     </p>
   	<script src="bootstrap.min.js"></script>
     <script src="jquery.min.js" charset="utf-8"></script>
