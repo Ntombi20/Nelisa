@@ -51,16 +51,16 @@ fs.writeFileSync('week2.html', template(data2))
 fs.writeFileSync('week3.html', template(data3))
 fs.writeFileSync('week4.html', template(data4))
 
-// var express = require('./express-app/node_modules/express');
-// var exphbs  = require('express-handlebars');
-//
-// var app = express();
-//
-// app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-// app.set('view engine', 'handlebars');
-//
-// app.get('/', function (req, res) {
-//     res.render('index');
-// });
-//
-// app.listen(3000);
+var express = require('./express-app/node_modules/express');
+var exphbs  = require('express-handlebars');
+
+var app = express();
+
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
+app.get('/', function (req, res) {
+    res.render('index');
+});
+
+app.listen(3000);
