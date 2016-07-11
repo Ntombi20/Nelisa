@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Nelisa’s Spaza Shop</h1>
+    {{#week}}
+    <p>
+        The most popular product sold this week is {{mostProduct.item}} and the quantity {{mostProduct.qty}},<br>
+    </p>
+    <p>
+        The least popular product sold this week is {{leastProduct.item}} and the quantity {{leastProduct.qty}},<br>
+    </p>
+    <p>
+        The most popular category sold this week is {{popularSalesProduct.item}} and the quantity {{popularSalesProduct.qty}},<br>
+    </p>
+    <p>
+      The least popular category sold this week is {{unpopularSalesCategory.item}} and the quantity {{unpopularSalesCategory.qty}},<br>
+    </p>
+    <p>
+        The most profitable product for this week is {{profitableProduct.Item}} and the cost is R{{profitableProduct.cost}},<br>
+    </p>
+    <p>
+        The most popular category for this week is {{profitableCategory.Item}} and the cost is R{{profitableCategory.cost}},<br>
+    </p>
+    {{/week}}
+  </body>
+</html>
