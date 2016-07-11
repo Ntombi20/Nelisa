@@ -71,5 +71,7 @@ app.get('/sales/:week_name', function(req, res) {
     res.render('index', {week: weeklyData});
 });
 
+app.use(express.static('public'));
+
 app.listen(3000);
 console.log("running port 3000")
