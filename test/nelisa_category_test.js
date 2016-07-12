@@ -1,5 +1,5 @@
 var assert = require("assert");
-var category = require('../category');
+var category = require('../routes/category');
 
 var expectedCategory1 = {
     Diary: 69,

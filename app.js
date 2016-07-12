@@ -68,7 +68,8 @@ app.get('/sales/:week_name', function(req, res) {
 
 
     //use your template here with weeklyData
-    res.render('index', {week: weeklyData});
+    res.render('index', {week: weeklyData,
+                        weekName: week_name});
 });
 
 app.use(express.static('public'));

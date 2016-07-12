@@ -1,30 +1,126 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title></title>
-  </head>
-  <body>
+    <style media="screen">
+            body {
+            background: #cacaca;
+            margin: 0;
+            padding: 20px;
+            font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            font-weight: 300;
+        }
+
+        #table {
+            display: table;
+            width: 100%;
+            background: #fff;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .caption {
+            display: block;
+            width: 100%;
+            background: #64e0ef;
+            height: 55px;
+            padding-left: 10px;
+            color: #fff;
+            font-size: 20px;
+            line-height: 55px;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+            box-sizing: border-box;
+        }
+
+        .header-row {
+            background: #8b8b8b;
+            color: #fff;
+        }
+
+        .row {
+            display: table-row;
+        }
+
+        .cell {
+            display: table-cell;
+            padding: 6px;
+            border-bottom: 1px solid #e5e5e5;
+            text-align: center;
+        }
+
+        .primary {
+            text-align: left;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        @media only screen and (max-width: 760px) {
+            body {
+                padding: 0;
+            }
+            #table {
+                display: block;
+                margin: 44px 0 0 0;
+            }
+            .caption {
+                position: fixed;
+                top: 0;
+                text-align: center;
+                height: 44px;
+                line-height: 44px;
+                z-index: 5;
+                border-bottom: 2px solid #999;
+            }
+          }
+    </style>
+</head>
+
+<body>
     <h1>Nelisa’s Spaza Shop</h1>
+    <div class="caption">Nelisa sales reports for {{weekName}}</div>
     {{#week}}
-    <p>
-        The most popular product sold this week is {{mostProduct.item}} and the quantity {{mostProduct.qty}},<br>
-    </p>
-    <p>
-        The least popular product sold this week is {{leastProduct.item}} and the quantity {{leastProduct.qty}},<br>
-    </p>
-    <p>
-        The most popular category sold this week is {{popularSalesProduct.item}} and the quantity {{popularSalesProduct.qty}},<br>
-    </p>
-    <p>
-      The least popular category sold this week is {{unpopularSalesCategory.item}} and the quantity {{unpopularSalesCategory.qty}},<br>
-    </p>
-    <p>
-        The most profitable product for this week is {{profitableProduct.Item}} and the cost is R{{profitableProduct.cost}},<br>
-    </p>
-    <p>
-        The most popular category for this week is {{profitableCategory.Item}} and the cost is R{{profitableCategory.cost}},<br>
-    </p>
+        <div id="table">
+            <div class="header-row row">
+                <span class="cell primary">Description</span>
+                <span class="cell">Name</span>
+                <span class="cell">Quantity or Cost</span>
+            </div>
+            <div class="row">
+                <span class="cell primary" data-label="Description">Most popular product sold</span>
+                <span class="cell" data-label="Name">{{mostProduct.item}}</span>
+                <span class="cell" data-label="Quantity or Cost">{{mostProduct.qty}}</span>
+            </div>
+            <div class="row">
+                <span class="cell primary" data-label="Description">Least popular product sold</span>
+                <span class="cell" data-label="Name">{{leastProduct.item}}</span>
+                <span class="cell" data-label="Quantity or Cost">{{leastProduct.qty}}</span>
+            </div>
+            <div class="row">
+                <span class="cell primary" data-label="Description">Most popular category sold</span>
+                <span class="cell" data-label="Name">{{popularSalesProduct.item}}</span>
+                <span class="cell" data-label="Quantity or Cost">{{popularSalesProduct.qty}}</span>
+            </div>
+            <div class="row">
+                <span class="cell primary" data-label="Description">Least popular category sold</span>
+                <span class="cell" data-label="Name">{{unpopularSalesCategory.item}}</span>
+                <span class="cell" data-label="Quantity or Cost">{{unpopularSalesCategory.qty}}</span>
+            </div>
+            <div class="row">
+                <span class="cell primary" data-label="Description">The most profitable product</span>
+                <span class="cell" data-label="Name">{{profitableProduct.Item}}</span>
+                <span class="cell" data-label="Quantity or Cost">R{{profitableProduct.cost}}</span>
+            </div>
+            <div class="row">
+                <span class="cell primary" data-label="Description">The most popular category </span>
+                <span class="cell" data-label="Name">{{profitableProduct.Item}}</span>
+                <span class="cell" data-label="Quantity or Cost">R{{profitableCategory.cost}}</span>
+            </div>
     {{/week}}
-  </body>
+</body>
+
 </html>

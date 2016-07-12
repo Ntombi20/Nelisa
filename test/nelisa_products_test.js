@@ -1,5 +1,5 @@
 var assert = require("assert");
-var mostLeastProduct = require('../mostLeastProduct');
+var mostLeastProduct = require('../routes/mostLeastProduct');
 
 var expectedWeek1 = {
     'Milk 1l': 39,
