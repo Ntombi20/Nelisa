@@ -65,14 +65,14 @@ app.get('/sales/:week_name', function(req, res) {
     //get the proper data now...
     var weeklyData = weelkySalesStats('./files/' + week_name + '.csv');
 
-
-
+    app.use(express.static(__dirname + '/public'));
     //use your template here with weeklyData
     res.render('index', {week: weeklyData,
                         weekName: week_name});
 });
 
-app.use(express.static('public'));
 
-app.listen(3000);
-console.log("running port 3000")
+
+
+app.listen(2500);
+console.log("running port 2500")

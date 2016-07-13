@@ -1,0 +1,21 @@
+{
+  "name": "Nelisa",
+  "version": "0.0.0",
+  "description": "Nelisa runs a spaza shop in Khayelitsha and would like some help with her stock information.",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Ntombi20/Nelisa.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Ntombi20/Nelisa/issues"
+  }
+}
