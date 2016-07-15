@@ -3,6 +3,8 @@ var exphbs = require('express-handlebars');
 var fs = require('fs');
 var app = express();
 
+app.set('port', (process.env.PORT || 5000));
+
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
@@ -71,5 +73,7 @@ app.get('/sales/:week_name', function(req, res) {
                         weekName: week_name});
 });
 
-app.listen(2200);
-console.log("running port 2200")
+//start the app like this:
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
