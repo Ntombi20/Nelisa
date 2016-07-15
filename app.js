@@ -71,8 +71,5 @@ app.get('/sales/:week_name', function(req, res) {
                         weekName: week_name});
 });
 
-
-
-
-app.listen(2500);
-console.log("running port 2500")
+app.listen(2200);
+console.log("running port 2200")
