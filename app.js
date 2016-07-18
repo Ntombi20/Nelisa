@@ -9,6 +9,7 @@ app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
+app.use(express.static(__dirname + '/public'));
 //procssing the data to get the reports
 
 function weelkySalesStats(week) {
@@ -67,7 +68,6 @@ app.get('/sales/:week_name', function(req, res) {
     //get the proper data now...
     var weeklyData = weelkySalesStats('./files/' + week_name + '.csv');
 
-    app.use(express.static(__dirname + '/public'));
     //use your template here with weeklyData
     res.render('index', {week: weeklyData,
                         weekName: week_name});
