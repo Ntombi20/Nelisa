@@ -20,23 +20,16 @@ p {
 	padding: 0;
 	margin-bottom: 11px;
 }
-#table-1 {
-     display: table;
-     width: 100%;
-     background: #fff;
-     margin: 0;
-     box-sizing: border-box;
- }
-
- #table-2 {
-      display: table;
-      width: 100%;
-      background: #fff;
-      margin: 0;
-      box-sizing: border-box;
+  .myTable{
+    display: table;
+    width: 100%;
+    background: #fff;
+    margin: 0 0 0 50%;
+    box-sizing: border-box;
   }
  h2 {
 
+   margin: 0 0 0 50%;
      width: 100%;
      background: #64e0ef;
      height: 70px;
