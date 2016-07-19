@@ -20,6 +20,56 @@ p {
 	padding: 0;
 	margin-bottom: 11px;
 }
+#table-1 {
+     display: table;
+     width: 100%;
+     background: #fff;
+     margin: 0;
+     box-sizing: border-box;
+ }
+
+ #table-2 {
+      display: table;
+      width: 100%;
+      background: #fff;
+      margin: 0;
+      box-sizing: border-box;
+  }
+ h2 {
+
+     width: 100%;
+     background: #64e0ef;
+     height: 70px;
+     padding-left: 10px;
+     color: #fff;
+     font-size: 20px;
+     line-height: 55px;
+     text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+     box-sizing: border-box;
+ }
+ @media only screen and (max-width: 760px) {
+     body {
+         padding: 0;
+     }
+
+     #table-1 {
+         display: block;
+         margin: 44px 0 0 0;
+     }
+     #table-2 {
+         display: block;
+         margin: 44px 0 0 0;
+     }
+     h2 {
+         position: fixed;
+         top: 0;
+         text-align: center;
+         height: 44px;
+         line-height: 44px;
+         z-index: 5;
+         border-bottom: 2px solid #999;
+     }
+ }
 /*------ header ------- */
 header {
 	background: #2f3133 url(../img/patternbg.jpg) 0 0 repeat;
@@ -44,13 +94,6 @@ header {
 /*-----------------navbar---------------------*/
 .menuheader {
 	background: #545658;
-}
-.tm_navbar {
-	position: relative;
-	padding: 26px 0 22px;
-	margin: 0;
-	background: none;
-	border: none;
 }
 .tm_navbar .nav {
 	float: none;
