@@ -3,10 +3,13 @@ var exphbs = require('express-handlebars');
 var fs = require('fs');
 var app = express();
 
+app.set('port', (process.env.PORT || 5000));
+
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
+app.use(express.static(__dirname + '/public'));
 //procssing the data to get the reports
 
 function weelkySalesStats(week) {
@@ -65,14 +68,12 @@ app.get('/sales/:week_name', function(req, res) {
     //get the proper data now...
     var weeklyData = weelkySalesStats('./files/' + week_name + '.csv');
 
-    app.use(express.static(__dirname + '/public'));
     //use your template here with weeklyData
     res.render('index', {week: weeklyData,
                         weekName: week_name});
 });
 
-
-
-
-app.listen(2500);
-console.log("running port 2500")
+//start the app like this:
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});

@@ -1,69 +1,73 @@
-<div class="caption">Nelisa sales reports for {{weekName}}</div>
-{{#week}}
-    <div class="row-fluid">
-        <div class="col-md-6">
-            <div class="table-responsive">
-                <table class="table table-bordered">
+<h1><em>Nelisa Spaza App</em></h1>
+
+<div class="container">
+    <div class="col-md-6">
+        <h2>Nelisa sales reports for most/least popular product and category of {{weekName}}</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                {{#week}}
                     <thead>
                         <tr>
-                            <th><span class="cell primary">Description</span></th>
-                            <th><span class="cell">Name</span></th>
-                            <th><span class="cell">Quantity</span></th>
+                            <th>Description</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
                         </tr>
-                        <thead>
-                            <tbody>
-                                <tr>
-                                    <td><span class="cell primary" data-label="Description">Most popular product sold</span></td>
-                                    <td><span class="cell" data-label="Name">{{mostProduct.item}}</span></td>
-                                    <td><span class="cell" data-label="Quantity or Cost">{{mostProduct.qty}}</span></td>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <td><span class="cell primary" data-label="Description">Least popular product sold</span></td>
-                                    <td><span class="cell" data-label="Name">{{leastProduct.item}}</span></td>
-                                    <td><span class="cell" data-label="Quantity or Cost">{{leastProduct.qty}}</span></td>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <td><span class="cell primary" data-label="Description">Most popular category sold</span></td>
-                                    <td><span class="cell" data-label="Name">{{popularSalesProduct.item}}</span></td>
-                                    <td><span class="cell" data-label="Quantity or Cost">{{popularSalesProduct.qty}}</span></td>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <td><span class="cell primary" data-label="Description">Least popular category sold</span></td>
-                                    <td><span class="cell" data-label="Name">{{unpopularSalesCategory.item}}</span></td>
-                                    <td><span class="cell" data-label="Quantity or Cost">{{unpopularSalesCategory.qty}}</span></td>
-                            </tbody>
-                </table>
-            </div>
-            <div class="col-md-6">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th><span class="cell primary">Description</span></th>
-                                <th><span class="cell">Name</span></th>
-                                <th><span class="cell">Cost</span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="cell primary" data-label="Description">The most profitable product</span></td>
-                                <td><span class="cell" data-label="Name">{{profitableProduct.Item}}</span></td>
-                                <td><span class="cell" data-label="Quantity or Cost">R{{profitableProduct.cost}}</span></td>
-                            </tr>
-                        </tbody>
-                        <tbody>
-                            <tr>
-                                <td><span class="cell primary" data-label="Description">The most popular category </span></td>
-                                <td><span class="cell" data-label="Name">{{profitableCategory.Item}}</span></td>
-                                <td><span class="cell" data-label="Quantity or Cost">R{{profitableCategory.cost}}</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Most popular product sold</td>
+                            <td>{{mostProduct.item}}</td>
+                            <td>{{mostProduct.qty}}</td>
+                        </tr>
+                        <tr>
+                            <td>Least popular product sold</td>
+                            <td>{{leastProduct.item}}</td>
+                            <td>{{leastProduct.qty}}</td>
+                        </tr>
+                        <tr>
+                            <td>Most popular category sold</td>
+                            <td>{{popularSalesProduct.item}}</td>
+                            <td>{{popularSalesProduct.qty}}</td>
+                        </tr>
+                        <tr>
+                            <td>Least popular category sold</td>
+                            <td>{{unpopularSalesCategory.item}}</td>
+                            <td>{{unpopularSalesCategory.qty}}</td>
+                        </tr>
+                    </tbody>
+                {{/week}}
+            </table>
         </div>
-{{/week}}
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-md-6">
+        <h2>Nelisa sales reports for profitable product and category of {{weekName}}</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                {{#week}}
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Name</th>
+                            <th>Profit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>The most profitable product</td>
+                            <td>{{profitableProduct.Item}}</td>
+                            <td>R{{profitableProduct.cost}}</td>
+                        </tr>
+                        <tr>
+                            <td>The most popular category</td>
+                            <td>{{profitableProduct.Item}}</td>
+                            <td>R{{profitableCategory.cost}}</td>
+                        </tr>
+                    </tbody>
+                {{/week}}
+            </table>
+        </div>
+    </div>
+</div>
