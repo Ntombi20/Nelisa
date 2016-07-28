@@ -1,17 +1,31 @@
 var express = require('express');
-var exphbs = require('express-handlebars');
-var fs = require('fs');
+    exphbs = require('express-handlebars');
+    fs = require('fs');
+    app = express();
+    mysql = require('mysql'),
+    myConnection = require('express-myconnection'),
+
 var app = express();
 
-app.set('port', (process.env.PORT || 2500));
+var dbOptions = {
+      host: 'localhost',
+      user: 'ntombi',
+      password: 'nicolenma20',
+      port: 2500,
+      database: 'nelisa_spaza_app'
+    };
 
+//setup template handlebars as the template engine
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/public'));
-//procssing the data to get the reports
 
+//setup middleware
+app.use(myConnection(mysql, dbOptions, 'single');
+
+//procssing the data to get the reports
 function weelkySalesStats(week) {
 
     var mostLeastProduct = require('./routes/mostLeastProduct');
@@ -72,6 +86,9 @@ app.get('/sales/:week_name', function(req, res) {
     res.render('index', {week: weeklyData,
                         weekName: week_name});
 });
+
+//configure the port number using and environment number
+app.set('port', (process.env.PORT || 2500));
 
 //start the app like this:
 app.listen(app.get('port'), function() {
