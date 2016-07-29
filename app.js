@@ -87,7 +87,7 @@ app.get('/sales/:week_name', function(req, res) {
                         weekName: week_name});
 });
 
-//configure the port number using and environment number
+//configure the port number using and environment number.
 app.set('port', (process.env.PORT || 2500));
 
 //start the app like this:
