@@ -31,10 +31,48 @@ var values = [
     ["Valentine cards", 4.00]
 ];
 
-conn.query(sql, [values], function(err, results) {
-    if (err){
-      console.log(err);
+var productsCategory = {
+  "Milk": "Dairy",
+  "Bread": "Bakery",
+  "Chakalaka Canned": "Canned food",
+  "Gold dish vegetable curry can":"Canned food",
+  "Fanta 500ml": "Bevarage",
+  "Coke 500ml": "Bevarage",
+  "Cream soda 500ml": "Bevarage",
+  "Iwisa Pap 5kg": "Grain product",
+  "Top class soy mince": "Grain product",
+  "Shampoo": "Household",
+  "Soap bar": "Household",
+  "Bananas-loose": "Fruit",
+  "Apples-loose": "Fruit",
+  "Mixed sweets 5s": "Snacks",
+  "Heart chocolate": "Snacks",
+  "Imasi": "Dairy",
+  "Rose (plastic)": "Gift",
+  "Valentine cards": "Gift"
+}
+// ,sql, [values],
+conn.query("select * from categories", function(err, categories) {
+    if (err) return console.log(err);
+
+    var categoryMap = {};
+
+    categories.forEach(function(cat){
+      var categoryId = cat.id;
+      var categoryName = cat.description;
+
+      categoryMap[categoryName] = categoryId
+    })
+
+    var productsCategoryMap = {};
+
+    for (var category in categoryMap) {
+      for (var product in productsCategory) {
+
+        productsCategoryMap[product] = categoryMap[category];
+      }
     }
-    console.log(results);
+    console.log(productsCategoryMap);
+    console.log(productsCategory);
     conn.end();
 });
