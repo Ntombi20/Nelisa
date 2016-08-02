@@ -9,8 +9,8 @@ var app = express();
 
 var dbOptions = {
       host: 'localhost',
-      user: 'ntombi',
-      password: 'nicolenma20',
+      user: 'root',
+      password: '12345',
       port: 2500,
       database: 'nelisa_spaza_app'
     };
