@@ -7,29 +7,8 @@ var conn = mysql.createConnection({
     database: 'nelisa_spaza_app'
 });
 
-var sql = "INSERT INTO products (description, price) VALUE ?";
-
-//create a list of lists
-var values = [
-    ["Milk", 10.00],
-    ["Bread", 12.00],
-    ["Chakalaka Canned", 10.00],
-    ["Gold dish vegetable curry can", 9.00],
-    ["Fanta 500ml", 6.50],
-    ["Coke 500ml", 6.50],
-    ["Cream soda 500ml", 10.00],
-    ["Iwisa Pap 5kg", 30.00],
-    ["Top class soy mince", 12.00],
-    ["Shampoo", 30.00],
-    ["Soap bar", 6.00],
-    ["Bananas-loose", 2.00],
-    ["Apples-loose", 2.00],
-    ["Mixed sweets 5s", 3.00],
-    ["Heart chocolate", 35.00],
-    ["Imasi", 25.00],
-    ["Rose (plastic)", 15.00],
-    ["Valentine cards", 4.00]
-];
+// var sql = "INSERT INTO products (description, category_id) VALUE ?";
+INSERT INTO products (description, category_id) VALUE productsCategoryMap;
 
 var productsCategory = {
         "Milk": "Dairy",
@@ -66,14 +45,39 @@ conn.query("select * from categories", function(err, categories) {
 
     var productsCategoryMap = {};
 
-    for (var category in categoryMap) {
-        for (var product in productsCategory) {
-            // if (productsCategoryMap[product] === undefined) {
-            //     productsCategoryMap[product] = categoryMap[category];
-            // }
+    for (var product in productsCategory) {
+        for (var category in categoryMap) {
+          if (productsCategory[product] == category) {
             productsCategoryMap[product] = categoryMap[category];
+          }
         }
     }
-    console.log(productsCategoryMap);
-    conn.end();
+
+    // console.log(productsCategoryMap);
+    // conn.query(sql, [productsCategoryMap], function(err, results) {
+    //     if (err){
+    //       console.log(err);
+    //     }
+    //     console.log(results);
+    // });
+
 });
+
+
+// conn.query(productsCategory, "" function() {
+//
+//
+//
+//       //
+//
+//           // if (product == undefined) {
+//           //     productsCategoryMap[product] = 0;
+//           // }
+//           // productsCategoryMap[product] = categoryMap[category];
+//
+//       // }
+//
+//
+//   console.log(productsCategory);
+// });
+conn.end();
