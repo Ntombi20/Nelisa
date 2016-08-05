@@ -8,7 +8,7 @@ var conn = mysql.createConnection({
 });
 
 // var sql = "INSERT INTO products (description, category_id) VALUE ?";
-INSERT INTO products (description, category_id) VALUE productsCategoryMap;
+// INSERT INTO products (description, category_id) VALUE productsCategoryMap;
 
 var productsCategory = {
         "Milk": "Dairy",
@@ -47,37 +47,21 @@ conn.query("select * from categories", function(err, categories) {
 
     for (var product in productsCategory) {
         for (var category in categoryMap) {
-          if (productsCategory[product] == category) {
-            productsCategoryMap[product] = categoryMap[category];
-          }
+            if (productsCategory[product] == category) {
+                productsCategoryMap[product] = categoryMap[category];
+            }
         }
     }
 
-    // console.log(productsCategoryMap);
-    // conn.query(sql, [productsCategoryMap], function(err, results) {
-    //     if (err){
-    //       console.log(err);
-    //     }
-    //     console.log(results);
-    // });
+    var sql = "INSERT INTO products (description, category_id) VALUES ?";
+    var values = productsCategoryMap;
 
+    conn.query(sql, [values], function(err) {
+        if (err) {
+            console.log("There is an error with populating the product table");
+        };
+        console.log(values);
+        conn.end();
+    });
 });
-
-
-// conn.query(productsCategory, "" function() {
-//
-//
-//
-//       //
-//
-//           // if (product == undefined) {
-//           //     productsCategoryMap[product] = 0;
-//           // }
-//           // productsCategoryMap[product] = categoryMap[category];
-//
-//       // }
-//
-//
-//   console.log(productsCategory);
-// });
-conn.end();
+// conn.end();
