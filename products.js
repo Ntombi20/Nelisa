@@ -50,7 +50,7 @@ conn.query("select * from categories", function(err, categories) {
             }
         }
     }
-    console.log(values);
+
     var sql = "INSERT INTO products (product, category_id) VALUES ?";
 
     conn.query(sql, [values], function(err, results) {
