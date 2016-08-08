@@ -7,9 +7,6 @@ var conn = mysql.createConnection({
     database: 'nelisa_spaza_app'
 });
 
-// var sql = "INSERT INTO products (description, category_id) VALUE ?";
-// INSERT INTO products (description, category_id) VALUE productsCategoryMap;
-
 var productsCategory = {
         "Milk": "Dairy",
         "Bread": "Bakery",
@@ -35,33 +32,35 @@ conn.query("select * from categories", function(err, categories) {
     if (err) return console.log(err);
 
     var categoryMap = {};
-
     categories.forEach(function(cat) {
         var categoryId = cat.id;
-        var categoryName = cat.description;
-
-        categoryMap[categoryName] = categoryId
+        var categoryName = cat.categoryName;
+        if (categoryMap[categoryName] == undefined) {
+            categoryMap[categoryName] = categoryId
+        }
     })
 
     var productsCategoryMap = {};
-
+    var values = [];
     for (var product in productsCategory) {
         for (var category in categoryMap) {
             if (productsCategory[product] == category) {
                 productsCategoryMap[product] = categoryMap[category];
+                values.push([product, categoryMap[category]])
             }
         }
     }
+    console.log(values);
+    var sql = "INSERT INTO products (product, category_id) VALUES ?";
 
-    var sql = "INSERT INTO products (description, category_id) VALUES ?";
-    var values = productsCategoryMap;
-
-    conn.query(sql, [values], function(err) {
+    conn.query(sql, [values], function(err, results) {
         if (err) {
             console.log("There is an error with populating the product table");
         };
-        console.log(values);
+
+        console.log(results);
         conn.end();
     });
+
 });
 // conn.end();

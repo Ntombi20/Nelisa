@@ -7,7 +7,7 @@ var conn = mysql.createConnection({
         database: 'nelisa_spaza_app'
 });
 
-var sql = "INSERT INTO categories (description) VALUE ?";
+var sql = "INSERT INTO categories (categoryName) VALUE ?";
 
 //create a list of lists
 var values = [
