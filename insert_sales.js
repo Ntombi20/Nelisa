@@ -30,7 +30,7 @@ removerHeader.forEach(function(sales) {
 });
 
 // };
-var sql = "INSERT INTO sales (date, quantity, price, products_id) VALUE ?";
+var insertSales = "INSERT INTO sales (date, quantity, price, products_id) VALUE ?";
 
 conn.query("select * from products", function(err, products) {
     if (err) return console.log(err);
@@ -57,7 +57,7 @@ conn.query("select * from products", function(err, products) {
         }
     }
 
-    conn.query(sql, [values], function(err, results) {
+    conn.query(insertSales, [values], function(err, results) {
         if (err){
           console.log(err);
         }

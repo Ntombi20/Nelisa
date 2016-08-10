@@ -1,5 +1,5 @@
 {
-  "name": "Nelisa-Spaza-App",
+  "name": "nelisa-spaza-app",
   "version": "0.0.0",
   "description": "Nelisa runs a spaza shop in Khayelitsha and would like some help with her stock information.",
   "main": "app.js",
@@ -25,5 +25,7 @@
   },
   "engines": {
     "node": "0.10.25"
-  }
+  },
+  "homepage": "https://github.com/Ntombi20/Nelisa-Spaza-App#readme",
+  "devDependencies": {}
 }

@@ -27,7 +27,7 @@ var productsCategory = {
         "Rose (plastic)": "Gift",
         "Valentine cards": "Gift"
     }
-    // ,sql, [values],
+
 conn.query("select * from categories", function(err, categories) {
     if (err) return console.log(err);
 
@@ -51,9 +51,11 @@ conn.query("select * from categories", function(err, categories) {
         }
     }
 
-    var sql = "INSERT INTO products (product, category_id) VALUES ?";
+    var insertProducts
+     = "INSERT INTO products (product, category_id) VALUES ?";
 
-    conn.query(sql, [values], function(err, results) {
+    conn.query(insertProducts
+      , [values], function(err, results) {
         if (err) {
             console.log("There is an error with populating the product table");
         };

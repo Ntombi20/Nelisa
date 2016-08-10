@@ -7,7 +7,7 @@ var conn = mysql.createConnection({
         database: 'nelisa_spaza_app'
 });
 
-var sql = "INSERT INTO categories (categoryName) VALUE ?";
+var insertCategory = "INSERT INTO categories (categoryName) VALUE ?";
 
 //create a list of lists
 var values = [
@@ -22,7 +22,7 @@ var values = [
     ['Gift']
 ];
 
-conn.query(sql, [values], function(err, results) {
+conn.query(insertCategory, [values], function(err, results) {
     if (err){
       console.log(err);
     }

@@ -1,11 +1,11 @@
-var express = require('express');
-    exphbs = require('express-handlebars');
-    fs = require('fs');
-    app = express();
+'use strict';
+
+var express = require('express'),
+    exphbs = require('express-handlebars'),
     mysql = require('mysql'),
     myConnection = require('express-myconnection'),
-
-var app = express();
+    app = express(),
+    fs = require('fs');
 
 var dbOptions = {
       host: 'localhost',
@@ -23,7 +23,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/public'));
 
 //setup middleware
-app.use(myConnection(mysql, dbOptions, 'single');
+app.use(myConnection(mysql, dbOptions, 'single'));
 
 //procssing the data to get the reports
 function weelkySalesStats(week) {
