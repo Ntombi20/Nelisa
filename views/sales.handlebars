@@ -1,0 +1,16 @@
+<h1>Sales</h1>
+<div class="table-responsive">
+    <table class="table table-bordered myTable">
+        {{#sales}}
+            <tbody>
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{date}}</td>
+                    <td>{{quantity}}</td>
+                    <td>{{price}}</td>
+                    <td>{{products_id}}</td>
+                </tr>
+            </tbody>
+            {{/sales}}
+    </table>
+</div>

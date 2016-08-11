@@ -7,6 +7,10 @@ var express = require('express'),
     app = express(),
     fs = require('fs'),
     categories = require('./routes/categories'),
+    products = require('./routes/products'),
+    sales = require('./routes/sales'),
+    // products = require('./routes/products'),
+    // products = require('./routes/products'),
     dbOptions = {
       host: 'localhost',
       user: 'root',
@@ -88,6 +92,10 @@ app.get('/sales/:week_name', function(req, res) {
 });
 
 app.get('/categories', categories.show);
+
+app.get('/products', products.show);
+
+app.get('/sales', sales.show);
 
 //configure the port number using and environment number.
 app.set('port', (process.env.PORT || 3000));
