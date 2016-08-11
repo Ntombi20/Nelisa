@@ -51,11 +51,9 @@ conn.query("select * from categories", function(err, categories) {
         }
     }
 
-    var insertProducts
-     = "INSERT INTO products (product, category_id) VALUES ?";
+    var insertProducts = "INSERT INTO products (product, category_id) VALUES ?";
 
-    conn.query(insertProducts
-      , [values], function(err, results) {
+    conn.query(insertProducts, [values], function(err, results) {
         if (err) {
             console.log("There is an error with populating the product table");
         };

@@ -22,10 +22,9 @@ var values = [
     ['Gift']
 ];
 
-conn.query(insertCategory, [values], function(err, results) {
+conn.query(insertCategory, [values], function(err) {
     if (err){
       console.log(err);
     }
-    console.log(results);
     conn.end();
 });

@@ -9,7 +9,7 @@ var conn = mysql.createConnection({
         database: 'nelisa_spaza_app'
 });
 
-var purchasesCSV = './files/purchases.csv';
+var purchasesCSV = '../files/purchases.csv';
 
 var shops = [];
 var readCSV = fs.readFileSync(purchasesCSV, "utf8");

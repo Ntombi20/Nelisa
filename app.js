@@ -5,13 +5,13 @@ var express = require('express'),
     mysql = require('mysql'),
     myConnection = require('express-myconnection'),
     app = express(),
-    fs = require('fs');
-
-var dbOptions = {
+    fs = require('fs'),
+    categories = require('./routes/categories'),
+    dbOptions = {
       host: 'localhost',
       user: 'root',
+      port: 3306,
       password: '12345',
-      port: 2500,
       database: 'nelisa_spaza_app'
     };
 
@@ -25,7 +25,7 @@ app.use(express.static(__dirname + '/public'));
 //setup middleware
 app.use(myConnection(mysql, dbOptions, 'single'));
 
-//procssing the data to get the reports
+// //procssing the data to get the reports
 function weelkySalesStats(week) {
 
     var mostLeastProduct = require('./routes/mostLeastProduct');
@@ -87,8 +87,10 @@ app.get('/sales/:week_name', function(req, res) {
                         weekName: week_name});
 });
 
+app.get('/categories', categories.show);
+
 //configure the port number using and environment number.
-app.set('port', (process.env.PORT || 2500));
+app.set('port', (process.env.PORT || 3000));
 
 //start the app like this:
 app.listen(app.get('port'), function() {
