@@ -9,8 +9,8 @@ var express = require('express'),
     categories = require('./routes/categories'),
     products = require('./routes/products'),
     sales = require('./routes/sales'),
-    // products = require('./routes/products'),
-    // products = require('./routes/products'),
+    purchases = require('./routes/purchases'),
+    suppliers = require('./routes/suppliers'),
     dbOptions = {
       host: 'localhost',
       user: 'root',
@@ -92,10 +92,20 @@ app.get('/sales/:week_name', function(req, res) {
 });
 
 app.get('/categories', categories.show);
+app.get('/categories/add', categories.showAdd);
+app.get('/categories/edit/:id', categories.get);
+app.post('/categories/update/:id', categories.update);
+app.post('/categories/add', categories.add);
+//this should be a post but this is only an illustration of CRUD - not on good practices
+app.get('/categories/delete/:id', categories.delete);
 
 app.get('/products', products.show);
 
 app.get('/sales', sales.show);
+
+app.get('/purchases', purchases.show);
+
+app.get('/suppliers', suppliers.show);
 
 //configure the port number using and environment number.
 app.set('port', (process.env.PORT || 3000));

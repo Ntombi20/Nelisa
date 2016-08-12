@@ -1,0 +1,17 @@
+<h1>Purchases</h1>
+<div class="table-responsive">
+    <table class="table table-bordered myTable">
+        {{#purchases}}
+            <tbody>
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{products_id}}</td>
+                    <td>{{suppliers_id}}</td>
+                    <td>{{quantity}}</td>
+                    <td>{{price}}</td>
+                    <td>{{date}}</td>
+                </tr>
+            </tbody>
+            {{/purchases}}
+    </table>
+</div>

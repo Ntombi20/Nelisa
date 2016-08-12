@@ -7,7 +7,8 @@ create table purchases (
   suppliers_id int,
   quantity decimal(10),
   price decimal(10,2),
-  date char(50) not null
+  date char(50) not null,
+  CONSTRAINT uc_id UNIQUE (id)
 );
 
 ALTER TABLE purchases ADD CONSTRAINT fk_suppliers_id FOREIGN KEY (suppliers_id) REFERENCES suppliers(id);
