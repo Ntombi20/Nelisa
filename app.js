@@ -6,6 +6,7 @@ var express = require('express'),
     myConnection = require('express-myconnection'),
     app = express(),
     fs = require('fs'),
+    bodyParser = require('body-parser'),
     categories = require('./routes/categories'),
     products = require('./routes/products'),
     sales = require('./routes/sales'),
@@ -28,6 +29,10 @@ app.use(express.static(__dirname + '/public'));
 
 //setup middleware
 app.use(myConnection(mysql, dbOptions, 'single'));
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
 // //procssing the data to get the reports
 function weelkySalesStats(week) {
@@ -96,7 +101,7 @@ app.get('/categories/add', categories.showAdd);
 app.get('/categories/edit/:id', categories.get);
 app.post('/categories/update/:id', categories.update);
 app.post('/categories/add', categories.add);
-//this should be a post but this is only an illustration of CRUD - not on good practices
+// //this should be a post but this is only an illustration of CRUD - not on good practices
 app.get('/categories/delete/:id', categories.delete);
 
 app.get('/products', products.show);

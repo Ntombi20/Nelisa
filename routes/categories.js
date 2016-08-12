@@ -19,7 +19,7 @@ exports.add = function (req, res, next) {
 		if (err) return next(err);
 		var input = req.body;
 		var data = {
-      		categories : input.categoryName,
+      		categoryName : input.categoryName,
   	};
 
 	connection.query('insert into categories set ?', data, function(err, results) {
