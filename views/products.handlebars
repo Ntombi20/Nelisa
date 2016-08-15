@@ -1,12 +1,22 @@
-<h1>Products</h1>
 <div class="table-responsive">
+  <h1>Products</h1>
+  <h3><a href="/products/add">Add</a></h3>
     <table class="table table-bordered myTable">
+      <thead>
+          <tr>
+              <th>Id</th>
+              <th>Product</th>
+              <th>Category_Id</th>
+          </tr>
+      </thead>
         {{#products}}
             <tbody>
                 <tr>
                     <td>{{id}}</td>
                     <td>{{product}}</td>
                     <td>{{category_id}}</td>
+                    <td><a href="/products/edit/{{id}}">Edit</a></td>
+                    <td><a href="/products/delete/{{id}}">Delete</a></td>
                 </tr>
             </tbody>
             {{/products}}

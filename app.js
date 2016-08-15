@@ -82,10 +82,10 @@ app.get('/', function(req, res) {
 app.get('/sales/:week_name', function(req, res) {
     var week_name = req.params.week_name;
 
-    if (Number(week_name.replace('week', '')) > 52) {
+    if (Number(week_name.replace('week ', '')) > 52) {
         return res.send("There's only 52 weeks in a year, invalid week " + week_name);
     }
-    else if (Number(week_name.replace('week', '')) > 5) {
+    else if (Number(week_name.replace('week ', '')) > 5) {
         return res.send("There's is no reports for " + week_name)
     }
     //get the proper data now...
@@ -101,10 +101,14 @@ app.get('/categories/add', categories.showAdd);
 app.get('/categories/edit/:id', categories.get);
 app.post('/categories/update/:id', categories.update);
 app.post('/categories/add', categories.add);
-// //this should be a post but this is only an illustration of CRUD - not on good practices
 app.get('/categories/delete/:id', categories.delete);
 
 app.get('/products', products.show);
+app.get('/products/edit/:id', products.get);
+app.post('/products/update/:id', products.update);
+app.get('/products/add', products.showAdd);
+app.post('/products/add', products.add);
+app.get('/products/delete/:id', products.delete);
 
 app.get('/sales', sales.show);
 
