@@ -4,7 +4,6 @@ var express = require('express'),
     exphbs = require('express-handlebars'),
     mysql = require('mysql'),
     myConnection = require('express-myconnection'),
-    app = express(),
     fs = require('fs'),
     bodyParser = require('body-parser'),
     categories = require('./routes/categories'),
@@ -20,6 +19,7 @@ var express = require('express'),
       database: 'nelisa_spaza_app'
     };
 
+var app = express();
 //setup template handlebars as the template engine
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
