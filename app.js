@@ -121,7 +121,7 @@ app.get('/purchases', purchases.show);
 
 app.get('/suppliers', suppliers.show);
 
-//configure the port number using and environment number.
+//configure the port number using and environment number..
 app.set('port', (process.env.PORT || 3000));
 
 //start the app like this:
