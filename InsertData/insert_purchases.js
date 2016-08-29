@@ -81,13 +81,3 @@ conn.query("select * from products", function(err, products) {
 
 
 });
-
-//
-//
-// conn.query(insertSuppliers, [shops], function(err, results) {
-//     if (err){
-//       console.log(err);
-//     }
-//     console.log(results);
-//     conn.end();
-// });

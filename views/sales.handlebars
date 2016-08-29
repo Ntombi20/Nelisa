@@ -1,6 +1,6 @@
 <div class="table-responsive">
     <h1>Sales</h1>
-    <!-- <h3>Add</h3> -->
+    <h3><a href="/sales/add">Add</a></h3>
     <table class="table table-bordered myTable">
         <thead>
             <tr>
@@ -19,6 +19,8 @@
                     <td>{{quantity}}</td>
                     <td>R{{price}}</td>
                     <td>{{products_id}}</td>
+                    <td><a href="/sales/edit/{{id}}">Edit</a></td>
+                    <td><a href="/sales/delete/{{id}}">Delete</a></td>
                 </tr>
             </tbody>
         {{/sales}}

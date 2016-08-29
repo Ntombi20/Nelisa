@@ -63,4 +63,3 @@ conn.query("select * from categories", function(err, categories) {
     });
 
 });
-// conn.end();

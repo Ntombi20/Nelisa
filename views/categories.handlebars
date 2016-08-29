@@ -4,14 +4,12 @@
     <table class="table table-bordered myTable">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Category</th>
             </tr>
         </thead>
         {{#categories}}
             <tbody>
                 <tr>
-                    <td>{{id}}</td>
                     <td>{{categoryName}}</td>
                     <td><a href="/categories/edit/{{id}}">Edit</a></td>
                     <td><a href="/categories/delete/{{id}}">Delete</a></td>

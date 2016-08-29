@@ -26,7 +26,7 @@ exports.add = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
 		var data = {
-			category_id : Number(req.body.category_id),
+			// categoryName : req.body.categoryName,
       product : req.body.product
   		};
 
@@ -61,7 +61,7 @@ exports.get = function(req, res, next){
 exports.update = function(req, res, next){
 
 	var data = {
-		category_id : Number(req.body.category_id),
+		categoryName : req.body.categoryName,
 		product : req.body.product,
 	};
   	var id = req.params.id;
