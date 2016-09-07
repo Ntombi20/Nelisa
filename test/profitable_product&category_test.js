@@ -1,6 +1,6 @@
 var assert = require("assert");
-var profit = require('../routes/profit');
-var category = require('../routes/category');
+var profit = require('../routes/profitable_product&category');
+var category = require('../routes/most&least_category');
 
 describe("Nelisa Narrative: grouping purchases data for products", function() {
     //weeks: group by total cost(sales price * no sold) and stock item

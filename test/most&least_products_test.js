@@ -1,10 +1,10 @@
 var assert = require("assert");
-var mostLeastProduct = require('../routes/mostLeastProduct');
+var mostAndLeastProduct = require('../routes/most&least_products');
 
 var expectedWeek1 = {
     'Milk 1l': 39,
-    Imasi: 30,
-    Bread: 45,
+    'Imasi': 30,
+    'Bread': 45,
     'Chakalaka Can': 23,
     'Gold Dish Vegetable Curry Can': 17,
     'Fanta 500ml': 33,
@@ -20,8 +20,8 @@ var expectedWeek1 = {
 }
 
 var expectedWeek2 = {
-    Imasi: 36,
-    Bread: 28,
+    'Imasi': 36,
+    'Bread': 28,
     'Chakalaka Can': 21,
     'Gold Dish Vegetable Curry Can': 27,
     'Fanta 500ml': 23,
@@ -41,8 +41,8 @@ var expectedWeek2 = {
 }
 
 var expectedWeek3 = {
-    Imasi: 25,
-    Bread: 24,
+    'Imasi': 25,
+    'Bread': 24,
     'Chakalaka Can': 17,
     'Gold Dish Vegetable Curry Can': 8,
     'Fanta 500ml': 14,
@@ -59,8 +59,8 @@ var expectedWeek3 = {
 }
 
 var expectedWeek4 = {
-    Imasi: 34,
-    Bread: 33,
+    'Imasi': 34,
+    'Bread': 33,
     'Chakalaka Can': 33,
     'Gold Dish Vegetable Curry Can': 34,
     'Fanta 500ml': 24,
@@ -79,68 +79,68 @@ var expectedWeek4 = {
 describe("Nelisa Narrative: procssing product sold data", function() {
     //filter data
     it('Should return a group csv by item and quantity of week1', function() {
-        var week1Results = mostLeastProduct.groupProduct("./files/week1.csv");
+      var week1Results = mostAndLeastProduct.groupProduct("./files/week1.csv");
         assert.deepEqual(week1Results, expectedWeek1);
     });
 
     it('Should return a group csv by item and quantity of week2', function() {
-        var week1Results = mostLeastProduct.groupProduct("./files/week2.csv");
-        assert.deepEqual(week1Results, expectedWeek2);
+      var week2Results = mostAndLeastProduct.groupProduct("./files/week2.csv");
+        assert.deepEqual(week2Results, expectedWeek2);
     });
 
     it('Should return a group csv by item and quantity of week3', function() {
-        var week1Results = mostLeastProduct.groupProduct("./files/week3.csv");
-        assert.deepEqual(week1Results, expectedWeek3);
+      var week3Results = mostAndLeastProduct.groupProduct("./files/week3.csv");
+        assert.deepEqual(week3Results, expectedWeek3);
     });
 
     it('Should return a group csv by item and quantity of week4', function() {
-        var week1Results = mostLeastProduct.groupProduct("./files/week4.csv");
-        assert.deepEqual(week1Results, expectedWeek4);
+      var week4Results = mostAndLeastProduct.groupProduct("./files/week4.csv");
+        assert.deepEqual(week4Results, expectedWeek4);
     });
 });
 
 describe("Nelisa Narrative: Most and least popular product for each week", function() {
     //most popular product for each week
     it('Should return the most popular product sold for week one', function() {
-        var mostProduct1 = mostLeastProduct.mostProduct(expectedWeek1);
+      var mostProduct1 = mostAndLeastProduct.mostProduct(expectedWeek1);
         assert.deepEqual(mostProduct1, { item: 'Coke 500ml', qty: 54 });
     });
 
     it('Should return the most popular product sold for week two', function() {
-        var mostProduct2 = mostLeastProduct.mostProduct(expectedWeek2);
+      var mostProduct2 = mostAndLeastProduct.mostProduct(expectedWeek2);
         assert.deepEqual(mostProduct2, { item: 'Mixed Sweets 5s', qty: 54 });
     });
 
     it('Should return the most popular product sold for week three', function() {
-        var mostProduct3 = mostLeastProduct.mostProduct(expectedWeek3);
+      var mostProduct3 = mostAndLeastProduct.mostProduct(expectedWeek3);
         assert.deepEqual(mostProduct3, { item: 'Mixed Sweets 5s', qty: 29 });
     });
 
 
     it('Should return the most popular product sold for week four', function() {
-        var mostProduct4 = mostLeastProduct.mostProduct(expectedWeek4);
+      var mostProduct4 = mostAndLeastProduct.mostProduct(expectedWeek4);
         assert.deepEqual(mostProduct4, { item: 'Coke 500ml', qty: 45 });
     });
 
     // least popular product for each week
     it('Should return the least popular product sold for week one', function() {
-        var leastProduct1 = mostLeastProduct.leastProduct(expectedWeek1);
+      var leastProduct1 = mostAndLeastProduct.leastProduct(expectedWeek1);
         assert.deepEqual(leastProduct1, { item: 'Shampoo 1 litre', qty: 3 });
     });
 
     it('Should return the least popular product sold for week two', function() {
-        var leastProduct1 = mostLeastProduct.leastProduct(expectedWeek2);
-        assert.deepEqual(leastProduct1, { item: 'Soap Bar', qty: 5 });
+      var leastProduct2 = mostAndLeastProduct.leastProduct(expectedWeek2);
+        assert.deepEqual(leastProduct2, { item: 'Soap Bar', qty: 5 });
     });
 
     it('Should return the least popular product sold for week three', function() {
-        var leastProduct1 = mostLeastProduct.leastProduct(expectedWeek3);
-        assert.deepEqual(leastProduct1, { item: 'Iwisa Pap 5kg', qty: 4 });
+      var leastProduct3 = mostAndLeastProduct.leastProduct(expectedWeek3);
+        assert.deepEqual(leastProduct3, { item: 'Iwisa Pap 5kg', qty: 4 });
     });
 
     it('Should return the least popular product sold for week four', function() {
-        var leastProduct1 = mostLeastProduct.leastProduct(expectedWeek4);
-        assert.deepEqual(leastProduct1, { item: 'Shampoo 1 litre', qty: 13 });
+      var leastProduct4 = mostAndLeastProduct.leastProduct(expectedWeek4);
+        assert.deepEqual(leastProduct4, { item: 'Shampoo 1 litre', qty: 13 });
     });
 
 });
