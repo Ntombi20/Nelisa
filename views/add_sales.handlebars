@@ -1,10 +1,16 @@
 <h1>Add sales</h1>
 
 <form action="/sales/add" method="POST">
-	<div class="">
-		<label for="">Sales</label>
 
-		<select class="" name="category_id">
+	<div>
+		<label for="date">Date</label>
+		<input type="number/text" step="any" name="date" value="{{date}}">
+	</div>
+
+	<div class="product">
+		<label for="product">Product</label>
+
+		<select class="product" name="products_id">
 			{{#products}}
 				<option value="{{id}}">{{products}}</option>
 			{{/products}}
@@ -12,8 +18,14 @@
 	</div>
 
 	<div>
-		<label for="">Product</label>
-		<input type="text" name="sales" value="{{sales}}">
+		<label for="price">Amount</label>
+		<input type="number/text" step="any" name="price" value="R{{price}}">
 	</div>
+
+	<div>
+		<label for="quantity">Quantity</label>
+		<input type="number" step="any" name="quantity" value="{{quantity}}">
+	</div>
+
 	<input type="submit">
 </form>
