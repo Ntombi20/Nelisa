@@ -1,0 +1,19 @@
+<h1>Edit product</h1>
+
+<form action="/products/update/{{id}}" method="POST">
+
+	<div class="category">
+		<label for="categoryName">Category</label>
+
+		<select class="text" name="category_id">
+			{{#categories}}
+				<option {{selected}} value="{{id}}">{{categoryName}}</option>
+			{{/categories}}
+		</select>
+	</div>
+	<div class="product">
+		<label for="products">Product</label>
+		<input type="text" name="product" value="{{product}}">
+	</div>
+	<input type="submit">
+</form>

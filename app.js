@@ -12,7 +12,7 @@ var express = require('express'),
     sales = require('./routes/sales'),
     purchases = require('./routes/purchases'),
     suppliers = require('./routes/suppliers'),
-    
+
     dbOptions = {
       host: 'localhost',
      user: 'root',
@@ -63,8 +63,18 @@ app.get('/weeklySalesStats/:week_name', function(req, res) {
 });
 
 app.get('/categories', categories.show);
+app.get('/categories/add', categories.showAdd);
+app.get('/categories/edit/:id', categories.get);
+app.post('/categories/update/:id', categories.update);
+app.post('/categories/add', categories.add);
+app.get('/categories/delete/:id', categories.delete);
 
 app.get('/products', products.show);
+app.get('/products/edit/:id', products.get);
+app.post('/products/update/:id', products.update);
+app.get('/products/add', products.showAdd);
+app.post('/products/add', products.add);
+app.get('/products/delete/:id', products.delete);
 
 app.get('/sales', sales.show);
 

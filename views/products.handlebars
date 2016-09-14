@@ -4,7 +4,6 @@
     <table class="table table-bordered myTable">
       <thead>
           <tr>
-              <th>Id</th>
               <th>Product</th>
               <th>Category</th>
           </tr>
@@ -12,11 +11,10 @@
         {{#products}}
             <tbody>
                 <tr>
-                    <td>{{id}}</td>
                     <td>{{product}}</td>
                     <td>{{categoryName}}</td>
-                    <td><a href="/products/edit/{{id}}">Edit</a></td>
-                    <td><a href="/products/delete/{{id}}">Delete</a></td>
+                    <td><a href="/products/edit/{{product_id}}">Edit</a></td>
+                    <td><a href="/products/delete/{{product_id}}">Delete</a></td>
                 </tr>
             </tbody>
             {{/products}}
