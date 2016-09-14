@@ -29,7 +29,7 @@ exports.add = function(req, res, next) {
     req.getConnection(function(err, connection) {
         if (err) return next(err);
         var data = {
-            category_id : Number(req.body.category_id),
+            category_id: Number(req.body.category_id),
             product: req.body.product
         };
 
@@ -44,7 +44,6 @@ exports.get = function(req, res, next) {
     var id = req.params.id;
     req.getConnection(function(err, connection) {
         connection.query('SELECT * FROM categories', [id], function(err, categories) {
-          console.log(categories);
             if (err) return next(err);
             connection.query('SELECT * FROM products WHERE id = ?', [id], function(err, products) {
                 if (err) return next(err);
@@ -55,20 +54,21 @@ exports.get = function(req, res, next) {
                 });
                 res.render('edit_product', {
                     categories: categories,
-                    data: products
+                    data: product
                 });
             });
         });
     });
 };
 
-
+//update my table
 exports.update = function(req, res, next) {
+
     var data = {
         category_id: Number(req.body.category_id),
         product: req.body.product,
     };
-    
+
     var id = req.params.id;
     req.getConnection(function(err, connection) {
         if (err) return next(err);

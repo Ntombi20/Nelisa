@@ -70,13 +70,18 @@ app.post('/categories/add', categories.add);
 app.get('/categories/delete/:id', categories.delete);
 
 app.get('/products', products.show);
+app.get('/products/add', products.showAdd);
 app.get('/products/edit/:id', products.get);
 app.post('/products/update/:id', products.update);
-app.get('/products/add', products.showAdd);
 app.post('/products/add', products.add);
 app.get('/products/delete/:id', products.delete);
 
 app.get('/sales', sales.show);
+app.get('/sales/add', sales.showAdd);
+// app.get('/sales/edit/:id', sales.get);
+// app.post('/sales/update/:id', sales.update);
+// app.post('/sales/add', sales.add);
+// app.get('/sales/delete/:id', sales.delete);
 
 app.get('/purchases', purchases.show);
 

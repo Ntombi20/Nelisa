@@ -11,7 +11,7 @@ exports.show = function(req, res, next) {
     });
 };
 
-//show add category placeholder
+//show add category button
 exports.showAdd = function(req, res){
 	res.render('add_category');
 }

@@ -1,4 +1,4 @@
-<h1>Edit product</h1>
+<h1>Edit product tables</h1>
 
 <form action="/products/update/{{id}}" method="POST">
 
@@ -13,7 +13,7 @@
 	</div>
 	<div class="product">
 		<label for="products">Product</label>
-		<input type="text" name="product" value="{{product}}">
+		<input type="text" name="product" value="{{data.product}}">
 	</div>
 	<input type="submit">
 </form>
