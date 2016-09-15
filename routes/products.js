@@ -40,6 +40,7 @@ exports.add = function(req, res, next) {
     });
 };
 
+//edit product table
 exports.get = function(req, res, next) {
     var id = req.params.id;
     req.getConnection(function(err, connection) {

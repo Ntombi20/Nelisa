@@ -7,7 +7,7 @@
                 <th>Date</th>
                 <th>Quantity</th>
                 <th>Price</th>
-                <th>Products_id</th>
+                <th>Product</th>
             </tr>
         </thead>
         {{#sales}}
@@ -16,9 +16,9 @@
                     <td>{{date}}</td>
                     <td>{{quantity}}</td>
                     <td>R{{price}}</td>
-                    <td>{{products_id}}</td>
-                    <td><a href="/sales/edit/{{id}}">Edit</a></td>
-                    <td><a href="/sales/delete/{{id}}">Delete</a></td>
+                    <td>{{product}}</td>
+                    <td><a href="/sales/edit/{{sales_id}}">Edit</a></td>
+                    <td><a href="/sales/delete/{{sales_id}}">Delete</a></td>
                 </tr>
             </tbody>
         {{/sales}}

@@ -4,7 +4,7 @@
 
 	<div>
 		<label for="date">Date</label>
-		<input type="number/text" step="any" name="date" value="{{date}}">
+		<input type="date" step="any" name="date" value="{{date}}">
 	</div>
 
 	<div class="product">
@@ -12,14 +12,15 @@
 
 		<select class="product" name="products_id">
 			{{#products}}
-				<option value="{{id}}">{{products}}</option>
+				<option value="{{id}}">{{product}}</option>
 			{{/products}}
 		</select>
+
 	</div>
 
 	<div>
-		<label for="price">Amount</label>
-		<input type="number/text" step="any" name="price" value="R{{price}}">
+		<label for="price">Price</label>
+		<input type="number" step="any" name="price" value="R{{price}}">
 	</div>
 
 	<div>

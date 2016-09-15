@@ -1,19 +1,32 @@
-<h1>Add sales</h1>
+<h1>Edit sales</h1>
 
-<form action="/sales/add" method="POST">
-	<div class="">
-		<label for="">Sales</label>
+<form action="/sales/update/{{data.id}}" method="POST">
 
-		<select class="" name="category_id">
+	<div>
+		<label for="date">Date</label>
+		<input type="date" step="any" name="date" value="{{data.date}}">
+	</div>
+
+	<div class="product">
+		<label for="product">Product</label>
+
+		<select class="product" name="products_id">
 			{{#products}}
-				<option value="{{id}}">{{products}}</option>
+				<option {{selected}} value="{{id}}">{{product}}</option>
 			{{/products}}
 		</select>
+
 	</div>
 
 	<div>
-		<label for="">Product</label>
-		<input type="text" name="sales" value="{{sales}}">
+		<label for="price">Price</label>
+		<input type="number" step="any" name="price" value="{{data.price}}">
 	</div>
+
+	<div>
+		<label for="quantity">Quantity</label>
+		<input type="number" step="any" name="quantity" value="{{data.quantity}}">
+	</div>
+
 	<input type="submit">
 </form>
