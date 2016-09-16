@@ -9,17 +9,13 @@ var conn = mysql.createConnection({
         database: 'nelisa_spaza_app'
 });
 
-var purchasesCSV = '../files/purchases.csv';
-
-var shops = [];
-var readCSV = fs.readFileSync(purchasesCSV, "utf8");
-var removerHeader = readCSV.split('\n').slice(1).filter(Boolean);
-
-removerHeader.forEach(function(purchases) {
-    var items = purchases.split(";");
-    var shopName = items[0];
-    shops.push([shopName]);
-});
+var shops = [
+    ['Markro'],
+    ['Epping Market'],
+    ['HomeMade'],
+    ['Joe Spaza Shop'],
+    ['ChinaTown']
+];
 
 var insertSuppliers = "INSERT INTO suppliers (shop) VALUE ?";
 

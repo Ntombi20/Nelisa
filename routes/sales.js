@@ -10,6 +10,7 @@ exports.show = function(req, res, next) {
     });
 };
 
+//display add
 exports.showAdd = function(req, res) {
     req.getConnection(function(err, connection) {
         if (err) return next(err);
@@ -22,6 +23,7 @@ exports.showAdd = function(req, res) {
     });
 };
 
+//add sales field
 exports.add = function(req, res, next) {
     req.getConnection(function(err, connection) {
         if (err) return next(err);

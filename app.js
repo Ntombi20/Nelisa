@@ -84,6 +84,11 @@ app.post('/sales/update/:id', sales.update);
 app.get('/sales/delete/:id', sales.delete);
 
 app.get('/purchases', purchases.show);
+app.get('/purchases/add', purchases.showAdd);
+app.post('/purchases/add', purchases.add);
+app.get('/purchases/edit/:id', purchases.get);
+app.post('/purchases/update/:id', purchases.update);
+app.get('/purchases/delete/:id', purchases.delete);
 
 app.get('/suppliers', suppliers.show);
 

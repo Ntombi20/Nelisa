@@ -1,0 +1,43 @@
+<h1>Add purchases</h1>
+
+<form action="/purchases/add" method="POST">
+
+	<div>
+		<label for="date">Date</label>
+		<input type="date" step="any" name="date" value="{{date}}">
+	</div>
+
+	<div class="product">
+		<label for="product">Product</label>
+
+		<select class="product" name="products_id">
+			{{#products}}
+				<option value="{{id}}">{{product}}</option>
+			{{/products}}
+		</select>
+
+	</div>
+
+  <div class="suppliers">
+		<label for="suppliers">Shop</label>
+
+		<select class="suppliers" name="suppliers_id">
+			{{#suppliers}}
+				<option value="{{id}}">{{shop}}</option>
+			{{/suppliers}}
+		</select>
+
+	</div>
+
+	<div>
+		<label for="price">Price</label>
+		<input type="number" step="any" name="price" value="R{{price}}">
+	</div>
+
+	<div>
+		<label for="quantity">Quantity</label>
+		<input type="number" step="any" name="quantity" value="{{quantity}}">
+	</div>
+
+	<input type="submit">
+</form>
