@@ -26,8 +26,11 @@ var app = express();
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
+
 app.set('view engine', 'handlebars');
+
 app.use(express.static(__dirname + '/public'));
+
 
 //setup middleware
 app.use(myConnection(mysql, dbOptions, 'single'));
@@ -62,6 +65,11 @@ app.get('/weeklySalesStats/:week_name', function(req, res) {
                         weekName: week_name});
 });
 
+function errorHandler(err, req, res, next) {
+  res.status(500);
+  res.render('error', { error: err });
+}
+
 app.get('/categories', categories.show);
 app.get('/categories/add', categories.showAdd);
 app.get('/categories/edit/:id', categories.get);
@@ -91,6 +99,8 @@ app.post('/purchases/update/:id', purchases.update);
 app.get('/purchases/delete/:id', purchases.delete);
 
 app.get('/suppliers', suppliers.show);
+
+app.use(errorHandler);
 
 //configure the port number using and environment number..
 app.set('port', (process.env.PORT || 3000));
