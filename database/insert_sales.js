@@ -2,11 +2,11 @@ var mysql = require('mysql');
 var fs = require('fs');
 
 var conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '12345',
-    port: 3306,
-    database: 'nelisa_spaza_app'
+        host: 'localhost',
+        user: 'root',
+        password: '12345',
+        port: 3306,
+        database: 'nelisa_spaza_app'
 });
 
 var salesCSV = '../files/sales.csv';
@@ -18,6 +18,8 @@ var removerHeader = readCSV.split('\n').slice(1).filter(Boolean);
 removerHeader.forEach(function(sales) {
     var items = sales.split(",");
     var date = items[1];
+    console.log(date);
+
     var Number_sold = items[3];
     var Sales_Price = items[4].replace("R", "");
     var stock_item = items[2];

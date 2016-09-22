@@ -1,26 +1,28 @@
-<h1>Purchases</h1>
 <div class="table-responsive">
-  <h3><a href="/purchases/add">Add</a></h3>
+  <h1>Purchases</h1>
+    <h3><a href="/purchases/add">Add</a></h3>
     <table class="table table-bordered myTable">
-      <tr>
-          <th>Products_id</th>
-          <th>Suppliers_id</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Date</th>
-      </tr>
-        {{#purchases}}
-            <tbody>
-                <tr>
-                    <td>{{product}}</td>
-                    <td>{{shop}}</td>
-                    <td>{{quantity}}</td>
-                    <td>R{{price}}</td>
-                    <td>{{date}}</td>
-                    <td><a href="/purchases/edit/{{purchases_id}}">Edit</a></td>
-                    <td><a href="/purchases/delete/{{purchases_id}}">Delete</a></td>
-                </tr>
-            </tbody>
-            {{/purchases}}
+        <thead>
+            <tr>
+                <th>Products_id</th>
+                <th>Suppliers_id</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Date</th>
+            </tr>
+            <thead>
+                {{#purchases}}
+                    <tbody>
+                        <tr>
+                            <td>{{product}}</td>
+                            <td>{{shop}}</td>
+                            <td>{{quantity}}</td>
+                            <td>R{{price}}</td>
+                            <td>{{date}}</td>
+                            <td><a href="/purchases/edit/{{purchases_id}}">Edit</a></td>
+                            <td><a href="/purchases/delete/{{purchases_id}}">Delete</a></td>
+                        </tr>
+                    </tbody>
+                {{/purchases}}
     </table>
 </div>

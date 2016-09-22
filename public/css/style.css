@@ -1,0 +1,35 @@
+/*-------- Logo -------- */
+.navbar-brand_ {
+	float: none;
+	display: block;
+	position: relative;
+	margin: 0;
+	text-align: center;
+	padding: 0;
+	margin: 1px auto 1px;
+}
+.navbar-brand_ img {
+	max-width: 100%;
+}
+.navbar-brand_a:hover {
+	text-decoration: none;
+}
+/*body*/
+body {
+		background: #cacaca;
+		margin: 0;
+		padding: 20px;
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	   	font-weight: 300;
+	}
+/*home*/
+.picture {
+  float: none;
+	display: block;
+	position: relative;
+	margin: 0;
+	text-align: center;
+	padding-left: 40%;
+  max-width: 100%;
+	/*margin: 60px auto 60px;*/
+}

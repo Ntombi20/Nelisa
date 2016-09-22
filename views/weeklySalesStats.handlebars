@@ -1,14 +1,14 @@
+<h1>Nelisa sales reports for {{weekName}}</h1>
 <div class="table-responsive">
-    <h2>Nelisa sales reports for {{weekName}}</h2>
     <table class="table table-bordered myTable">
+      <thead>
+        <tr>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Quantity</th>
+        </tr>
+      </thead>
         {{#week}}
-            <thead>
-                <tr>
-                    <th>Description</th>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                </tr>
-            </thead>
             <tbody>
                 <tr>
                     <td>Most popular product sold</td>
@@ -35,18 +35,17 @@
     </table>
 </div>
 
-
+<h1>Profit for {{weekName}}</h1>
 <div class="table-responsive">
-    <h2>Profit for {{weekName}}</h2>
     <table class="table table-bordered myTable">
+      <thead>
+        <tr>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Profit</th>
+        </tr>
+      </thead>
         {{#week}}
-            <thead>
-                <tr>
-                    <th>Description</th>
-                    <th>Name</th>
-                    <th>Profit</th>
-                </tr>
-            </thead>
             <tbody>
                 <tr>
                     <td>The most profitable product</td>
