@@ -19,7 +19,18 @@ removerHeader.forEach(function(purchases) {
     var items = purchases.split(";");
     var quantity = items[3];
     var price = items[4].replace("R", "").replace(",", ".");
-    var date = items[1];
+    var editDate = items[1].split("-");
+
+    var d = new Date(editDate),
+        month = '' + (d.getMonth() + 1),
+        day = '' + editDate[0],
+        year = 2016;
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    var date = [year, month, day].join('/');
+    
     var shops = items[0];
     purchasesMap.push({
       Shop: shops,

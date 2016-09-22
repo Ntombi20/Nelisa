@@ -12,7 +12,3 @@ create table purchases (
 );
 
 ALTER TABLE purchases ADD CONSTRAINT fk_suppliers_id FOREIGN KEY (suppliers_id) REFERENCES suppliers(id);
-
-SELECT purchases.id as purchases_id, products.product, suppliers.shop, purchases.quantity, purchases.price, purchases.date
-FROM products inner join purchases on purchases.products_id = products.id AND FROM suppliers inner join purchases on
- purchases.suppliers_id = suppliers.id

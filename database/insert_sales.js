@@ -17,8 +17,17 @@ var removerHeader = readCSV.split('\n').slice(1).filter(Boolean);
 
 removerHeader.forEach(function(sales) {
     var items = sales.split(",");
-    var date = items[1];
-    console.log(date);
+    var editDate = items[1].split("-");
+
+    var d = new Date(editDate),
+        month = '' + (d.getMonth() + 1),
+        day = '' + editDate[0],
+        year = 2016;
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    var date = [year, month, day].join('/');
 
     var Number_sold = items[3];
     var Sales_Price = items[4].replace("R", "");
