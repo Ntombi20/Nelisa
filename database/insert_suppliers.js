@@ -6,7 +6,7 @@ var conn = mysql.createConnection({
         user: 'root',
         password: '12345',
         port: 3306,
-        database: 'nelisa_spaza_app'
+        database: 'nelisa_spaza'
 });
 
 var shops = [

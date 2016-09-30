@@ -85,7 +85,8 @@ exports.delete = function(req, res, next) {
     var id = req.params.id;
     req.getConnection(function(err, connection) {
         connection.query('DELETE FROM products WHERE id = ?', [id], function(err, rows) {
-            if (err) return next(err);
+            if (err)
+                return next(err);
             res.redirect('/products');
         });
     });

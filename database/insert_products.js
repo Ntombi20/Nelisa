@@ -4,28 +4,28 @@ var conn = mysql.createConnection({
     user: 'root',
     password: '12345',
     port: 3306,
-    database: 'nelisa_spaza_app'
+    database: 'nelisa_spaza'
 });
 
 var productsCategory = {
-        "Milk": "Dairy",
+        "Milk 1l": "Dairy",
         "Bread": "Bakery",
-        "Chakalaka Canned": "Canned food",
-        "Gold dish vegetable curry can": "Canned food",
+        "Chakalaka Can": "Canned food",
+        "Gold Dish Vegetable Curry Can": "Canned food",
         "Fanta 500ml": "Bevarage",
         "Coke 500ml": "Bevarage",
-        "Cream soda 500ml": "Bevarage",
+        "Cream Soda 500ml": "Bevarage",
         "Iwisa Pap 5kg": "Grain product",
-        "Top class soy mince": "Grain product",
-        "Shampoo": "Household",
-        "Soap bar": "Household",
-        "Bananas-loose": "Fruit",
-        "Apples-loose": "Fruit",
-        "Mixed sweets 5s": "Snacks",
-        "Heart chocolate": "Snacks",
+        "Top Class Soy Mince": "Grain product",
+        "Shampoo 1 litre": "Household",
+        "Soap Bar": "Household",
+        "Bananas - loose": "Fruit",
+        "Apples - loose": "Fruit",
+        "Mixed Sweets 5s": "Snacks",
+        "Heart Chocolates": "Snacks",
         "Imasi": "Dairy",
         "Rose (plastic)": "Gift",
-        "Valentine cards": "Gift"
+        "Valentine Cards": "Gift"
     }
 
 conn.query("select * from categories", function(err, categories) {
@@ -50,14 +50,14 @@ conn.query("select * from categories", function(err, categories) {
             }
         }
     }
+    console.log(productsCategoryMap);
 
     var insertProducts = "INSERT INTO products (product, category_id) VALUES ?";
 
     conn.query(insertProducts, [values], function(err, results) {
         if (err) {
-            console.log("There is an error with populating the product table");
+            console.log(err);
         };
-
         console.log(results);
         conn.end();
     });

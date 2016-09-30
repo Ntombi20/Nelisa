@@ -4,7 +4,7 @@ var conn = mysql.createConnection({
         user: 'root',
         password: '12345',
         port: 3306,
-        database: 'nelisa_spaza_app'
+        database: 'nelisa_spaza'
 });
 
 var insertCategory = "INSERT INTO categories (categoryName) VALUE ?";
@@ -22,9 +22,10 @@ var values = [
     ['Gift']
 ];
 
-conn.query(insertCategory, [values], function(err) {
+conn.query(insertCategory, [values], function(err, results) {
     if (err){
       console.log(err);
     }
+    console.log(results);
     conn.end();
 });

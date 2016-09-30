@@ -15,10 +15,10 @@ var express = require('express'),
 
     dbOptions = {
       host: 'localhost',
-     user: 'root',
+      user: 'root',
       port: 3306,
       password: '12345',
-      database: 'nelisa_spaza_app'
+      database: 'nelisa_spaza'
 };
 
 var app = express();
@@ -103,7 +103,7 @@ app.get('/suppliers', suppliers.show);
 app.use(errorHandler);
 
 //configure the port number using and environment number..
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 8080));
 
 //start the app like this:
 app.listen(app.get('port'), function() {

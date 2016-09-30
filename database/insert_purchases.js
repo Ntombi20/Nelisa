@@ -2,11 +2,11 @@ var mysql = require('mysql');
 var fs = require('fs');
 
 var conn = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '12345',
-        port: 3306,
-        database: 'nelisa_spaza_app'
+    host: 'localhost',
+    user: 'root',
+    password: '12345',
+    port: 3306,
+    database: 'nelisa_spaza'
 });
 
 var purchasesCSV = '../files/purchases.csv';
@@ -30,13 +30,13 @@ removerHeader.forEach(function(purchases) {
     if (day.length < 2) day = '0' + day;
 
     var date = [year, month, day].join('/');
-    
+
     var shops = items[0];
     purchasesMap.push({
-      Shop: shops,
-      Date: date,
-      price: price,
-      Quantity: quantity
+        Shop: shops,
+        Date: date,
+        price: price,
+        Quantity: quantity
     });
 });
 
@@ -62,28 +62,29 @@ conn.query("select * from products", function(err, products) {
             var supplierId = shops.id;
             var supplierName = shops.shop;
             // if (suppliersMap[supplierName] == undefined) {
-                suppliersMap[supplierName] = supplierId
-            // }
+            suppliersMap[supplierName] = supplierId
+                // }
         });
 
         var values = [];
         for (var purchases in purchasesMap) {
             for (var product in productsMap) {
-              for (var suppliers in suppliersMap) {
-                if (suppliers == purchasesMap[purchases].Shop) {
-                    values.push([ productsMap[product],
-                                  suppliersMap[suppliers],
-                                  purchasesMap[purchases].Quantity,
-                                  purchasesMap[purchases].price,
-                                  purchasesMap[purchases].Date ]);
+                for (var suppliers in suppliersMap) {
+                    if (suppliers == purchasesMap[purchases].Shop) {
+                        values.push([productsMap[product],
+                            suppliersMap[suppliers],
+                            purchasesMap[purchases].Quantity,
+                            purchasesMap[purchases].price,
+                            purchasesMap[purchases].Date
+                        ]);
+                    }
                 }
-              }
             }
         }
-        console.log(purchasesMap[purchases].price);
+
         conn.query(insertPurchases, [values], function(err, results) {
-            if (err){
-              console.log(err);
+            if (err) {
+                console.log(err);
             }
             console.log(results);
             conn.end();
