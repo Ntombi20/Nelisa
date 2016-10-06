@@ -103,7 +103,7 @@ app.get('/suppliers', suppliers.show);
 app.use(errorHandler);
 
 //configure the port number using and environment number..
-app.set('port', (process.env.PORT || 8080));
+app.set('port', (process.env.PORT || 3000));
 
 //start the app like this:
 app.listen(app.get('port'), function() {
