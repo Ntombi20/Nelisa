@@ -1,28 +1,26 @@
-<div class="table-responsive">
-  <h1>Purchases</h1>
-    <h3><a href="/purchases/add">Add</a></h3>
-    <table class="table table-bordered myTable">
-        <thead>
-            <tr>
-                <th>Products</th>
-                <th>Suppliers</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Date</th>
-            </tr>
-            <thead>
-                {{#purchases}}
-                    <tbody>
-                        <tr>
-                            <td>{{product}}</td>
-                            <td>{{shop}}</td>
-                            <td>{{quantity}}</td>
-                            <td>{{price}}</td>
-                            <td>{{date}}</td>
-                            <td><a href="/purchases/edit/{{purchases_id}}">Edit</a></td>
-                            <td><a href="/purchases/delete/{{purchases_id}}">Delete</a></td>
-                        </tr>
-                    </tbody>
-                {{/purchases}}
-    </table>
+<h1>Purchases</h1>
+<h3><a href="/purchases/add">Add a new purchases</a></h3>
+
+<div id="table">
+    <div class="header-row row">
+        <span class="cell">Product</span>
+        <span class="cell">Suppliers</span>
+        <span class="cell">Quantity</span>
+        <span class="cell">Price</span>
+        <span class="cell">Date</span>
+        <span class="cell"></span>
+        <span class="cell"></span>
+    </div>
+    {{#purchases}}
+        <div class="row">
+            <span class="cell">{{product}}</span>
+            <span class="cell">{{shop}}</span>
+            <span class="cell">{{quantity}}</span>
+            <span class="cell">{{price}}</span>
+            <span class="cell">{{date}}</span>
+            <span class="cell"><a href="/purchases/edit/{{purchases_id}}">Edit</a></span>
+            <span class="cell"><a href="/purchases/delete/{{purchases_id}}">Delete</a></span>
+        </div>
+    {{/purchases}}
+
 </div>

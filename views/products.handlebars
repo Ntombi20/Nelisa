@@ -1,22 +1,19 @@
-<div class="table-responsive">
-  <h1>Products</h1>
-  <h3><a href="/products/add">Add</a></h3>
-    <table class="table table-bordered myTable">
-      <thead>
-          <tr>
-              <th>Product</th>
-              <th>Category</th>
-          </tr>
-      </thead>
-        {{#products}}
-            <tbody>
-                <tr>
-                    <td>{{product}}</td>
-                    <td>{{categoryName}}</td>
-                    <td><a href="/products/edit/{{product_id}}">Edit</a></td>
-                    <td><a href="/products/delete/{{product_id}}">Delete</a></td>
-                </tr>
-            </tbody>
-            {{/products}}
-    </table>
+<h1>Products</h1>
+<h3><a href="/products/add">Add a new products</a></h3>
+<div id="table">
+    <div class="header-row row">
+        <span class="cell">Product</span>
+        <span class="cell">Category</span>
+        <span class="cell"></span>
+        <span class="cell"></span>
+    </div>
+    {{#products}}
+        <div class="row">
+            <span class="cell">{{product}}</span>
+            <span class="cell">{{categoryName}}</span>
+            <span class="cell"><a href="/products/edit/{{product_id}}">Edit</a></span>
+            <span class="cell"><a href="/products/delete/{{product_id}}">Delete</a></span>
+        </div>
+    {{/products}}
+
 </div>

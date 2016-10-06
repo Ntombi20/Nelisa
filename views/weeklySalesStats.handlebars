@@ -1,63 +1,52 @@
-<h1>Nelisa sales reports for {{weekName}}</h1>
-<div class="table-responsive">
-    <table class="table table-bordered myTable">
-      <thead>
-        <tr>
-            <th>Description</th>
-            <th>Name</th>
-            <th>Quantity</th>
-        </tr>
-      </thead>
-        {{#week}}
-            <tbody>
-                <tr>
-                    <td>Most popular product sold</td>
-                    <td>{{mostProduct.item}}</td>
-                    <td>{{mostProduct.qty}}</td>
-                </tr>
-                <tr>
-                    <td>Least popular product sold</td>
-                    <td>{{leastProduct.item}}</td>
-                    <td>{{leastProduct.qty}}</td>
-                </tr>
-                <tr>
-                    <td>Most popular category sold</td>
-                    <td>{{popularSalesProduct.item}}</td>
-                    <td>{{popularSalesProduct.qty}}</td>
-                </tr>
-                <tr>
-                    <td>Least popular category sold</td>
-                    <td>{{unpopularSalesCategory.item}}</td>
-                    <td>{{unpopularSalesCategory.qty}}</td>
-                </tr>
-            </tbody>
-        {{/week}}
-    </table>
+<div class="caption"><h1>Nelisa sales reports for {{weekName}}</h1></div>
+<div id="table">
+    <div class="header-row row">
+        <span class="cell">Description</span>
+        <span class="cell">Name</span>
+        <span class="cell">Quantity</span>
+    </div>
+    {{#week}}
+        <div class="row">
+            <span class="cell">Most popular product sold</span>
+            <span class="cell">{{mostProduct.item}}</span>
+            <span class="cell">{{mostProduct.qty}}</span>
+        </div>
+        <div class="row">
+            <span class="cell">Least popular product sold</span>
+            <span class="cell">{{leastProduct.item}}</span>
+            <span class="cell">{{leastProduct.qty}}</span>
+        </div>
+        <div class="row">
+            <span class="cell">Most popular category sold</span>
+            <span class="cell">{{popularSalesProduct.item}}</span>
+            <span class="cell">{{popularSalesProduct.qty}}</span>
+        </div>
+        <div class="row">
+            <span class="cell">Least popular category sold</span>
+            <span class="cell">{{unpopularSalesCategory.item}}</span>
+            <span class="cell">{{unpopularSalesCategory.qty}}</span>
+        </div>
+    {{/week}}
 </div>
+<br>
+<div class="caption"><h1>Profit for {{weekName}}</h1></div>
+<div id="table">
+    <div class="header-row row">
+        <span class="cell">Description</span>
+        <span class="cell">Name</span>
+        <span class="cell">Profit</span>
+    </div>
+    {{#week}}
+        <div class="row">
+            <span class="cell">The most profitable product</span>
+            <span class="cell">{{profitableProduct.Item}}</span>
+            <span class="cell">R{{profitableProduct.cost}}</span>
+        </div>
+        <div class="row">
+            <span class="cell">The most popular category</span>
+            <span class="cell">{{profitableProduct.Item}}</span>
+            <span class="cell">R{{profitableCategory.cost}}</span>
+        </div>
+    {{/week}}
 
-<h1>Profit for {{weekName}}</h1>
-<div class="table-responsive">
-    <table class="table table-bordered myTable">
-      <thead>
-        <tr>
-            <th>Description</th>
-            <th>Name</th>
-            <th>Profit</th>
-        </tr>
-      </thead>
-        {{#week}}
-            <tbody>
-                <tr>
-                    <td>The most profitable product</td>
-                    <td>{{profitableProduct.Item}}</td>
-                    <td>R{{profitableProduct.cost}}</td>
-                </tr>
-                <tr>
-                    <td>The most popular category</td>
-                    <td>{{profitableProduct.Item}}</td>
-                    <td>R{{profitableCategory.cost}}</td>
-                </tr>
-            </tbody>
-        {{/week}}
-    </table>
 </div>

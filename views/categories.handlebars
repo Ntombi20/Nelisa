@@ -1,20 +1,17 @@
-<div class="table-responsive">
-  <h1>Categories</h1>
-  <h3><a href="/categories/add">Add</a></h3>
-    <table class="table table-bordered myTable">
-        <thead>
-            <tr>
-                <th>Category</th>
-            </tr>
-        </thead>
-        {{#categories}}
-            <tbody>
-                <tr>
-                    <td>{{categoryName}}</td>
-                    <td><a href="/categories/edit/{{id}}">Edit</a></td>
-                    <td><a href="/categories/delete/{{id}}">Delete</a></td>
-                </tr>
-            </tbody>
-        {{/categories}}
-    </table>
+<h1>Categories</h1>
+<h3><a href="/categories/add">Add a new category</a></h3>
+<div id="table">
+    <div class="header-row row">
+        <span class="cell">Category</span>
+        <span class="cell"></span>
+        <span class="cell"></span>
+    </div>
+    {{#categories}}
+        <div class="row">
+            <span class="cell">{{categoryName}}</span>
+            <span class="cell"><a href="/categories/edit/{{id}}">Edit</a></span>
+            <span class="cell"><a href="/categories/delete/{{id}}">Delete</a></span>
+        </div>
+    {{/categories}}
+
 </div>

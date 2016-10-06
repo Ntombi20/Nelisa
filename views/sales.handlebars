@@ -1,26 +1,24 @@
-<div class="table-responsive">
-    <h1>Sales</h1>
-    <h3><a href="/sales/add">Add</a></h3>
-    <table class="table table-bordered myTable">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Product</th>
-            </tr>
-        </thead>
-        {{#sales}}
-            <tbody>
-                <tr>
-                    <td>{{date}}</td>
-                    <td>{{quantity}}</td>
-                    <td>R{{price}}</td>
-                    <td>{{product}}</td>
-                    <td><a href="/sales/edit/{{sales_id}}">Edit</a></td>
-                    <td><a href="/sales/delete/{{sales_id}}">Delete</a></td>
-                </tr>
-            </tbody>
-        {{/sales}}
-    </table>
+<h1>Sales</h1>
+<h3><a href="/sales/add">Add</a></h3>
+
+<div id="table">
+    <div class="header-row row">
+        <span class="cell">Date</span>
+        <span class="cell">Quantity</span>
+        <span class="cell">Price</span>
+        <span class="cell">Product</span>
+        <span class="cell"></span>
+        <span class="cell"></span>
+    </div>
+    {{#sales}}
+        <div class="row">
+            <span class="cell">{{date}}</span>
+            <span class="cell">{{quantity}}</span>
+            <span class="cell">R{{price}}</span>
+            <span class="cell">{{product}}</span>
+            <span class="cell"><a href="/sales/edit/{{sales_id}}">Edit</a></span>
+            <span class="cell"><a href="/sales/delete/{{sales_id}}">Delete</a></span>
+        </div>
+    {{/sales}}
+
 </div>
