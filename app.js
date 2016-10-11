@@ -12,6 +12,7 @@ var express = require('express'),
     sales = require('./routes/sales'),
     purchases = require('./routes/purchases'),
     suppliers = require('./routes/suppliers'),
+    session = require('express-session'),
 
     dbOptions = {
       host: 'localhost',
@@ -31,6 +32,17 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static(__dirname + '/public'));
 
+//set up HttpSession middleware
+app.use(session({
+    secret: 'Ntombi smile',
+    cookie: { maxAge: 6000 }
+}));
+
+var rolesMap = {
+    "ntombi": "admin",
+    "nelisa": "admin",
+    "zolani": "admin"
+}
 
 //setup middleware
 app.use(myConnection(mysql, dbOptions, 'single'));
@@ -44,8 +56,38 @@ var week2 = weeklySalesStats.weeklySalesStats('./files/week2.csv');
 var week3 = weeklySalesStats.weeklySalesStats('./files/week3.csv');
 var week4 = weeklySalesStats.weeklySalesStats('./files/week4.csv');
 
-app.get('/', function(req, res) {
-    res.render('home');
+var checkUser = function(req, res, next){
+  console.log("checkUser...");
+  if (req.session.user) {
+    return next();
+  }
+
+  res.redirect("/login");
+};
+
+app.post('/login', function(req, res){
+  req.session.user = {
+    name : req.body.username,
+    is_admin : rolesMap[req.body.username] === "admin"
+  };
+  res.redirect("/")
+});
+
+app.get('/', checkUser, function(req, res) {
+    res.render('home', {user: req.session.user});
+});
+
+app.post('/', function(req, res) {
+
+});
+
+app.get('/login', function(req, res) {
+    res.render('login');
+});
+
+app.get('/logout', function (req, res){
+  delete req.session.user;
+  res.redirect("/login");
 });
 
 app.get('/weeklySalesStats/:week_name', function(req, res) {
@@ -85,7 +127,7 @@ app.post('/products/add', products.add);
 app.get('/products/delete/:id', products.delete);
 
 app.get('/sales', sales.show);
-app.get('/sales/add', sales.showAdd);
+app.get('/sales/add',  sales.showAdd);
 app.post('/sales/add', sales.add);
 app.get('/sales/edit/:id', sales.get);
 app.post('/sales/update/:id', sales.update);

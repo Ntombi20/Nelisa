@@ -16,7 +16,7 @@
 }
 /*body*/
 body {
-		background: #cacaca;
+		background: #797D7F;
 		margin: 0;
 		padding: 20px;
 		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -30,14 +30,13 @@ body {
 	margin: 0;
 	text-align: center;
 	padding-left: 40%;
-  max-width: 100%;
+  max-width: 100%;*/
 	/*margin: 60px auto 60px;*/
 }
 
 /*table*/
 #table {
 		display: table;
-
 	 	width: 100%;
 	 	background: #fff;
 	 	margin: 0;
@@ -211,3 +210,79 @@ body {
 			z-index: 2;
 		}
 	}
+/**/
+
+	/*html,
+	body,
+	.view {
+			height: 100%;
+	}*/
+	/* Navigation*/
+/*
+	.navbar {
+			background-color: transparent;
+	}
+
+	.scrolling-navbar {
+			-webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
+			-moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
+			transition: background .5s ease-in-out, padding .5s ease-in-out;
+	}
+
+	.top-nav-collapse {
+			background-color: #1C2331;
+	}
+
+	footer.page-footer {
+			background-color: #1C2331;
+			margin-top: 0;
+	}
+
+	@media only screen and (max-width: 768px) {
+			.navbar {
+					background-color: #1C2331;
+			}
+	}*/
+	/* Carousel*/
+
+	/*.carousel,
+	.carousel-item,
+	.active {
+			height: 100%;
+	}
+
+	.carousel-inner {
+			height: 100%;
+	}
+
+	.carousel-item:nth-child(1) {
+			background-image: url("http://mdbootstrap.com/images/regular/nature/img%20(54).jpg");
+			background-repeat: no-repeat;
+			background-size: cover;
+	}
+
+	.carousel-item:nth-child(2) {
+			background-image: url("http://mdbootstrap.com/images/regular/nature/img%20(4).jpg");
+			background-repeat: no-repeat;
+			background-size: cover;
+	}
+
+	.carousel-item:nth-child(3) {
+			background-image: url("http://mdbootstrap.com/images/regular/nature/img%20(3).jpg");
+			background-repeat: no-repeat;
+			background-size: cover;
+	}*/
+	/*Caption*/
+
+	/*.flex-center {
+			color: #fff;
+	}
+
+	@media (min-width: 776px) {
+			.carousel .view ul li {
+					display: inline;
+			}
+			.carousel .view .full-bg-img ul li .flex-item {
+					margin-bottom: 1.5rem;
+			}
+	}*/
