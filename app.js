@@ -35,7 +35,7 @@ app.use(express.static(__dirname + '/public'));
 //set up HttpSession middleware
 app.use(session({
     secret: 'Ntombi smile',
-    cookie: { maxAge: 6000 }
+    cookie: { maxAge: 60000 * 30 }
 }));
 
 var rolesMap = {
