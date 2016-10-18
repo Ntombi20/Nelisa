@@ -1,5 +1,5 @@
 /*-------- Logo -------- */
-.navbar-brand_ {
+/*.navbar-brand_ {
 	float: none;
 	display: block;
 	position: relative;
@@ -13,7 +13,7 @@
 }
 .navbar-brand_a:hover {
 	text-decoration: none;
-}
+}*/
 /*body*/
 body {
 		background: #797D7F;
