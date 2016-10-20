@@ -9,7 +9,7 @@ var express = require('express'),
     weeklySalesStats = require('./routes/weeklySalesStats'),
     categories = require('./routes/categories'),
     products = require('./routes/products'),
-    signup = require('./routes/signup'),
+    // signup = require('./routes/signup'),
     sales = require('./routes/sales'),
     purchases = require('./routes/purchases'),
     suppliers = require('./routes/suppliers'),
@@ -50,6 +50,14 @@ app.use(session({
     }
 }));
 
+var rolesMap = {
+    "ntombi": "admin",
+    "nelisa": "admin",
+    "zolani": "admin",
+    "beauty": "view",
+    "neo": "view"
+}
+
 var checkUser = function(req, res, next) {
     console.log("checkUser...");
     if (req.session.user) {
@@ -59,20 +67,21 @@ var checkUser = function(req, res, next) {
     res.redirect("/login");
 };
 
-var rolesMap = {
-    "ntombi": "admin",
-    "nelisa": "admin",
-    "zolani": "admin",
-    "beauty": "view",
-    "neo": "view"
-}
+app.get('/', checkUser, function(req, res) {
+    res.render('home', {
+        user: req.session.user
+    });
+});
+
+app.get('/login', function(req, res) {
+    res.render('login');
+});
 
 app.post('/login', function(req, res) {
     req.session.user = {
             name: req.body.username,
             is_admin: rolesMap[req.body.username] === "admin"
         }
-        // req.session.password = 1235
     res.redirect("/")
 });
 
@@ -81,10 +90,8 @@ app.get('/logout', function(req, res) {
     res.redirect("/login");
 });
 
-app.get('/', checkUser, function(req, res) {
-    res.render('home', {
-        user: req.session.user
-    });
+app.get('/signup', function(req, res) {
+    res.render('signup');
 });
 
 var week1 = weeklySalesStats.weeklySalesStats('./files/week1.csv');
@@ -147,14 +154,6 @@ app.post('/purchases/update/:id', checkUser, purchases.update);
 app.get('/purchases/delete/:id', checkUser, purchases.delete);
 
 app.get('/suppliers', checkUser, suppliers.show);
-
-app.get('/login', function(req, res) {
-    res.render('login');
-});
-
-app.get('/signup', function(req, res) {
-    res.render('signup');
-});
 
 app.use(errorHandler);
 
