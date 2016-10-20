@@ -1,41 +1,37 @@
-/*-------- Logo -------- */
-/*.navbar-brand_ {
-	float: none;
-	display: block;
-	position: relative;
-	margin: 0;
-	text-align: center;
-	padding: 0;
-	margin: 1px auto 1px;
-}
-.navbar-brand_ img {
-	max-width: 100%;
-}
-.navbar-brand_a:hover {
-	text-decoration: none;
-}*/
-/*body*/
-body {
-		background: #797D7F;
-		margin: 0;
-		padding: 20px;
-		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-	   	font-weight: 300;
-	}
-/*home*/
-.picture {
-  float: none;
-	display: block;
-	position: relative;
-	margin: 0;
-	text-align: center;
-	padding-left: 40%;
-  max-width: 100%;*/
-	/*margin: 60px auto 60px;*/
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
 }
 
+footer {
+    background-color: #f2f2f2;
+    padding: 25px;
+}
+.carousel-inner img {
+    width: 100%;
+    margin: auto;
+    min-height: 200px;
+}
+
+/* Hide the carousel text when the screen is less than 600 pixels wide */
+@media (max-width: 600px) {
+    .carousel-caption {
+        display: none;
+    }
+}
+
+
+body {
+		background: #C0C0C0;
+		margin: 0;
+	}
+
+h1, h2, h4 {
+  color: #00FF00;
+}
 /*table*/
-#table {
+
+/*#table {
 		display: table;
 	 	width: 100%;
 	 	background: #fff;
@@ -56,9 +52,9 @@ body {
 	 	text-shadow: 1px 1px 1px rgba(0,0,0,.3);
 	 	box-sizing: border-box;
 	 }
+*/
 
-
-	 .header-row {
+/*.header-row {
 	 	background: #8b8b8b;
 	 	color: #fff;
 
@@ -209,15 +205,18 @@ body {
 			border-top:10px solid #ccc;
 			z-index: 2;
 		}
-	}
+	}*/
+
 /**/
 
-	/*html,
+/*html,
 	body,
 	.view {
 			height: 100%;
 	}*/
-	/* Navigation*/
+
+/* Navigation*/
+
 /*
 	.navbar {
 			background-color: transparent;
@@ -243,9 +242,10 @@ body {
 					background-color: #1C2331;
 			}
 	}*/
-	/* Carousel*/
 
-	/*.carousel,
+/* Carousel*/
+
+/*.carousel,
 	.carousel-item,
 	.active {
 			height: 100%;
@@ -272,9 +272,10 @@ body {
 			background-repeat: no-repeat;
 			background-size: cover;
 	}*/
-	/*Caption*/
 
-	/*.flex-center {
+/*Caption*/
+
+/*.flex-center {
 			color: #fff;
 	}
 

@@ -26,7 +26,7 @@ var express = require('express'),
 var app = express();
 //setup template handlebars as the template engine
 app.engine('handlebars', exphbs({
-    defaultLayout: 'main'
+    defaultLayout: 'main',
 }));
 
 app.set('view engine', 'handlebars');
@@ -49,20 +49,15 @@ app.use(session({
         maxAge: 60000 * 30
     }
 }));
+
+// var checkUser = function(req, res, next) {
+//     console.log("checkUser...");
+//     if (req.session.user) {
+//         return next();
+//     }
 //
-// var onlyAdmin(function(req, res, next){
-//   console.log("In the middleware!");
-//   next();
-// });
-
-var checkUser = function(req, res, next) {
-    console.log("checkUser...");
-    if (req.session.user) {
-        return next();
-    }
-
-    res.redirect("/login");
-};
+//     res.redirect("/login");
+// };
 
 var rolesMap = {
     "ntombi": "admin",
@@ -72,21 +67,21 @@ var rolesMap = {
     "neo": "view"
 }
 
-app.post('/login', function(req, res) {
-    req.session.user = {
-            name: req.body.username,
-            is_admin: rolesMap[req.body.username] === "admin"
-        }
-        // req.session.password = 1235
-    res.redirect("/")
-});
+// app.post('/login', function(req, res) {
+//     req.session.user = {
+//             name: req.body.username,
+//             is_admin: rolesMap[req.body.username] === "admin"
+//         }
+//         // req.session.password = 1235
+//     res.redirect("/")
+// });
 
-app.get('/logout', function(req, res) {
-    delete req.session.user;
-    res.redirect("/login");
-});
+// app.get('/logout', function(req, res) {
+//     delete req.session.user;
+//     res.redirect("/login");
+// });
 
-app.get('/', checkUser, function(req, res) {
+app.get('/', function(req, res) {
     res.render('home', {
         user: req.session.user
     });
@@ -97,7 +92,7 @@ var week2 = weeklySalesStats.weeklySalesStats('./files/week2.csv');
 var week3 = weeklySalesStats.weeklySalesStats('./files/week3.csv');
 var week4 = weeklySalesStats.weeklySalesStats('./files/week4.csv');
 
-app.get('/weeklySalesStats/:week_name', checkUser, function(req, res) {
+app.get('/weeklySalesStats/:week_name', function(req, res) {
     var week_name = req.params.week_name;
 
     if (Number(week_name.replace('week', '')) > 52) {
@@ -110,6 +105,7 @@ app.get('/weeklySalesStats/:week_name', checkUser, function(req, res) {
 
     //use your template here with weeklyData
     res.render('weeklySalesStats', {
+        // user: req.session.user
         week: weeklyData,
         weekName: week_name,
     });
@@ -122,35 +118,35 @@ function errorHandler(err, req, res, next) {
     });
 }
 
-app.get('/categories', checkUser, categories.show);
-app.get('/categories/add', checkUser, categories.showAdd);
-app.get('/categories/edit/:id', checkUser, categories.get);
-app.post('/categories/update/:id', checkUser, categories.update);
-app.post('/categories/add', checkUser, categories.add);
-app.get('/categories/delete/:id', checkUser, categories.delete);
+app.get('/categories', categories.show);
+app.get('/categories/add', categories.showAdd);
+app.get('/categories/edit/:id', categories.get);
+app.post('/categories/update/:id', categories.update);
+app.post('/categories/add', categories.add);
+app.get('/categories/delete/:id', categories.delete);
 
-app.get('/products', checkUser, products.show);
-app.get('/products/add', checkUser, products.showAdd);
-app.get('/products/edit/:id', checkUser, products.get);
-app.post('/products/update/:id', checkUser, products.update);
-app.post('/products/add', checkUser, products.add);
-app.get('/products/delete/:id', checkUser, products.delete);
+app.get('/products', products.show);
+app.get('/products/add', products.showAdd);
+app.get('/products/edit/:id', products.get);
+app.post('/products/update/:id', products.update);
+app.post('/products/add', products.add);
+app.get('/products/delete/:id', products.delete);
 
-app.get('/sales', checkUser, sales.show);
-app.get('/sales/add', checkUser, sales.showAdd);
-app.post('/sales/add', checkUser, sales.add);
-app.get('/sales/edit/:id', checkUser, sales.get);
-app.post('/sales/update/:id', checkUser, sales.update);
-app.get('/sales/delete/:id', checkUser, sales.delete);
+app.get('/sales', sales.show);
+app.get('/sales/add', sales.showAdd);
+app.post('/sales/add', sales.add);
+app.get('/sales/edit/:id', sales.get);
+app.post('/sales/update/:id', sales.update);
+app.get('/sales/delete/:id', sales.delete);
 
-app.get('/purchases', checkUser, purchases.show);
-app.get('/purchases/add', checkUser, purchases.showAdd);
-app.post('/purchases/add', checkUser, purchases.add);
-app.get('/purchases/edit/:id', checkUser, purchases.get);
-app.post('/purchases/update/:id', checkUser, purchases.update);
-app.get('/purchases/delete/:id', checkUser, purchases.delete);
+app.get('/purchases', purchases.show);
+app.get('/purchases/add', purchases.showAdd);
+app.post('/purchases/add', purchases.add);
+app.get('/purchases/edit/:id', purchases.get);
+app.post('/purchases/update/:id', purchases.update);
+app.get('/purchases/delete/:id', purchases.delete);
 
-app.get('/suppliers', checkUser, suppliers.show);
+app.get('/suppliers', suppliers.show);
 
 app.get('/login', function(req, res) {
     res.render('login');
