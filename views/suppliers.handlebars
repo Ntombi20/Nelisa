@@ -1,12 +1,11 @@
 <h1>Suppliers</h1>
-
-<div id="table">
-    <div class="header-row row">
-        <span class="cell">Shop</span>
-    </div>
+<table class="table">
+    <tr>
+        <th>Shop</th>
+    </tr>
     {{#suppliers}}
-        <div class="row">
-            <span class="cell">{{shop}}</span>
-        </div>
+        <tr>
+            <td data-th="Shop">{{shop}}</td>
+        </tr>
     {{/suppliers}}
-</div>
+</table>

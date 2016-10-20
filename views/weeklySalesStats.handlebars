@@ -1,52 +1,52 @@
-<div class=""><h1>Nelisa sales reports for {{weekName}}</h1></div>
-<div id="table">
-    <div class="header-row row">
-        <span class="cell">Description</span>
-        <span class="cell">Name</span>
-        <span class="cell">Quantity</span>
-    </div>
+<h1>Nelisa sales reports for {{weekName}}</h1>
+<table class="table">
+    <tr>
+        <th>Description</th>
+        <th>Product</th>
+        <th>Quantity</th>
+    </tr>
     {{#week}}
-        <div class="row">
-            <span class="cell">Most popular product sold</span>
-            <span class="cell">{{mostProduct.item}}</span>
-            <span class="cell">{{mostProduct.qty}}</span>
-        </div>
-        <div class="row">
-            <span class="cell">Least popular product sold</span>
-            <span class="cell">{{leastProduct.item}}</span>
-            <span class="cell">{{leastProduct.qty}}</span>
-        </div>
-        <div class="row">
-            <span class="cell">Most popular category sold</span>
-            <span class="cell">{{popularSalesProduct.item}}</span>
-            <span class="cell">{{popularSalesProduct.qty}}</span>
-        </div>
-        <div class="row">
-            <span class="cell">Least popular category sold</span>
-            <span class="cell">{{unpopularSalesCategory.item}}</span>
-            <span class="cell">{{unpopularSalesCategory.qty}}</span>
-        </div>
+        <tr>
+            <td data-th="Description">Most popular product sold</td>
+            <td data-th="Product">{{mostProduct.item}}</td>
+            <td data-th="Quantity">{{mostProduct.qty}}</td>
+        </tr>
+        <tr>
+            <td data-th="Description">Least popular product sold</td>
+            <td data-th="Product">{{leastProduct.item}}</td>
+            <td data-th="Quantity">{{leastProduct.qty}}</td>
+        </tr>
+        <tr>
+            <td data-th="Description">Most popular category sold</td>
+            <td data-th="Product">{{popularSalesProduct.item}}</td>
+            <td data-th="Quantity">{{popularSalesProduct.qty}}</td>
+        </tr>
+        <tr>
+            <td data-th="Description">Least popular category sold</td>
+            <td data-th="Product">{{unpopularSalesCategory.item}}</td>
+            <td data-th="Quantity">{{unpopularSalesCategory.qty}}</td>
+        </tr>
     {{/week}}
-</div>
+</table>
 <br>
-<div class=""><h1>Profit for {{weekName}}</h1></div>
-<div id="table">
-    <div class="header-row row">
-        <span class="cell">Description</span>
-        <span class="cell">Name</span>
-        <span class="cell">Profit</span>
-    </div>
-    {{#week}}
-        <div class="row">
-            <span class="cell">The most profitable product</span>
-            <span class="cell">{{profitableProduct.Item}}</span>
-            <span class="cell">R{{profitableProduct.cost}}</span>
-        </div>
-        <div class="row">
-            <span class="cell">The most popular category</span>
-            <span class="cell">{{profitableProduct.Item}}</span>
-            <span class="cell">R{{profitableCategory.cost}}</span>
-        </div>
-    {{/week}}
 
-</div>
+<h1>Profit for {{weekName}}</h1>
+<table class="table">
+    <tr>
+        <th>Description</th>
+        <th>Product</th>
+        <th>Profit</th>
+    </tr>
+    {{#week}}
+        <tr>
+            <td data-th="Description">The most profitable product</td>
+            <td data-th="Product">{{profitableProduct.Item}}</td>
+            <td data-th="Quantity">R{{profitableProduct.cost}}</td>
+        </tr>
+        <tr>
+            <td data-th="Description">The most popular category</td>
+            <td data-th="Product">{{profitableProduct.Item}}</td>
+            <td data-th="Quantity">R{{profitableCategory.cost}}</td>
+        </tr>
+    {{/week}}
+</table>
