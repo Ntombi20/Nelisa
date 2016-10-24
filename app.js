@@ -9,7 +9,7 @@ var express = require('express'),
     weeklySalesStats = require('./routes/weeklySalesStats'),
     categories = require('./routes/categories'),
     products = require('./routes/products'),
-    // signup = require('./routes/signup'),
+    signup = require('./routes/signup'),
     sales = require('./routes/sales'),
     purchases = require('./routes/purchases'),
     suppliers = require('./routes/suppliers'),
@@ -154,6 +154,8 @@ app.post('/purchases/update/:id', checkUser, purchases.update);
 app.get('/purchases/delete/:id', checkUser, purchases.delete);
 
 app.get('/suppliers', checkUser, suppliers.show);
+
+app.post('/signup', signup.signUp);
 
 app.use(errorHandler);
 
