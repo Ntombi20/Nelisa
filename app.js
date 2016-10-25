@@ -44,10 +44,10 @@ app.use(bodyParser.json())
 
 //set up HttpSession middleware
 app.use(session({
-    secret: 'Ntombi smile',
-    cookie: {
-        maxAge: 60000 * 30
-    }
+    key: 'session_cookie_name',
+    secret: 'session_cookie_secret',
+    resave: true,
+    saveUninitialized: true
 }));
 
 var rolesMap = {
@@ -86,7 +86,10 @@ app.post('/login', function(req, res) {
 });
 
 app.get('/logout', function(req, res) {
-    delete req.session.username;
+
+  console.log("the code runs");
+    delete req.session.user;
+
     res.redirect("/login");
 });
 
