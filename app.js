@@ -86,7 +86,7 @@ app.post('/login', function(req, res) {
 });
 
 app.get('/logout', function(req, res) {
-    delete req.session.user;
+    delete req.session.username;
     res.redirect("/login");
 });
 
