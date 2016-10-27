@@ -1,3 +1,5 @@
+var bcrypt = require('bcrypt');
+
 exports.login = function(req, res, next) {
     req.getConnection(function(err, connection) {
         if (err) {
@@ -12,7 +14,7 @@ exports.login = function(req, res, next) {
             var user = results[0];
             if (user === undefined) {
                 console.log("User does not exist");
-                return res.redirect("/");
+                return res.redirect("/login");
                 //check if password entered is da same as da 1 in database
             }
             else if (password !== user.password) {
@@ -27,3 +29,13 @@ exports.login = function(req, res, next) {
         });
     });
 };
+
+// Load hash from your password DB.
+bcrypt.compare(myPlaintextPassword, myPlaintextPassword, function(err, res) {
+    res == true
+    console.log(res);
+});
+
+bcrypt.compare(someOtherPlaintextPassword, myPlaintextPassword, hash, function(err, res) {
+    res == false
+});

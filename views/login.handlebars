@@ -27,6 +27,11 @@
                     </form>
                 </div>
                 <div class="panel-footer">
+                  {{#if msg}}
+                      <div class="message">
+                          {{msg}}
+                      </div>
+                  {{/if}}
                     Not Registred? <a href="/signup">Register here</a></div>
             </div>
         </div>

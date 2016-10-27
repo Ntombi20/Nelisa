@@ -39,7 +39,11 @@
                     </form>
                 </div>
                 <div class="panel-footer">
-
+                    {{#if msg}}
+                        <div class="message">
+                            {{msg}}
+                        </div>
+                    {{/if}}
                 </div>
             </div>
         </div>

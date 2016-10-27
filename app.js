@@ -91,10 +91,6 @@ app.get('/logout', function(req, res) {
     res.redirect("/login");
 });
 
-app.get('/signup', function(req, res) {
-    res.render('signup');
-});
-
 var week1 = weeklySalesStats.weeklySalesStats('./files/week1.csv');
 var week2 = weeklySalesStats.weeklySalesStats('./files/week2.csv');
 var week3 = weeklySalesStats.weeklySalesStats('./files/week3.csv');
@@ -157,6 +153,10 @@ app.get('/purchases/delete/:id', checkUser, purchases.delete);
 app.get('/suppliers', checkUser, suppliers.show);
 
 app.post('/signup', signup.signUp);
+
+app.get('/signup', function(req, res) {
+    res.render('signup');
+});
 
 app.use(errorHandler);
 
