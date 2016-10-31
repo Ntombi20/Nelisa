@@ -1,0 +1,22 @@
+<h1>Add a new user</h1>
+
+<form action="/user/add" method="POST">
+  <div>
+    <label for="username">Username</label>
+  	<input type="text" name="username" value="{{username}}">
+	</div>
+  <div>
+		<label for="password">Password</label>
+		<input type="password" name="password" value="{{password}}">
+	</div>
+  <div>
+		<label for="Email">Email</label>
+		<input type="email" name="Email" value="{{Email}}">
+	</div>
+  <div>
+		<label for="admin">Roles</label>
+		<input type="text" name="admin" value="{{admin}}">
+	</div>
+	<input type="submit">
+
+</form>

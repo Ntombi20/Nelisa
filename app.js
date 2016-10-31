@@ -13,6 +13,7 @@ var express = require('express'),
     sales = require('./routes/sales'),
     purchases = require('./routes/purchases'),
     suppliers = require('./routes/suppliers'),
+    user = require('./routes/user'),
     session = require('express-session'),
 
     dbOptions = {
@@ -151,6 +152,13 @@ app.post('/purchases/update/:id', checkUser, purchases.update);
 app.get('/purchases/delete/:id', checkUser, purchases.delete);
 
 app.get('/suppliers', checkUser, suppliers.show);
+
+app.get('/user', checkUser, user.show);
+app.get('/user/add', checkUser, user.showAdd);
+app.post('/user/add', checkUser, user.add);
+// app.get('/user/edit/:id', checkUser, user.get);
+// app.post('/user/update/:id', checkUser, user.update);
+// app.get('/user/delete/:id', checkUser, user.delete);
 
 app.post('/signup', signup.signUp);
 
