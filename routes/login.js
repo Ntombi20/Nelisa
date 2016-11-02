@@ -15,7 +15,7 @@ exports.login = function(req, res, next) {
             //check if a user exist
             if (user === undefined) {
                 console.log("User does not exist");
-                return res.redirect("/login");
+                return res.redirect("/");
             } else {
                 brcypt.compare(data.password, user.password, function(err, pass) {
                     if (pass) {
