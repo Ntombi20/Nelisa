@@ -1,0 +1,26 @@
+<h1>Edit user</h1>
+
+<form action="/users/update/{{data.id}}" method="POST">
+  <div>
+    <label for="username">Edit username</label>
+  	<input type="text" name="username" placeholder="Username" value="{{data.username}}" required>
+	</div>
+  <div>
+		<label for="Email">Edit email</label>
+		<input type="email" name="email" placeholder="Email" value="{{data.email}}" required>
+	</div>
+  <div>
+		<label for="password">Edit password</label>
+	<input type="password" name="password" placeholder="Password" value="{{data.password}}" required>
+	</div>
+  <div>
+      <label for="confirmPassword">Please enter password again</label>
+      <input type="password" name="confirmPassword" placeholder="Re enter password" value="{{data.confirmPassword}}" required>
+  </div>
+  <div>
+		<label for="admin">Edit roles</label>
+		<input type="text" name="admin" value="{{data.admin}}">
+	</div>
+	<input type="submit">
+
+</form>

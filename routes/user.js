@@ -1,10 +1,11 @@
+var bcrypt = require('bcrypt');
 // show users table
 exports.show = function(req, res, next) {
     req.getConnection(function(err, connection) {
         if (err) return next(err);
         connection.query('SELECT * from users ORDER BY username DESC', [], function(err, results) {
             if (err) return next(err);
-            res.render('user', {
+            res.render('users', {
                 users: results,
             });
         });
@@ -16,44 +17,78 @@ exports.showAdd = function(req, res) {
     res.render('add_user');
 }
 
-//add users
-exports.add = function(req, res, next) {
+exports.addUser = function(req, res, next) {
     req.getConnection(function(err, connection) {
-        if (err) return next(err);
+        if (err) {
+            return next(err);
+        };
+
         var data = {
             username: req.body.username,
             password: req.body.password,
-            email: req.body.email
+            confirmPassword: req.body.confirmPassword,
+            email: req.body.email,
+            admin: false
+
         };
 
-        connection.query('insert into users set ?', data, function(err, results) {
-            if (err) return next(err);
-            res.redirect('/users');
+        if (req.body.password !== req.body.confirmPassword) {
+            var err = new Error('Password do not match.');
+            err.status = 400;
+            return next(err);
+        }
+
+        bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(data.password, salt, function(err, hash) {
+                // Store hash in your password DB.
+                data.password = hash;
+
+                connection.query('insert into users set ?', data, function(err, results) {
+                    if (err) {
+                        console.log("Error inserting : %s ", err);
+                        return res.redirect("/error?error=" + err)
+                    };
+
+                    res.redirect('/users');
+                });
+            });
         });
 
     });
-};
-// exports.show = function(req, res, next) {
-//     req.getConnection(function(err, connection) {
-//         if (err) return next(err);
-//         connection.query('SELECT * from user', [], function(err, results) {
-//             if (err) return next(err);
-//             res.render('signup', {
-//                 signup: results,
-//             });
-//         });
-//     });
-// };
 
-// exports.showAdd = function(req, res) {
-//     req.getConnection(function(err, connection) {
-//         if (err) return next(err);
-//         connection.query('SELECT * from user', [], function(err, user) {
-//             if (err) return next(err);
-//             res.render('signup', {
-//                 user: user
-//             });
-//         });
-//     });
-// };
-//add registered user in the user table
+};
+
+//edit users
+exports.get = function(req, res, next){
+	var id = req.params.id;
+	req.getConnection(function(err, connection){
+		connection.query('SELECT * FROM users WHERE id = ?', [id], function(err, rows){
+			if(err) return next(err);
+			res.render('edit_user',{data : rows[0]});
+		});
+	});
+};
+
+//update categories table
+exports.update = function(req, res, next){
+  var data = req.body;
+  var id = req.params.id;
+  req.getConnection(function(err, connection){
+			connection.query('UPDATE users SET ? WHERE id = ?', [data, id], function(err, rows){
+    			if (err) next(err);
+          		res.redirect('/users');
+    		});
+
+    });
+};
+
+//delete user
+exports.delete = function(req, res, next){
+	var id = req.params.id;
+	req.getConnection(function(err, connection){
+		connection.query('DELETE FROM users WHERE id = ?', [id], function(err,rows){
+			if(err) return next(err);
+			res.redirect('/users');
+		});
+	});
+};

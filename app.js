@@ -14,6 +14,7 @@ var express = require('express'),
     purchases = require('./routes/purchases'),
     suppliers = require('./routes/suppliers'),
     user = require('./routes/user'),
+    login = require('./routes/login'),
     session = require('express-session'),
 
     dbOptions = {
@@ -60,7 +61,7 @@ var rolesMap = {
 }
 
 var checkUser = function(req, res, next) {
-    console.log("checkUser...");
+    console.log("checkUser..." + req.path);
     if (req.session.user) {
         return next();
     }
@@ -153,18 +154,24 @@ app.get('/purchases/delete/:id', checkUser, purchases.delete);
 
 app.get('/suppliers', checkUser, suppliers.show);
 
-app.get('/user', checkUser, user.show);
-app.get('/user/add', checkUser, user.showAdd);
-app.post('/user/add', checkUser, user.add);
-// app.get('/user/edit/:id', checkUser, user.get);
-// app.post('/user/update/:id', checkUser, user.update);
-// app.get('/user/delete/:id', checkUser, user.delete);
+app.get('/users', checkUser, user.show);
+app.get('/users/add', checkUser, user.showAdd);
+app.post('/users/add', checkUser, user.addUser);
+app.get('/users/edit/:id', checkUser, user.get);
+app.post('/users/update/:id', checkUser, user.update);
+app.get('/users/delete/:id', checkUser, user.delete);
 
-app.post('/signup', signup.signUp);
+app.get('/login', function(req, res) {
+    res.render('login');
+});
+
+app.post('/login', login.login);
 
 app.get('/signup', function(req, res) {
     res.render('signup');
 });
+
+app.post('/signup', signup.signUp);
 
 app.use(errorHandler);
 
