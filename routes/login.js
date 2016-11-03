@@ -8,7 +8,7 @@ exports.login = function(req, res, next) {
         };
         connection.query('select * from users where username ?', data.username, function(err, results) {
           console.log('login...' + err);
-          
+
           if (err) return next(err);
 
 
@@ -39,4 +39,21 @@ exports.login = function(req, res, next) {
         });
 
     });
+};
+
+var rolesMap = {
+    "ntombi": "admin",
+    "nelisa": "admin",
+    "zolani": "admin",
+    "beauty": "view",
+    "neo": "view"
+}
+
+var checkUser = function(req, res, next) {
+    console.log("checkUser..." + req.path);
+    if (req.session.user) {
+        return next();
+    }
+
+    res.redirect("/login");
 };
