@@ -6,6 +6,9 @@
                     <span class="glyphicon glyphicon-lock"></span>Sign up</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" action="/signUp" method="post">
+
+                        {{messages.errorMsg}}
+
                         <div class="form-group">
                             <label for="username" class="col-sm-3 control-label">Username</label>
                             <div class="col-sm-9">

@@ -6,6 +6,8 @@ var express = require('express'),
     myConnection = require('express-myconnection'),
     fs = require('fs'),
     bodyParser = require('body-parser'),
+    session = require('express-session'),
+    flash = require('express-flash'),
     weeklySalesStats = require('./routes/weeklySalesStats'),
     categories = require('./routes/categories'),
     products = require('./routes/products'),
@@ -15,7 +17,6 @@ var express = require('express'),
     suppliers = require('./routes/suppliers'),
     user = require('./routes/user'),
     login = require('./routes/login'),
-    session = require('express-session'),
 
     dbOptions = {
         host: 'localhost',
@@ -52,6 +53,8 @@ app.use(session({
     saveUninitialized: true
 }));
 
+app.use(flash());
+
 var rolesMap = {
     "ntombi": "admin",
     "nelisa": "admin",
@@ -73,24 +76,6 @@ app.get('/', checkUser, function(req, res) {
     res.render('home', {
         user: req.session.user
     });
-});
-
-app.get('/login', function(req, res) {
-    res.render('login');
-});
-
-app.post('/login', function(req, res) {
-    req.session.user = {
-            name: req.body.username,
-            is_admin: rolesMap[req.body.username] === "admin"
-        }
-    res.redirect("/")
-});
-
-app.get('/logout', function(req, res) {
-    delete req.session.user;
-
-    res.redirect("/login");
 });
 
 var week1 = weeklySalesStats.weeklySalesStats('./files/week1.csv');
@@ -116,13 +101,6 @@ app.get('/weeklySalesStats/:week_name', checkUser, function(req, res) {
         weekName: week_name,
     });
 });
-
-function errorHandler(err, req, res, next) {
-    res.status(500);
-    res.render('error', {
-        error: err
-    });
-}
 
 app.get('/categories', checkUser, categories.show);
 app.get('/categories/add', checkUser, categories.showAdd);
@@ -167,11 +145,31 @@ app.get('/login', function(req, res) {
 
 app.post('/login', login.login);
 
+// app.post('/login', function(req, res) {
+//     req.session.user = {
+//             name: req.body.username,
+//             is_admin: rolesMap[req.body.username] === "admin"
+//         }
+//     res.redirect("/")
+// });
+
+app.get('/logout', function(req, res) {
+    delete req.session.user;
+    res.redirect("/login");
+});
+
 app.get('/signup', function(req, res) {
     res.render('signup');
 });
 
 app.post('/signup', signup.signUp);
+
+function errorHandler(err, req, res, next) {
+    res.status(500);
+    res.render('error', {
+        error: err
+    });
+}
 
 app.use(errorHandler);
 

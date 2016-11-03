@@ -10,7 +10,7 @@ exports.login = function(req, res, next) {
                var user = results[0];
             //check if a user exist
             if (user === undefined) {
-                console.log("User does not exist");
+                req.flash("errorMsg", "User does not exist.");
                 return res.redirect("/login");
             }
             else{
@@ -20,6 +20,7 @@ exports.login = function(req, res, next) {
                         return res.redirect('/');
                     }
                     else {
+                        req.flash("errorMsg", "Incorrect username or password")
                         return res.redirect("/login");
                     };
                 });

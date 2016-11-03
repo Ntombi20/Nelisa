@@ -16,19 +16,22 @@ exports.signUp = function(req, res, next) {
         };
 
         if (req.body.password !== req.body.confirmPassword) {
-            var err = new Error('Password do not match.');
-            err.status = 400;
+            req.flash("errorMsg", "Password do not match.");
+            return next(err);
+        }
+
+        if (req.body.username === req.body.username) {
+            req.flash("errorMsg", "Username is taken.");
             return next(err);
         }
 
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(data.password, salt, function(err, hash) {
                 // Store hash in your password DB.
-              data.password = hash;
+                data.password = hash;
 
                 connection.query('insert into users set ?', data, function(err, results) {
                     if (err) {
-                        console.log("Error inserting : %s ", err);
                         return res.redirect("/error?error=" + err)
                     };
 

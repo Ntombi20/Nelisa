@@ -6,6 +6,9 @@
                     <span class="glyphicon glyphicon-lock"></span> Login</div>
                     <div class="panel-body">
                     <form class="form-horizontal" role="form" action="/login" method="post">
+
+                      {{messages.errorMsg}}
+
                         <div class="form-group">
                             <label for="username" class="col-sm-3 control-label">Username</label>
                             <div class="col-sm-9">
@@ -27,11 +30,6 @@
                     </form>
                 </div>
                 <div class="panel-footer">
-                  {{#if msg}}
-                      <div class="message">
-                          {{msg}}
-                      </div>
-                  {{/if}}
                     Not Registred? <a href="/signup">Register here</a></div>
             </div>
         </div>
