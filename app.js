@@ -17,7 +17,6 @@ var express = require('express'),
     suppliers = require('./routes/suppliers'),
     user = require('./routes/user'),
     login = require('./routes/login'),
-
     dbOptions = {
         host: 'localhost',
         user: 'root',
@@ -45,6 +44,8 @@ app.use(bodyParser.urlencoded({
     // parse application/json
 app.use(bodyParser.json())
 
+//flash msgs
+app.use(flash());
 //set up HttpSession middleware
 app.use(session({
     key: 'session_cookie_name',
@@ -64,7 +65,6 @@ var rolesMap = {
 }
 
 var checkUser = function(req, res, next) {
-    console.log("checkUser..." + req.path);
     if (req.session.user) {
         return next();
     }
@@ -72,16 +72,19 @@ var checkUser = function(req, res, next) {
     res.redirect("/login");
 };
 
-app.get('/', checkUser, function(req, res) {
-    res.render('home', {
-        user: req.session.user
-    });
-});
+
 
 var week1 = weeklySalesStats.weeklySalesStats('./files/week1.csv');
 var week2 = weeklySalesStats.weeklySalesStats('./files/week2.csv');
 var week3 = weeklySalesStats.weeklySalesStats('./files/week3.csv');
 var week4 = weeklySalesStats.weeklySalesStats('./files/week4.csv');
+
+app.use(checkUser);
+app.get('/', checkUser, function(req, res) {
+    res.render('home', {
+        user: req.session.user
+    });
+});
 
 app.get('/weeklySalesStats/:week_name', checkUser, function(req, res) {
     var week_name = req.params.week_name;

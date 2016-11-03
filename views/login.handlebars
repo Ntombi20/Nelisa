@@ -4,11 +4,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <span class="glyphicon glyphicon-lock"></span> Login</div>
-                    <div class="panel-body">
+                <div class="panel-body">
+
+                    {{#if messages.errorMsg}}
+                        <h3>{{messages.errorMsg}}</h3>
+                    {{/if}}
+
                     <form class="form-horizontal" role="form" action="/login" method="post">
-
-                      {{messages.errorMsg}}
-
                         <div class="form-group">
                             <label for="username" class="col-sm-3 control-label">Username</label>
                             <div class="col-sm-9">
