@@ -6,14 +6,14 @@ exports.login = function(req, res, next) {
             username: req.body.username,
             password: req.body.password
         };
-        connection.query('select * from users where username ?', data.username, function(err, results) {
+        connection.query('select * from users where username = ?', data.username, function(err, results) {
 
           if (err) return next(err);
                var user = results[0];
 
             //check if a user exist
             if (user === undefined) {
-                console.log("User does not exist");
+                req.flash('alert', 'username or password invalid');
                 return res.redirect("/login");
             }
             else{
@@ -22,6 +22,7 @@ exports.login = function(req, res, next) {
                         req.session.user = data.username;
                         return res.redirect('/home');
                     } else {
+                        req.flash('alert', 'username or password invalid');
                         return res.redirect("/login");
                     };
                 });
