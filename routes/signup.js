@@ -19,7 +19,7 @@ exports.signUp = function(req, res, next) {
             req.flash("errorMsg", "Password do not match.");
             return next(err);
         }
-        
+
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(data.password, salt, function(err, hash) {
                 // Store hash in your password DB.
@@ -30,6 +30,12 @@ exports.signUp = function(req, res, next) {
                         return res.redirect("/error?error=" + err)
                     };
 
+                    var user = results[0];
+
+                    if (data.username === user.username) {
+                        req.flash("errorMsg", "Username is taken.");
+                        return res.redirect('/signup');
+                    }
                     res.redirect('/login');
                 });
             });

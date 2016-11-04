@@ -54,39 +54,16 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.use(flash());
-
-var rolesMap = {
-    "ntombi": "admin",
-    "nelisa": "admin",
-    "zolani": "admin",
-    "beauty": "view",
-    "neo": "view"
-}
-
-var checkUser = function(req, res, next) {
-    if (req.session.user) {
-        return next();
-    }
-
-    res.redirect("/login");
-};
-
-
-
 var week1 = weeklySalesStats.weeklySalesStats('./files/week1.csv');
 var week2 = weeklySalesStats.weeklySalesStats('./files/week2.csv');
 var week3 = weeklySalesStats.weeklySalesStats('./files/week3.csv');
 var week4 = weeklySalesStats.weeklySalesStats('./files/week4.csv');
 
-app.use(checkUser);
-app.get('/', checkUser, function(req, res) {
-    res.render('home', {
-        user: req.session.user
-    });
+app.get('/', login.checkUser, function(req, res) {
+    res.render('home');
 });
 
-app.get('/weeklySalesStats/:week_name', checkUser, function(req, res) {
+app.get('/weeklySalesStats/:week_name', login.checkUser, function(req, res) {
     var week_name = req.params.week_name;
 
     if (Number(week_name.replace('week', '')) > 52) {
@@ -99,48 +76,47 @@ app.get('/weeklySalesStats/:week_name', checkUser, function(req, res) {
 
     //use your template here with weeklyData
     res.render('weeklySalesStats', {
-        // user: req.session.user
         week: weeklyData,
-        weekName: week_name,
+        weekName: week_name
     });
 });
 
-app.get('/categories', checkUser, categories.show);
-app.get('/categories/add', checkUser, categories.showAdd);
-app.get('/categories/edit/:id', checkUser, categories.get);
-app.post('/categories/update/:id', checkUser, categories.update);
-app.post('/categories/add', checkUser,  categories.add);
-app.get('/categories/delete/:id', checkUser,  categories.delete);
+app.get('/categories', login.checkUser, categories.show);
+app.get('/categories/add', login.checkUser, user.isAdmin, categories.showAdd);
+app.get('/categories/edit/:id', login.checkUser, categories.get);
+app.post('/categories/update/:id', login.checkUser, categories.update);
+app.post('/categories/add', login.checkUser,  categories.add);
+app.get('/categories/delete/:id', login.checkUser,  categories.delete);
 
-app.get('/products', checkUser, products.show);
-app.get('/products/add', checkUser, products.showAdd);
-app.get('/products/edit/:id', checkUser, products.get);
-app.post('/products/update/:id', checkUser, products.update);
-app.post('/products/add', checkUser, products.add);
-app.get('/products/delete/:id', checkUser, products.delete);
+app.get('/products', login.checkUser, products.show);
+app.get('/products/add', login.checkUser, products.showAdd);
+app.get('/products/edit/:id', login.checkUser, products.get);
+app.post('/products/update/:id', login.checkUser, products.update);
+app.post('/products/add', login.checkUser, products.add);
+app.get('/products/delete/:id', login.checkUser, products.delete);
 
-app.get('/sales', checkUser, sales.show);
-app.get('/sales/add', checkUser, sales.showAdd);
-app.post('/sales/add', checkUser, sales.add);
-app.get('/sales/edit/:id', checkUser, sales.get);
-app.post('/sales/update/:id', checkUser, sales.update);
-app.get('/sales/delete/:id', checkUser, sales.delete);
+app.get('/sales', login.checkUser, sales.show);
+app.get('/sales/add', login.checkUser, sales.showAdd);
+app.post('/sales/add', login.checkUser, sales.add);
+app.get('/sales/edit/:id', login.checkUser, sales.get);
+app.post('/sales/update/:id', login.checkUser, sales.update);
+app.get('/sales/delete/:id', login.checkUser, sales.delete);
 
-app.get('/purchases', checkUser, purchases.show);
-app.get('/purchases/add', checkUser, purchases.showAdd);
-app.post('/purchases/add', checkUser, purchases.add);
-app.get('/purchases/edit/:id', checkUser, purchases.get);
-app.post('/purchases/update/:id', checkUser, purchases.update);
-app.get('/purchases/delete/:id', checkUser, purchases.delete);
+app.get('/purchases', login.checkUser, purchases.show);
+app.get('/purchases/add', login.checkUser, purchases.showAdd);
+app.post('/purchases/add', login.checkUser, purchases.add);
+app.get('/purchases/edit/:id', login.checkUser, purchases.get);
+app.post('/purchases/update/:id', login.checkUser, purchases.update);
+app.get('/purchases/delete/:id', login.checkUser, purchases.delete);
 
-app.get('/suppliers', checkUser, suppliers.show);
+app.get('/suppliers', login.checkUser, suppliers.show);
 
-app.get('/users', checkUser, user.show);
-app.get('/users/add', checkUser, user.showAdd);
-app.post('/users/add', checkUser, user.addUser);
-app.get('/users/edit/:id', checkUser, user.get);
-app.post('/users/update/:id', checkUser, user.update);
-app.get('/users/delete/:id', checkUser, user.delete);
+app.get('/users', login.checkUser, user.show);
+app.get('/users/add', login.checkUser, user.showAdd);
+app.post('/users/add', login.checkUser, user.addUser);
+app.get('/users/edit/:id', login.checkUser, user.get);
+app.post('/users/update/:id', login.checkUser, user.update);
+app.get('/users/delete/:id', login.checkUser, user.delete);
 
 app.get('/login', function(req, res) {
     res.render('login');

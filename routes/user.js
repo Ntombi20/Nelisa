@@ -1,4 +1,23 @@
 var bcrypt = require('bcrypt');
+
+exports.isAdmin = function (req, res, next) {
+  if (err) return next(err);
+  var rolesMap = {
+      "Ntombi": "admin",
+      "Nelisa": "admin",
+      "Zolani": "admin"
+  }
+  if (rolesMap[req.session.username] === "admin") {
+    res.render('add_user');
+    return next();
+  }
+  // req.session.user = {
+  //   viewer: req.session.username,
+  //   isAdmin: rolesMap[req.session.username] === "admin"
+  // }
+
+};
+
 // show users table
 exports.show = function(req, res, next) {
     req.getConnection(function(err, connection) {
@@ -13,9 +32,9 @@ exports.show = function(req, res, next) {
 };
 
 //show add users button
-exports.showAdd = function(req, res) {
-    res.render('add_user');
-}
+// exports.showAdd = function(req, res) {
+//     res.render('add_user');
+// }
 
 exports.addUser = function(req, res, next) {
     req.getConnection(function(err, connection) {

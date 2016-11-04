@@ -1,5 +1,9 @@
 <h1>Categories</h1>
+{{#if isAdmin}}
 <h3><a href="/categories/add">Add a new category</a></h3>
+{{else}}
+<h2>is working</h2>
+{{/if}}
 <table class="table">
     <tr>
         <th>Category</th>
