@@ -21,8 +21,9 @@ exports.login = function(req, res, next) {
                 return res.redirect("/login");
             }
             else{
-                bcrypt.compare(data.password, user.password, function(err, pass) {
-                    if (pass) {
+                bcrypt.compare(data.password, user.password, function(err, ntombi) {
+                  console.log(ntombi);
+                    if (ntombi) {
                         req.session.user = data.username;
                         return res.redirect('/');
                     }

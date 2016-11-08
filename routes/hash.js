@@ -1,4 +1,6 @@
-var bcrypt = require('bcrypt');
+
+//testing bcrypt
+ bcrypt = require('bcrypt');
 const saltRounds = 10;
 const myPlaintextPassword = 'ntombi';
 const someOtherPlaintextPassword = 'beauty';

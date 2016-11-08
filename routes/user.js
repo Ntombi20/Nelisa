@@ -7,7 +7,7 @@ exports.isAdmin = function (req, res, next) {
       "Nelisa": "admin",
       "Zolani": "admin"
   }
-  if (rolesMap[req.session.username] === "admin") {
+  if (rolesMap[req.session.user] === "admin") {
     res.render('add_user');
     return next();
   }
@@ -32,9 +32,9 @@ exports.show = function(req, res, next) {
 };
 
 //show add users button
-// exports.showAdd = function(req, res) {
-//     res.render('add_user');
-// }
+exports.showAdd = function(req, res) {
+    res.render('add_user');
+}
 
 exports.addUser = function(req, res, next) {
     req.getConnection(function(err, connection) {
