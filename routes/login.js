@@ -20,7 +20,6 @@ exports.login = function(req, res, next) {
                     if (pass) {
                         req.session.user = data.username;
                         req.session.role =  user.admin;
-                        console.log(req.session.user);
                         return res.redirect('/');
                     } else {
                         req.flash("errorMsg", "Incorrect username or password")
