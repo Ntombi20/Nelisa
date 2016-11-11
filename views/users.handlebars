@@ -3,14 +3,12 @@
 <table class="table">
     <tr>
         <th>Username</th>
-        <th>Password</th>
         <th>Email</th>
         <th>Roles</th>
     </tr>
     {{#users}}
         <tr>
             <td data-th="Username">{{username}}</td>
-            <td data-th="Password">{{password}}</td>
             <td data-th="Email">{{email}}</td>
             <td data-th="Roles">{{admin}}</td>
             <td data-th="Edit item"><a href="/users/edit/{{id}}">Edit</a></td>

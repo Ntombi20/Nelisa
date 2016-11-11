@@ -17,6 +17,7 @@ var express = require('express'),
     suppliers = require('./routes/suppliers'),
     user = require('./routes/user'),
     login = require('./routes/login'),
+    middleware = require('./middleware'),
     dbOptions = {
         host: 'localhost',
         user: 'root',
@@ -59,11 +60,11 @@ var week2 = weeklySalesStats.weeklySalesStats('./files/week2.csv');
 var week3 = weeklySalesStats.weeklySalesStats('./files/week3.csv');
 var week4 = weeklySalesStats.weeklySalesStats('./files/week4.csv');
 
-app.get('/', login.checkUser, function(req, res) {
+app.get('/', middleware.checkUser, function(req, res) {
     res.render('home');
 });
 
-app.get('/weeklySalesStats/:week_name', login.checkUser, function(req, res) {
+app.get('/weeklySalesStats/:week_name', middleware.checkUser, middleware.isAdmin, function(req, res) {
     var week_name = req.params.week_name;
 
     if (Number(week_name.replace('week', '')) > 52) {
@@ -81,56 +82,48 @@ app.get('/weeklySalesStats/:week_name', login.checkUser, function(req, res) {
     });
 });
 
-app.get('/categories', login.checkUser, categories.show);
-app.get('/categories/add', login.checkUser, user.isAdmin, categories.showAdd);
-app.get('/categories/edit/:id', login.checkUser, categories.get);
-app.post('/categories/update/:id', login.checkUser, categories.update);
-app.post('/categories/add', login.checkUser,  categories.add);
-app.get('/categories/delete/:id', login.checkUser,  categories.delete);
+app.get('/categories', middleware.checkUser, categories.show);
+app.get('/categories/add', middleware.checkUser, categories.showAdd);
+app.get('/categories/edit/:id', middleware.checkUser, categories.get);
+app.post('/categories/update/:id', middleware.checkUser, categories.update);
+app.post('/categories/add', middleware.checkUser, categories.add);
+app.get('/categories/delete/:id', middleware.checkUser, categories.delete);
 
-app.get('/products', login.checkUser, products.show);
-app.get('/products/add', login.checkUser, products.showAdd);
-app.get('/products/edit/:id', login.checkUser, products.get);
-app.post('/products/update/:id', login.checkUser, products.update);
-app.post('/products/add', login.checkUser, products.add);
-app.get('/products/delete/:id', login.checkUser, products.delete);
+app.get('/products', middleware.checkUser, products.show);
+app.get('/products/add', middleware.checkUser, products.showAdd);
+app.get('/products/edit/:id', middleware.checkUser, products.get);
+app.post('/products/update/:id', middleware.checkUser, products.update);
+app.post('/products/add', middleware.checkUser, products.add);
+app.get('/products/delete/:id', middleware.checkUser, products.delete);
 
-app.get('/sales', login.checkUser, sales.show);
-app.get('/sales/add', login.checkUser, sales.showAdd);
-app.post('/sales/add', login.checkUser, sales.add);
-app.get('/sales/edit/:id', login.checkUser, sales.get);
-app.post('/sales/update/:id', login.checkUser, sales.update);
-app.get('/sales/delete/:id', login.checkUser, sales.delete);
+app.get('/sales', middleware.checkUser, middleware.isAdmin, sales.show);
+app.get('/sales/add', middleware.checkUser, middleware.isAdmin, sales.showAdd);
+app.post('/sales/add', middleware.checkUser, middleware.isAdmin, sales.add);
+app.get('/sales/edit/:id', middleware.checkUser, middleware.isAdmin, sales.get);
+app.post('/sales/update/:id', middleware.checkUser, middleware.isAdmin, sales.update);
+app.get('/sales/delete/:id', middleware.checkUser, middleware.isAdmin, sales.delete);
 
-app.get('/purchases', login.checkUser, purchases.show);
-app.get('/purchases/add', login.checkUser, purchases.showAdd);
-app.post('/purchases/add', login.checkUser, purchases.add);
-app.get('/purchases/edit/:id', login.checkUser, purchases.get);
-app.post('/purchases/update/:id', login.checkUser, purchases.update);
-app.get('/purchases/delete/:id', login.checkUser, purchases.delete);
+app.get('/purchases', middleware.checkUser, middleware.isAdmin, purchases.show);
+app.get('/purchases/add', middleware.checkUser, middleware.isAdmin, purchases.showAdd);
+app.post('/purchases/add', middleware.checkUser, middleware.isAdmin, purchases.add);
+app.get('/purchases/edit/:id', middleware.checkUser, middleware.isAdmin, purchases.get);
+app.post('/purchases/update/:id', middleware.checkUser, middleware.isAdmin, purchases.update);
+app.get('/purchases/delete/:id', middleware.checkUser, middleware.isAdmin, purchases.delete);
 
-app.get('/suppliers', login.checkUser, suppliers.show);
+app.get('/suppliers', middleware.checkUser, middleware.isAdmin, suppliers.show);
 
-app.get('/users', login.checkUser, user.show);
-app.get('/users/add', login.checkUser, user.showAdd);
-app.post('/users/add', login.checkUser, user.addUser);
-app.get('/users/edit/:id', login.checkUser, user.get);
-app.post('/users/update/:id', login.checkUser, user.update);
-app.get('/users/delete/:id', login.checkUser, user.delete);
+app.get('/users', middleware.checkUser, middleware.isAdmin, user.show);
+app.get('/users/add', middleware.checkUser, middleware.isAdmin, user.showAdd);
+app.post('/users/add', middleware.checkUser, middleware.isAdmin, user.addUser);
+app.get('/users/edit/:id', middleware.checkUser, middleware.isAdmin, user.get);
+app.post('/users/update/:id', middleware.checkUser, middleware.isAdmin, user.update);
+app.get('/users/delete/:id', middleware.checkUser, middleware.isAdmin, user.delete);
 
 app.get('/login', function(req, res) {
     res.render('login');
 });
 
 app.post('/login', login.login);
-
-// app.post('/login', function(req, res) {
-//     req.session.user = {
-//             name: req.body.username,
-//             is_admin: rolesMap[req.body.username] === "admin"
-//         }
-//     res.redirect("/")
-// });
 
 app.get('/logout', function(req, res) {
     delete req.session.user;

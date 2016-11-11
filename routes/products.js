@@ -2,10 +2,13 @@
 exports.show = function(req, res, next) {
     req.getConnection(function(err, connection) {
         if (err) return next(err);
+         var admin = req.session.admin === 1;
+         console.log(admin);
         connection.query('SELECT products.id as product_id, products.product, categories.categoryName FROM categories inner join products on products.category_Id = categories.Id ORDER BY product_id DESC', [], function(err, results) {
             if (err) return next(err);
             res.render('products', {
                 products: results,
+                admin: admin
             });
         });
     });

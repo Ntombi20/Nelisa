@@ -1,23 +1,5 @@
 var bcrypt = require('bcrypt');
 
-exports.isAdmin = function (req, res, next) {
-  if (err) return next(err);
-  var rolesMap = {
-      "Ntombi": "admin",
-      "Nelisa": "admin",
-      "Zolani": "admin"
-  }
-  if (rolesMap[req.session.user] === "admin") {
-    res.render('add_user');
-    return next();
-  }
-  // req.session.user = {
-  //   viewer: req.session.username,
-  //   isAdmin: rolesMap[req.session.username] === "admin"
-  // }
-
-};
-
 // show users table
 exports.show = function(req, res, next) {
     req.getConnection(function(err, connection) {
@@ -26,6 +8,8 @@ exports.show = function(req, res, next) {
             if (err) return next(err);
             res.render('users', {
                 users: results,
+                // admin: req.session.admin,
+                // user: req.session.user
             });
         });
     });
@@ -33,7 +17,12 @@ exports.show = function(req, res, next) {
 
 //show add users button
 exports.showAdd = function(req, res) {
-    res.render('add_user');
+    res.render('add_user'
+    //  ,{
+    //   admin: req.session.admin,
+      // user: req.session.user
+    // }
+  );
 }
 
 exports.addUser = function(req, res, next) {
@@ -56,6 +45,11 @@ exports.addUser = function(req, res, next) {
             err.status = 400;
             return next(err);
         }
+
+        //  req.session.user = {
+        //    admin: req.session.admin,
+        //    user: req.session.user
+        //  }
 
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(data.password, salt, function(err, hash) {
@@ -83,7 +77,11 @@ exports.get = function(req, res, next){
 	req.getConnection(function(err, connection){
 		connection.query('SELECT * FROM users WHERE id = ?', [id], function(err, rows){
 			if(err) return next(err);
-			res.render('edit_user',{data : rows[0]});
+			res.render('edit_user',{
+        data : rows[0],
+        // admin: req.session.admin,
+        // user: req.session.user
+      });
 		});
 	});
 };
