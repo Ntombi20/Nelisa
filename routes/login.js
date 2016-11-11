@@ -21,10 +21,11 @@ exports.login = function(req, res, next) {
                 return res.redirect("/login");
             }
             else{
-                bcrypt.compare(data.password, user.password, function(err, ntombi) {
-                  console.log(ntombi);
-                    if (ntombi) {
+                bcrypt.compare(data.password, user.password, function(err, pass) {
+                  console.log(pass);
+                    if (pass) {
                         req.session.user = data.username;
+                        req.session.role =  user.admin;
                         return res.redirect('/');
                     }
                     else {
