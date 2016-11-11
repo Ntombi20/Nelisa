@@ -8,8 +8,9 @@ exports.login = function(req, res, next) {
         };
         connection.query('select * from users where username = ?', data.username, function(err, results) {
             var user = results[0];
+            console.log(user.admin);
             //check if a user exist
-            
+
             if (user === undefined) {
                 req.flash("errorMsg", "User does not exist.")
                 return res.redirect("/login");
@@ -18,6 +19,7 @@ exports.login = function(req, res, next) {
 
                     if (pass) {
                         req.session.user = data.username;
+                        req.session.role =  user.admin;
                         console.log(req.session.user);
                         return res.redirect('/');
                     } else {

@@ -1,13 +1,17 @@
 <h1>Sales</h1>
+{{#admin}}
 <h3><a href="/sales/add">Add</a></h3>
+{{/admin}}
 <table class="table">
     <tr>
         <th>Product</th>
         <th>Quantity</th>
         <th>Price</th>
         <th>Date</th>
+        {{#admin}}
         <th>Edit item</th>
         <th>Delete item</th>
+        {{/admin}}
     </tr>
     {{#sales}}
         <tr>
@@ -15,8 +19,10 @@
             <td data-th="Product">{{quantity}}</td>
             <td data-th="Price">{{price}}</td>
             <td data-th="Date">{{date}}</td>
+            {{#if../admin}}
             <td data-th="Edit item"><a href="/sales/edit/{{sales_id}}">Edit</a></td>
             <td data-th="Delete item"><a href="/sales/delete/{{sales_id}}">Delete</a></td>
+            {{/if}}
         </tr>
     {{/sales}}
 </table>

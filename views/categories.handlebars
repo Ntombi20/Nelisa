@@ -1,20 +1,22 @@
 <h1>Categories</h1>
-{{#if isAdmin}}
+{{#admin}}
 <h3><a href="/categories/add">Add a new category</a></h3>
-{{else}}
-<h2>Not working</h2>
-{{/if}}
+{{/admin}}
 <table class="table">
     <tr>
         <th>Category</th>
+        {{#admin}}
         <th>Edit item</th>
         <th>Delete item</th>
+        {{/admin}}
     </tr>
     {{#categories}}
         <tr>
             <td data-th="Category">{{categoryName}}</td>
+            {{#if../admin}}
             <td data-th="Edit item"><a href="/categories/edit/{{id}}">Edit</a></td>
             <td data-th="Edit delete"><a href="/categories/delete/{{id}}">Delete</a></td>
+            {{/if}}
         </tr>
     {{/categories}}
 </table>
