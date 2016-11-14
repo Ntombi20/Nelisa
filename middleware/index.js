@@ -13,9 +13,10 @@ var isAdmin = function(req, res, next) {
     return next();
   }
   else {
-    req.flash("errorMsg", "can't access!!!");
+    req.flash("errorMsg", "logged in as admin to view this page.!");
       res.redirect("/");
   }
 };
+
 module.exports.checkUser = checkUser;
 module.exports.isAdmin = isAdmin;

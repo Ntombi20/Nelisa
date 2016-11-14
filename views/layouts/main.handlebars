@@ -26,10 +26,10 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">Home</a></li>
-                    {{#users}}
+                    {{#if user}}
                         <li class="nav-item"><a href="/categories">Categories</a></li>
                         <li class="nav-item"><a href="/products">Products</a></li>
-                        {{#admin}}
+                        {{#if admin}}
                             <li class="nav-item"><a href="/purchases">Purchases</a></li>
                             <li class="nav-item"><a href="/sales">Sales</a></li>
                             <li class="nav-item"><a href="/suppliers">Suppliers</a></li>
@@ -42,17 +42,19 @@
                                     <a class="dropdown-item" href="weeklySalesStats/week4">Week4</a>
                                 </div>
                             </li>
-                        {{/admin}}
+                        {{/if}}
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    {{#if../admin}}
+                    {{#if admin}}
                         <li class="nav-item"><a href="/users">Manage Users</a></li>
-                    {{/if}}
+                        {{/if}}
+                        <li class="nav-item"><a href="/logout">Logout</a></li>
+                    {{else}}
                     <li class="nav-item"><a href="/signup">Sign up</a></li>
                     <li class="nav-item"><a href="/login">Login</a></li>
-                    {{/users}}
-                    <li class="nav-item"><a href="/logout">Logout</a></li>
+                    {{/if}}
+
                 </ul>
 
             </div>

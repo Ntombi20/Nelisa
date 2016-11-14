@@ -6,6 +6,7 @@ exports.login = function(req, res, next) {
             username: req.body.username,
             password: req.body.password
         };
+
         connection.query('select * from users where username = ?', data.username, function(err, results) {
             var user = results[0];
             console.log(user.admin);

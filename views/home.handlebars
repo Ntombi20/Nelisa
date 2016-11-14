@@ -2,11 +2,14 @@
     <div class="row">
         <div class="well">
           {{#if user}}
-            <h1>Welcome, {{user.name}} to Nelisa Spaza Shop</h1>
+            <h1>Welcome {{user}}, to Nelisa Spaza Shop</h1>
           {{/if}}
 
-          {{#if user.is_admin}}
+          <!-- {{#if user.is_admin}}
             <h2>Hello Admin</h2>
+          {{/if}} -->
+          {{#if messages.errorMsg}}
+              <h3>{{messages.errorMsg}}</h3>
           {{/if}}
         </div>
     </div>
