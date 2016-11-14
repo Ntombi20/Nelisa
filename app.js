@@ -60,6 +60,9 @@ var week2 = weeklySalesStats.weeklySalesStats('./files/week2.csv');
 var week3 = weeklySalesStats.weeklySalesStats('./files/week3.csv');
 var week4 = weeklySalesStats.weeklySalesStats('./files/week4.csv');
 
+
+app.use(middleware.setupUserDetails);
+
 app.get('/', middleware.checkUser, function(req, res) {
     res.render('home', {user: req.session.user});
 });

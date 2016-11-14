@@ -1,5 +1,9 @@
 var checkUser = function(req, res, next) {
     if (req.session && req.session.user) {
+
+        // res.locals.user = req.session.user;
+        // res.locals.admin = req.session.role === 1;
+
         return next();
     }
     else {
@@ -9,7 +13,11 @@ var checkUser = function(req, res, next) {
 };
 
 var isAdmin = function(req, res, next) {
-  if (req.session.user.admin) {
+  if (req.session.role === 1) {
+
+    // res.locals.user = req.session.user;
+    // res.locals.admin = req.session.role === 1;
+
     return next();
   }
   else {
@@ -20,3 +28,19 @@ var isAdmin = function(req, res, next) {
 
 module.exports.checkUser = checkUser;
 module.exports.isAdmin = isAdmin;
+
+module.exports.setupUserDetails = function(req, res, next){
+  if (req.session){
+
+    if (req.session.user){
+      res.locals.user = req.session.user;
+    }
+
+    if (req.session.role){
+      res.locals.admin = req.session.role === 1;
+    }
+  }
+
+  next();
+
+}

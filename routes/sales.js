@@ -2,11 +2,11 @@ exports.show = function(req, res, next) {
     req.getConnection(function(err, connection) {
         if (err) return next(err);
         var admin = req.session.role === 1;
+        console.log(admin);
         connection.query('SELECT sales.id as sales_id, products.product, sales.quantity, sales.date, sales.price FROM products inner join sales on sales.products_id = products.id ORDER BY sales_id DESC', [], function(err, results) {
             if (err) return next(err);
             res.render('sales', {
-                sales: results,
-                admin: admin
+                sales: results
             });
         });
     });
