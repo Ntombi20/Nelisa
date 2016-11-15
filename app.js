@@ -115,12 +115,12 @@ app.get('/purchases/delete/:id', middleware.checkUser, middleware.isAdmin, purch
 
 app.get('/suppliers', middleware.checkUser, middleware.isAdmin, suppliers.show);
 
-app.get('/users', middleware.checkUser, middleware.isAdmin, user.show);
-app.get('/users/add', middleware.checkUser, middleware.isAdmin, user.showAdd);
-app.post('/users/add', middleware.checkUser, middleware.isAdmin, user.addUser);
-app.get('/users/edit/:id', middleware.checkUser, middleware.isAdmin, user.get);
-app.post('/users/update/:id', middleware.checkUser, middleware.isAdmin, user.update);
-app.get('/users/delete/:id', middleware.checkUser, middleware.isAdmin, user.delete);
+app.get('/users', middleware.checkUser, user.show);
+app.get('/users/add', middleware.checkUser, user.showAdd);
+app.post('/users/add', middleware.checkUser, user.addUser);
+app.get('/users/edit/:id', middleware.checkUser, user.get);
+app.post('/users/update/:id', middleware.checkUser, user.update);
+app.get('/users/delete/:id', middleware.checkUser, user.delete);
 
 app.get('/login', function(req, res) {
     res.render('login');
