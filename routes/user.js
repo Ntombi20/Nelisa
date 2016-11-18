@@ -4,12 +4,10 @@ var bcrypt = require('bcrypt');
 exports.show = function(req, res, next) {
     req.getConnection(function(err, connection) {
         if (err) return next(err);
-         var admin = req.session.role === 1;
         connection.query('SELECT * from users ORDER BY username DESC', [], function(err, results) {
             if (err) return next(err);
             res.render('users', {
-                users: results,
-                admin: admin
+                users: results
             });
         });
     });

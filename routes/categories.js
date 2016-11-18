@@ -2,12 +2,10 @@
 exports.show = function(req, res, next) {
     req.getConnection(function(err, connection) {
         if (err) return next(err);
-         var admin = req.session.role === 1;
         connection.query('SELECT * from categories ORDER BY id DESC', [], function(err, results) {
             if (err) return next(err);
             res.render('categories', {
-                categories: results,
-                admin: admin
+                categories: results
             });
         });
     });
