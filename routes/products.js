@@ -92,15 +92,16 @@ exports.delete = function(req, res, next) {
     });
 };
 
-//search values
 exports.searchProduct = function(req, res, next) {
     req.getConnection(function(err, connection) {
         if (err) return next(err);
-        var searchValue = "%" + req.body.seach + "%";
-        connection.query('SELECT * FROM products where product Like ?', [searchValue], function(err, results) {
+        var admin = req.session.role === 1;
+	    var searchValue = "%" + req.body.value + "%";
+        connection.query('SELECT products.id as product_id, products.product, categories.categoryName FROM categories inner join products on products.category_Id = categories.Id where product Like ?', [searchValue], function(err, results) {
             if (err) return next(err);
-            res.render('productSearch', {
-                search: results
+            res.render('product_search', {
+                product: results,
+                admin: admin
             });
         });
     });

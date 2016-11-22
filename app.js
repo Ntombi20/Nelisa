@@ -98,8 +98,7 @@ app.get('/products/edit/:id', middleware.checkUser, middleware.isAdmin, products
 app.post('/products/update/:id', middleware.checkUser, middleware.isAdmin, products.update);
 app.post('/products/add', middleware.checkUser, middleware.isAdmin, products.add);
 app.get('/products/delete/:id', middleware.checkUser, middleware.isAdmin, products.delete);
-app.post('/products/search/', middleware.checkUser, products.searchProduct);
-app.get('/products/search/:searchValue', middleware.checkUser, products.searchProduct);
+app.post('/products/search', middleware.checkUser, products.searchProduct);
 
 app.get('/sales', middleware.checkUser, middleware.isAdmin, sales.show);
 app.get('/sales/add', middleware.checkUser, middleware.isAdmin, sales.showAdd);

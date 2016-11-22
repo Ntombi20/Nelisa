@@ -1,11 +1,5 @@
+
 <h1>Products</h1>
-{{#admin}}
-<h3><a href="/products/add">Add a new products</a></h3>
-{{/admin}}
-<form action="/products/search" method="post">
-    <input type="text" name="value"/>
-    <input type="submit" value="search"/>
-</form>
 <table class="table">
     <tr>
         <th>Product</th>
@@ -15,7 +9,7 @@
         <th>Delete item</th>
         {{/admin}}
     </tr>
-    {{#products}}
+    {{#product}}
         <tr>
             <td data-th="Product">{{product}}</td>
             <td data-th="Category">{{categoryName}}</td>
@@ -24,5 +18,7 @@
             <td data-th="Delete item"><a href="/products/delete/{{product_id}}">Delete</a></td>
             {{/if}}
         </tr>
-    {{/products}}
+    {{/product}}
 </table>
+
+<a href="/products">Back</a>
