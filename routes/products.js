@@ -102,7 +102,7 @@ exports.searchProduct = function(req, res, next) {
 	    var searchValue = "%" + req.body.value + "%";
         connection.query('SELECT products.id as product_id, products.product, categories.categoryName FROM categories inner join products on products.category_Id = categories.Id where product Like ?', [searchValue], function(err, results) {
             if (err) return next(err);
-            res.render('productSearch', {
+            res.render('product_search', {
                 product: results,
                 admin: admin
             });
