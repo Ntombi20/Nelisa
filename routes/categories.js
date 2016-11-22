@@ -67,3 +67,19 @@ exports.delete = function(req, res, next){
 		});
 	});
 };
+
+//search values
+exports.searchCategory = function(req, res, next) {
+    req.getConnection(function(err, connection) {
+        if (err) return next(err);
+        var searchValue = "%" + req.params.id + "%";
+        console.log(searchValue);
+        connection.query('SELECT * FROM categories where product Like ?', [searchValue], function(err, results) {
+            console.log(results);
+            if (err) return next(err);
+            res.render('categorySearch', {
+                search: results
+            });
+        });
+    });
+};

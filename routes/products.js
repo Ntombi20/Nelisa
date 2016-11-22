@@ -91,3 +91,17 @@ exports.delete = function(req, res, next) {
         });
     });
 };
+
+//search values
+exports.searchProduct = function(req, res, next) {
+    req.getConnection(function(err, connection) {
+        if (err) return next(err);
+        var searchValue = "%" + req.body.seach + "%";
+        connection.query('SELECT * FROM products where product Like ?', [searchValue], function(err, results) {
+            if (err) return next(err);
+            res.render('productSearch', {
+                search: results
+            });
+        });
+    });
+};
