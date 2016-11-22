@@ -2,6 +2,12 @@
 {{#admin}}
 <h3><a href="/products/add">Add a new products</a></h3>
 {{/admin}}
+
+<form action="/products/search" method="post">
+    <input type="text" name="value"/>
+    <input type="submit" value="search"/>
+</form>
+
 <table class="table">
     <tr>
         <th>Product</th>
