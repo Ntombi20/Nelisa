@@ -93,3 +93,19 @@ exports.delete = function(req, res, next) {
         });
     });
 };
+
+
+exports.searchProduct = function(req, res, next) {
+    req.getConnection(function(err, connection) {
+        if (err) return next(err);
+        var admin = req.session.role === 1;
+	    var searchValue = "%" + req.body.value + "%";
+        connection.query('SELECT * FROM products where product Like ?', [searchValue], function(err, results) {
+            if (err) return next(err);
+            res.render('productSearch', {
+                product: results,
+                admin: admin
+            });
+        });
+    });
+};
