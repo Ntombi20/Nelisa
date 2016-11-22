@@ -1,6 +1,6 @@
 <h1>Purchases</h1>
 {{#admin}}
-<h3><a href="/purchases/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> a new purchases</a></h3>
+<h3><a href="/purchases/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> a new Purchase</a></h3>
 {{/admin}}
 <form action="/purchases/search" method="post">
     <input type="text" name="value"/>
@@ -29,8 +29,8 @@
             <td data-label="Price">{{price}}</td>
             <td data-label="Date">{{date}}</td>
             {{#if../admin}}
-            <td data-label="Edit item"><a href="/purchases/edit/{{purchases_id}}">Edit</a></td>
-            <td data-label="Delete item"><a href="/purchases/delete/{{purchases_id}}">Delete</a></td>
+            <td data-label="Edit item"><a href="/purchases/edit/{{purchases_id}}"><span class="glyphicon glyphicon-edit"></a></td>
+            <td data-label="Delete item"><a href="/purchases/delete/{{purchases_id}}"><span class="glyphicon glyphicon-trash"></a></td>
             {{/if}}
         </tr>
     {{/purchases}}

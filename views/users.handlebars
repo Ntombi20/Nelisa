@@ -8,6 +8,10 @@
       <th>Username</th>
       <th>Email</th>
       <th>Roles</th>
+      {{#admin}}
+      <th>Edit item</th>
+      <th>Delete item</th>
+      {{/admin}}
     </tr>
   </thead>
   <tbody>
@@ -17,8 +21,8 @@
             <td data-label="Email">{{email}}</td>
             <td data-label="Roles">{{admin}}</td>
             {{#if../admin}}
-            <td data-label="Edit item"><a href="/users/edit/{{id}}">Edit</a></td>
-            <td data-label="Edit delete"><a href="/users/delete/{{id}}">Delete</a></td>
+            <td data-label="Edit item"><a href="/users/edit/{{id}}"><span class="glyphicon glyphicon-edit"></a></td>
+            <td data-label="Edit delete"><a href="/users/delete/{{id}}"><span class="glyphicon glyphicon-trash"></a></td>
             {{/if}}
         </tr>
     {{/users}}
