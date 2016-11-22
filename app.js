@@ -91,6 +91,7 @@ app.get('/categories/edit/:id', middleware.checkUser, middleware.isAdmin, catego
 app.post('/categories/update/:id', middleware.checkUser, middleware.isAdmin, categories.update);
 app.post('/categories/add', middleware.checkUser, middleware.isAdmin, categories.add);
 app.get('/categories/delete/:id', middleware.checkUser, middleware.isAdmin, categories.delete);
+app.post('/categories/search', middleware.checkUser, categories.searchCategory);
 
 app.get('/products', middleware.checkUser, products.show);
 app.get('/products/add', middleware.checkUser, middleware.isAdmin, products.showAdd);
@@ -106,6 +107,7 @@ app.post('/sales/add', middleware.checkUser, middleware.isAdmin, sales.add);
 app.get('/sales/edit/:id', middleware.checkUser, middleware.isAdmin, sales.get);
 app.post('/sales/update/:id', middleware.checkUser, middleware.isAdmin, sales.update);
 app.get('/sales/delete/:id', middleware.checkUser, middleware.isAdmin, sales.delete);
+app.post('/sales/search', middleware.checkUser, sales.searchSale);
 
 app.get('/purchases', middleware.checkUser, middleware.isAdmin, purchases.show);
 app.get('/purchases/add', middleware.checkUser, middleware.isAdmin, purchases.showAdd);
@@ -113,8 +115,10 @@ app.post('/purchases/add', middleware.checkUser, middleware.isAdmin, purchases.a
 app.get('/purchases/edit/:id', middleware.checkUser, middleware.isAdmin, purchases.get);
 app.post('/purchases/update/:id', middleware.checkUser, middleware.isAdmin, purchases.update);
 app.get('/purchases/delete/:id', middleware.checkUser, middleware.isAdmin, purchases.delete);
+app.post('/purchases/search', middleware.checkUser, purchases.searchPurchase);
 
 app.get('/suppliers', middleware.checkUser, middleware.isAdmin, suppliers.show);
+// app.post('/suppliers/search', middleware.checkUser, suppliers.searchSupplier);
 
 app.get('/users', middleware.checkUser, middleware.isAdmin, user.show);
 app.get('/users/add', middleware.checkUser, middleware.isAdmin, user.showAdd);
@@ -122,6 +126,7 @@ app.post('/users/add', middleware.checkUser, middleware.isAdmin, user.addUser);
 app.get('/users/edit/:id', middleware.checkUser, middleware.isAdmin, user.get);
 app.post('/users/update/:id', middleware.checkUser, middleware.isAdmin, user.update);
 app.get('/users/delete/:id', middleware.checkUser, middleware.isAdmin, user.delete);
+// app.post('/users/search', middleware.checkUser, users.searchUser);
 
 app.get('/login', function(req, res) {
     res.render('login');

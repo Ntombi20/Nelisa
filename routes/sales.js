@@ -82,13 +82,27 @@ exports.update = function(req, res, next) {
     });
 };
 
-
 exports.delete = function(req, res, next) {
     var id = req.params.id;
     req.getConnection(function(err, connection) {
         connection.query('DELETE FROM sales WHERE id = ?', [id], function(err, rows) {
             if (err) return next(err);
             res.redirect('/sales');
+        });
+    });
+};
+
+exports.searchSale = function(req, res, next) {
+    req.getConnection(function(err, connection) {
+        if (err) return next(err);
+        var admin = req.session.role === 1;
+	    var searchValue = "%" + req.body.value + "%";
+        connection.query('SELECT products.id as product_id, products.product, categories.categoryName FROM categories inner join products on products.category_Id = categories.Id where categories.categoryName Like ?', [searchValue], function(err, results) {
+            if (err) return next(err);
+            res.render('sale_search', {
+                sale: results,
+                admin: admin
+            });
         });
     });
 };

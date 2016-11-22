@@ -2,8 +2,9 @@
 {{#admin}}
 <h3><a href="/sales/add">Add</a></h3>
 {{/admin}}
-<form>
-  <input class="searchBar" type="text" name="search" placeholder="Search..">
+<form action="/sales/search" method="post">
+    <input type="text" name="value"/>
+    <input type="submit" value="search"/>
 </form>
 <table class="table">
     <tr>

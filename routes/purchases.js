@@ -106,3 +106,18 @@ exports.delete = function(req, res, next) {
         });
     });
 };
+
+exports.searchPurchase = function(req, res, next) {
+    req.getConnection(function(err, connection) {
+        if (err) return next(err);
+        var admin = req.session.role === 1;
+	    var searchValue = "%" + req.body.value + "%";
+        connection.query('SELECT purchases.id as purchases_id, products.product, suppliers.shop, purchases.quantity, purchases.price, purchases.date FROM purchases inner join products on purchases.products_id = products.id inner join suppliers on purchases.suppliers_id = suppliers.id where products.product Like ?', [searchValue], function(err, results) {
+            if (err) return next(err);
+            res.render('purchase_search', {
+                purchase: results,
+                admin: admin
+            });
+        });
+    });
+};

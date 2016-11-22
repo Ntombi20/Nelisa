@@ -72,13 +72,13 @@ exports.delete = function(req, res, next){
 exports.searchCategory = function(req, res, next) {
     req.getConnection(function(err, connection) {
         if (err) return next(err);
-        var searchValue = "%" + req.params.id + "%";
-        console.log(searchValue);
-        connection.query('SELECT * FROM categories where product Like ?', [searchValue], function(err, results) {
-            console.log(results);
+        var admin = req.session.role === 1;
+	    var searchValue = "%" + req.body.value + "%";
+        connection.query('SELECT * from categories where id Like ?', [searchValue], function(err, results) {
             if (err) return next(err);
-            res.render('categorySearch', {
-                search: results
+            res.render('category_search', {
+                category: results,
+                admin: admin
             });
         });
     });
