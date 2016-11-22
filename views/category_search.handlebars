@@ -3,7 +3,8 @@
 <h3><a href="/categories/add">Add a new category</a></h3>
 {{/admin}}
 <a href="/categories">Back</a>
-<table class="table">
+<table>
+  <thead>
     <tr>
         <th>Category</th>
         {{#admin}}
@@ -11,13 +12,16 @@
         <th>Delete item</th>
         {{/admin}}
     </tr>
+  </thead>
+  <tbody>
     {{#categories}}
         <tr>
-            <td data-th="Category">{{categoryName}}</td>
+            <td data-label="Category">{{categoryName}}</td>
             {{#if../admin}}
-            <td data-th="Edit item"><a href="/categories/edit/{{id}}">Edit</a></td>
-            <td data-th="Edit delete"><a href="/categories/delete/{{id}}">Delete</a></td>
+            <td data-label="Edit item"><a href="/categories/edit/{{id}}">Edit</a></td>
+            <td data-label="Edit delete"><a href="/categories/delete/{{id}}">Delete</a></td>
             {{/if}}
         </tr>
     {{/categories}}
+  </tbody>
 </table>

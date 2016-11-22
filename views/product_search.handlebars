@@ -1,23 +1,26 @@
 <h1>Products</h1>
 <a href="/products">Back</a>
-
-<table class="table">
+<table>
+  <thead>
     <tr>
-        <th>Product</th>
-        <th>Category</th>
-        {{#admin}}
-        <th>Edit item</th>
-        <th>Delete item</th>
-        {{/admin}}
+      <th>Product</th>
+      <th>Category</th>
+      {{#admin}}
+      <th>Edit item</th>
+      <th>Delete item</th>
+      {{/admin}}
     </tr>
-    {{#product}}
+  </thead>
+  <tbody>
+    {{#products}}
         <tr>
-            <td data-th="Product">{{product}}</td>
-            <td data-th="Category">{{categoryName}}</td>
+            <td data-label="Product">{{product}}</td>
+            <td data-label="Category">{{categoryName}}</td>
              {{#if../admin}}
-            <td data-th="Edit item"><a href="/products/edit/{{product_id}}">Edit</a></td>
-            <td data-th="Delete item"><a href="/products/delete/{{product_id}}">Delete</a></td>
+            <td data-label="Edit item"><a href="/products/edit/{{product_id}}">Edit</a></td>
+            <td data-label="Delete item"><a href="/products/delete/{{product_id}}">Delete</a></td>
             {{/if}}
         </tr>
-    {{/product}}
+    {{/products}}
+  </tbody>
 </table>

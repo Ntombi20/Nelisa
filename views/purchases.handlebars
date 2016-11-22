@@ -6,29 +6,33 @@
     <input type="text" name="value"/>
     <input type="submit" value="search"/>
 </form>
-<table class="table">
+<table>
+  <thead>
     <tr>
-        <th>Product</th>
-        <th>Shop</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Date</th>
-        {{#admin}}
-        <th>Edit item</th>
-        <th>Delete item</th>
-        {{/admin}}
+      <th>Product</th>
+      <th>Shop</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Date</th>
+      {{#admin}}
+      <th>Edit item</th>
+      <th>Delete item</th>
+      {{/admin}}
     </tr>
+  </thead>
+  <tbody>
     {{#purchases}}
         <tr>
-            <td data-th="Product">{{product}}</td>
-            <td data-th="Shop">{{shop}}</td>
-            <td data-th="Product">{{quantity}}</td>
-            <td data-th="Price">{{price}}</td>
-            <td data-th="Date">{{date}}</td>
+            <td data-label="Product">{{product}}</td>
+            <td data-label="Shop">{{shop}}</td>
+            <td data-label="Product">{{quantity}}</td>
+            <td data-label="Price">{{price}}</td>
+            <td data-label="Date">{{date}}</td>
             {{#if../admin}}
-            <td data-th="Edit item"><a href="/purchases/edit/{{purchases_id}}">Edit</a></td>
-            <td data-th="Delete item"><a href="/purchases/delete/{{purchases_id}}">Delete</a></td>
+            <td data-label="Edit item"><a href="/purchases/edit/{{purchases_id}}">Edit</a></td>
+            <td data-label="Delete item"><a href="/purchases/delete/{{purchases_id}}">Delete</a></td>
             {{/if}}
         </tr>
     {{/purchases}}
+  </tbody>
 </table>

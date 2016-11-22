@@ -1,0 +1,29 @@
+<h1>Sales</h1>
+{{#admin}}
+<h3><a href="/sales/add">Add</a></h3>
+{{/admin}}
+<a href="/sales">Back</a>
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Category</th>
+      {{#admin}}
+      <th>Edit item</th>
+      <th>Delete item</th>
+      {{/admin}}
+    </tr>
+  </thead>
+  <tbody>
+    {{#products}}
+        <tr>
+            <td data-label="Product">{{product}}</td>
+            <td data-label="Category">{{categoryName}}</td>
+             {{#if../admin}}
+            <td data-label="Edit item"><a href="/products/edit/{{product_id}}">Edit</a></td>
+            <td data-label="Delete item"><a href="/products/delete/{{product_id}}">Delete</a></td>
+            {{/if}}
+        </tr>
+    {{/products}}
+  </tbody>
+</table>

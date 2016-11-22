@@ -1,0 +1,23 @@
+<h1>Users</h1>
+<a href="/users">Back</a>
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Roles</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#users}}
+        <tr>
+            <td data-label="Username">{{username}}</td>
+            <td data-label="Email">{{email}}</td>
+            <td data-label="Roles">{{admin}}</td>
+            {{#if../admin}}
+            <td data-label="Edit item"><a href="/users/edit/{{id}}">Edit</a></td>
+            <td data-label="Edit delete"><a href="/users/delete/{{id}}">Delete</a></td>
+            {{/if}}
+        </tr>
+    {{/users}}
+</table>

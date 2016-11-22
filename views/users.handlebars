@@ -2,20 +2,23 @@
 {{#admin}}
 <h3><a href="/users/add">Add a new users</a></h3>
 {{/admin}}
-<table class="table">
+<table>
+  <thead>
     <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Roles</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Roles</th>
     </tr>
+  </thead>
+  <tbody>
     {{#users}}
         <tr>
-            <td data-th="Username">{{username}}</td>
-            <td data-th="Email">{{email}}</td>
-            <td data-th="Roles">{{admin}}</td>
+            <td data-label="Username">{{username}}</td>
+            <td data-label="Email">{{email}}</td>
+            <td data-label="Roles">{{admin}}</td>
             {{#if../admin}}
-            <td data-th="Edit item"><a href="/users/edit/{{id}}">Edit</a></td>
-            <td data-th="Edit delete"><a href="/users/delete/{{id}}">Delete</a></td>
+            <td data-label="Edit item"><a href="/users/edit/{{id}}">Edit</a></td>
+            <td data-label="Edit delete"><a href="/users/delete/{{id}}">Delete</a></td>
             {{/if}}
         </tr>
     {{/users}}

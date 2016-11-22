@@ -1,15 +1,21 @@
 <h1>Suppliers</h1>
+
 <form action="/suppliers/search" method="post">
     <input type="text" name="value"/>
     <input type="submit" value="search"/>
 </form>
-<table class="table">
+
+<table>
+  <thead>
     <tr>
-        <th>Shop</th>
+      <th>Shops</th>
     </tr>
+  </thead>
+  <tbody>
     {{#suppliers}}
-        <tr>
-            <td data-th="Shop">{{shop}}</td>
-        </tr>
+    <tr>
+      <td data-label="Shop">{{shop}}</td>
+    </tr>
     {{/suppliers}}
+  </tbody>
 </table>
