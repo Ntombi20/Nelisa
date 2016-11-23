@@ -1,32 +1,32 @@
 <h1>Products</h1>
 {{#admin}}
-<h3><a href="/products/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> a new Product</a></h3>
+    <h3><a href="/products/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> a new Product</a></h3>
 {{/admin}}
 <form action="/products/search" method="post">
-    <input type="text" name="value"/>
-    <input type="submit" value="search"/>
+    <input type="text" name="value" />
+    <input type="submit" value="search" />
 </form>
 <table>
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Category</th>
-      {{#admin}}
-      <th>Edit item</th>
-      <th>Delete item</th>
-      {{/admin}}
-    </tr>
-  </thead>
-  <tbody>
-    {{#products}}
+    <thead>
         <tr>
-            <td data-label="Product">{{product}}</td>
-            <td data-label="Category">{{categoryName}}</td>
-             {{#if../admin}}
-            <td data-label="Edit item"><a href="/products/edit/{{product_id}}"><span class="glyphicon glyphicon-edit"></a></td>
-            <td data-label="Delete item"><a href="/products/delete/{{product_id}}"><span class="glyphicon glyphicon-trash"></a></td>
-            {{/if}}
+            <th>Product</th>
+            <th>Category</th>
+            {{#admin}}
+                <th>Edit item</th>
+                <th>Delete item</th>
+            {{/admin}}
         </tr>
-    {{/products}}
-  </tbody>
+    </thead>
+    <tbody>
+        {{#products}}
+            <tr>
+                <td data-label="Product">{{product}}</td>
+                <td data-label="Category">{{categoryName}}</td>
+                {{#if../admin}}
+                    <td data-label="Edit item"><a href="/products/edit/{{product_id}}"><span class="glyphicon glyphicon-edit"></a></td>
+                    <td data-label="Delete item"><a href="/products/delete/{{product_id}}"><span class="glyphicon glyphicon-trash"></a></td>
+                    {{/if}}
+            </tr>
+        {{/products}}
+    </tbody>
 </table>

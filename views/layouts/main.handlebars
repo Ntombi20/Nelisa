@@ -48,12 +48,12 @@
                 <ul class="nav navbar-nav navbar-right">
                     {{#if admin}}
                         <li class="nav-item"><a href="/users">Manage Users</a></li>
-                        {{/if}}
-                        <li class="nav-item"><a href="/logout">Logout</a></li>
-                    {{else}}
-                    <li class="nav-item"><a href="/signup">Sign up</a></li>
-                    <li class="nav-item"><a href="/login">Login</a></li>
                     {{/if}}
+                    <li class="nav-item"><a href="/logout">Logout</a></li>
+                    {{else}}
+                        <li class="nav-item"><a href="/signup">Sign up</a></li>
+                        <li class="nav-item"><a href="/login">Login</a></li>
+                        {{/if}}
 
                 </ul>
 
@@ -65,7 +65,6 @@
     <div role="main" class="container-fluid text-center">
         {{{body}}}
     </div>
-
     <footer class="container-fluid text-center">
         <h4>NELISA SPAZA SHOP</h4>
     </footer>

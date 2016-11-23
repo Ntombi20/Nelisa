@@ -74,7 +74,7 @@ exports.searchCategory = function(req, res, next) {
         if (err) return next(err);
         var admin = req.session.role === 1;
 	    var searchValue = "%" + req.body.value + "%";
-        connection.query('SELECT * from categories where id Like ?', [searchValue], function(err, results) {
+        connection.query('SELECT * from categories where categoryName Like ?', [searchValue], function(err, results) {
             if (err) return next(err);
             res.render('category_search', {
                 category: results,
