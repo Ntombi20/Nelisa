@@ -93,15 +93,13 @@ exports.delete = function(req, res, next) {
 };
 
 exports.searchProduct = function(req, res, next) {
-     req.getConnection(function(err, connection) {
-         if (err) return next(err);
-         var admin = req.session.role === 1;
- 	    var searchValue = "%" + req.body.value + "%";
+    req.getConnection(function(err, connection) {
+        if (err) return next(err);
+        var searchValue = "%" + req.body.value + "%";
         connection.query('SELECT products.id as product_id, products.product, categories.categoryName FROM categories inner join products on products.category_Id = categories.Id where product Like ?', [searchValue], function(err, results) {
             if (err) return next(err);
             res.render('product_search', {
-                product: results,
-                admin: admin
+                product: results
             });
         });
     });

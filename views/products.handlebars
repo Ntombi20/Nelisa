@@ -2,9 +2,9 @@
 {{#admin}}
     <h3><a href="/products/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> a new Product</a></h3>
 {{/admin}}
-<form action="/products/search" method="post">
-    <input type="text" name="value" />
-    <input type="submit" value="search" />
+<!-- <form action="/products/search" method="post"> -->
+    <input class="search" type="text" name="value" />
+    <!-- <input type="submit" value="search" /> -->
 </form>
 <table>
     <thead>
@@ -30,3 +30,25 @@
         {{/products}}
     </tbody>
 </table>
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    $(".seach").keyup(function(){
+      var url = '/products/search';
+      var searchItem = $(".seach").val();
+      console.log(searchItem);
+      $.ajax(url, {
+        data: {
+          value: searchItem
+        },
+        type: 'POST',
+        success: function(response){
+          console.log(response);
+          $(".productTable").html(response);
+        }
+
+      });
+
+    });
+  });
+</script>

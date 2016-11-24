@@ -72,13 +72,11 @@ exports.delete = function(req, res, next){
 exports.searchCategory = function(req, res, next) {
     req.getConnection(function(err, connection) {
         if (err) return next(err);
-        var admin = req.session.role === 1;
 	    var searchValue = "%" + req.body.value + "%";
-        connection.query('SELECT * from categories where categoryName Like ?', [searchValue], function(err, results) {
+        connection.query('SELECT * from categories where categoryName like ?', [searchValue], function(err, results) {
             if (err) return next(err);
             res.render('category_search', {
-                category: results,
-                admin: admin
+                category: results
             });
         });
     });

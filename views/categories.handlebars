@@ -2,9 +2,8 @@
 {{#admin}}
 <h3><a href="/categories/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> a new Category</a></h3>
 {{/admin}}
-<form action="/categories/search" method="post">
-    <input type="text" name="value"/>
-    <input type="submit" value="search"/>
+<form>
+    <input class="seach" type="text" name="value"/>
 </form>
 <table>
   <thead>
@@ -28,3 +27,25 @@
     {{/categories}}
   </tbody>
 </table>
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    $(".seach").keyup(function(){
+      var url = '/categories/search';
+      var searchItem = $(".seach").val();
+      console.log(searchItem);
+      $.ajax(url, {
+        data: {
+          value: searchItem
+        },
+        type: 'POST',
+        success: function(response){
+          console.log(response);
+          $(".categoryTable").html(response);
+        }
+
+      });
+
+    });
+  });
+</script>
