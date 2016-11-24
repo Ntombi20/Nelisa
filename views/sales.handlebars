@@ -1,13 +1,21 @@
-<h1>Sales</h1>
-{{#admin}}
-<h3><a href="/sales/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>a new Sale</a></h3>
-{{/admin}}
-<form action="/sales/search" method="post">
-    <input type="text" name="value"/>
-    <input type="submit" value="search"/>
-</form>
+<div class="content-section-b">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h1 class="section-heading">Sales</h1>
+                {{#admin}}
+                <h3><a href="/sales/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>a new Sale</a></h3>
+                {{/admin}}
+                <form>
+                    <input class="search" type="text" name="value" placeholder="search"/>
+                </form>
+        </div>
+    </div>
+</div>
 <table>
-  <thead>
+  <thead class="header-row">
     <tr>
       <th>Product</th>
       <th>Quantity</th>
