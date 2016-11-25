@@ -32,7 +32,7 @@ exports.signUp = function(req, res, next) {
 
                     var user = results[0];
 
-                    if (data.username === user.username) {
+                    if (data.username === results.username) {
                         req.flash("errorMsg", "Username is taken.");
                         return res.redirect('/signup');
                     }

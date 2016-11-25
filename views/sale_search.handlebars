@@ -1,13 +1,26 @@
-<h1>Sales</h1>
-{{#admin}}
-<h3><a href="/sales/add">Add</a></h3>
-{{/admin}}
-<a href="/sales">Back</a>
+<div class="content-section-b">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h1 class="section-heading">Sales</h1>
+                {{#admin}}
+                <h3><a href="/sales/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>a new Sale</a></h3>
+                {{/admin}}
+                <form>
+                    <input class="search" type="text" name="value" placeholder="search"/>
+                </form>
+        </div>
+    </div>
+</div>
 <table>
-  <thead>
+  <thead class="header-row">
     <tr>
       <th>Product</th>
-      <th>Category</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Date</th>
       {{#admin}}
       <th>Edit item</th>
       <th>Delete item</th>
@@ -15,15 +28,17 @@
     </tr>
   </thead>
   <tbody>
-    {{#products}}
+    {{#sales}}
         <tr>
             <td data-label="Product">{{product}}</td>
-            <td data-label="Category">{{categoryName}}</td>
-             {{#if../admin}}
-            <td data-label="Edit item"><a href="/products/edit/{{product_id}}">Edit</a></td>
-            <td data-label="Delete item"><a href="/products/delete/{{product_id}}">Delete</a></td>
+            <td data-label="Product">{{quantity}}</td>
+            <td data-label="Price">{{price}}</td>
+            <td data-label="Date">{{date}}</td>
+            {{#if../admin}}
+            <td data-label="Edit item"><a href="/sales/edit/{{sales_id}}"><span class="glyphicon glyphicon-edit"></a></td>
+            <td data-label="Delete item"><a href="/sales/delete/{{sales_id}}"><span class="glyphicon glyphicon-trash"></a></td>
             {{/if}}
         </tr>
-    {{/products}}
+    {{/sales}}
   </tbody>
 </table>

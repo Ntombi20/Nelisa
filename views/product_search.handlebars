@@ -1,22 +1,40 @@
-<h1>new Products</h1>
-<a href="/products">Back</a>
-<table class="productTable">
-    <tr>
-        <th>Product</th>
-        <th>Category</th>
-        {{#admin}}
-            <th>Edit item</th>
-            <th>Delete item</th>
-        {{/admin}}
-    </tr>
-    {{#product}}
+<div class="content-section-b">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h1 class="section-heading">Products</h1>
+                {{#admin}}
+                    <h3><a href="/products/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> a new Product</a></h3>
+                {{/admin}}
+                <form>
+                    <input class="search" type="text" name="value" placeholder="search"/>
+                </form>
+        </div>
+    </div>
+</div>
+<table>
+    <thead class="header-row">
         <tr>
-            <td data-th="Product">{{product}}</td>
-            <td data-th="Category">{{categoryName}}</td>
-            {{#if../admin}}
-                <td data-th="Edit item"><a href="/products/edit/{{product_id}}">Edit</a></td>
-                <td data-th="Delete item"><a href="/products/delete/{{product_id}}">Delete</a></td>
-                {{/if}}
+            <th>Product</th>
+            <th>Category</th>
+            {{#admin}}
+                <th>Edit item</th>
+                <th>Delete item</th>
+            {{/admin}}
         </tr>
-    {{/product}}
+    </thead>
+    <tbody>
+        {{#products}}
+            <tr>
+                <td data-label="Product">{{product}}</td>
+                <td data-label="Category">{{categoryName}}</td>
+                {{#if../admin}}
+                    <td data-label="Edit item"><a href="/products/edit/{{product_id}}"><span class="glyphicon glyphicon-edit"></a></td>
+                    <td data-label="Delete item"><a href="/products/delete/{{product_id}}"><span class="glyphicon glyphicon-trash"></a></td>
+                    {{/if}}
+            </tr>
+        {{/products}}
+    </tbody>
 </table>

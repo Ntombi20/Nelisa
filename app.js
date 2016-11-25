@@ -149,7 +149,6 @@ app.get('/logout', function(req, res) {
 app.get('/signup', function(req, res) {
     res.render('signup');
 });
-
 app.post('/signup', signup.signUp);
 
 function errorHandler(err, req, res, next) {

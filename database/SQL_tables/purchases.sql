@@ -11,4 +11,4 @@ create table purchases (
   CONSTRAINT uc_id UNIQUE (id)
 );
 
-ALTER TABLE purchases ADD CONSTRAINT fk_suppliers_id FOREIGN KEY (suppliers_id) REFERENCES suppliers(id);
+ALTER TABLE purchases ADD FOREIGN KEY (suppliers_id) references suppliers(id);

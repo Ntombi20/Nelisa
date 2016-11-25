@@ -1,21 +1,39 @@
-<h1>Categories</h1>
-<h3><a href="/categories/add">Add a new category</a></h3>
-<a href="/categories">Back</a>
-<table class="categoryTable">
-  <thead>
-    <tr>
-        <th>Category</th>
-        <th>Edit item</th>
-        <th>Delete item</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#categories}}
+<div class="content-section-b">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h1 class="section-heading">Categories</h1>
+
+                {{#admin}}
+                    <h3><a href="/categories/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> a new Category</a></h3>
+                {{/admin}}
+                <form>
+                    <input class="search" type="text" name="value" placeholder="search"/>
+                </form>
+        </div>
+    </div>
+</div>
+<table>
+    <thead class="header-row">
         <tr>
-            <td data-label="Category">{{categoryName}}</td>
-            <td data-label="Edit item"><a href="/categories/edit/{{id}}">Edit</a></td>
-            <td data-label="Edit delete"><a href="/categories/delete/{{id}}">Delete</a></td>
+            <th>Category</th>
+            {{#admin}}
+                <th>Edit item</th>
+                <th>Delete item</th>
+            {{/admin}}
         </tr>
-    {{/categories}}
-  </tbody>
+    </thead>
+    <tbody>
+        {{#categories}}
+            <tr>
+                <td data-label="Category">{{categoryName}}</td>
+                {{#if../admin}}
+                    <td data-label="Edit item"><a href="/categories/edit/{{id}}"><span class="glyphicon glyphicon-edit"></a></td>
+                    <td data-label="Edit delete"><a href="/categories/delete/{{id}}"><span class="glyphicon glyphicon-trash"></a></td>
+                    {{/if}}
+            </tr>
+        {{/categories}}
+    </tbody>
 </table>
